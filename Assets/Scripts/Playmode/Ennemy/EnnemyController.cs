@@ -70,7 +70,8 @@ namespace Playmode.Ennemy
             hitSensor = rootTransform.GetComponentInChildren<HitSensor>();
             handController = hand.GetComponent<HandController>();
 
-            strategy = new TurnAndShootStragegy(mover, handController);
+      // strategy = new TurnAndShootStragegy(mover, handController);
+         strategy = new NormalStrategy(mover, handController);
         }
 
         private void CreateStartingWeapon()
@@ -86,7 +87,7 @@ namespace Playmode.Ennemy
         {
             ennemySensor.OnEnnemySeen += OnEnnemySeen;
             ennemySensor.OnEnnemySightLost += OnEnnemySightLost;
-            hitSensor.OnHit += OnHit;
+            hitSensor.OnHit += OnHit;  //subscribe a l'evenement
             health.OnDeath += OnDeath;
         }
 
@@ -125,7 +126,7 @@ namespace Playmode.Ennemy
             }
         }
 
-        private void OnHit(int hitPoints)
+        private void OnHit(int hitPoints) //la fonction de levenement
         {
             Debug.Log("OW, I'm hurt! I'm really much hurt!!!");
 
