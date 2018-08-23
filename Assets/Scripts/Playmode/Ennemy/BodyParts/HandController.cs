@@ -24,14 +24,14 @@ namespace Playmode.Ennemy.BodyParts
         public void Hold(GameObject gameObject)
         {
             //if new weapon is the same add a buff to the weapon in hand
-            if(gameObject.GetComponent<PickableWeapon>().Type.Equals(this.weapon.GetComponent<PickableWeapon>().Type))
+            if(weapon?.GetComponent<WeaponController>().Type==gameObject?.GetComponent<WeaponController>().Type)
             {
-                switch (weapon.GetComponent<PickableWeapon>().Type)
+                switch (weapon.GetComponent<WeaponController>().Type)
                 {
-                        case PickableWeapon.WeaponType.Shotgun:
+                        case WeaponController.WeaponType.Shotgun:
                             this.weapon.NbBullet += this.weapon.NbBullet;
                             break;
-                        case PickableWeapon.WeaponType.Uzi:
+                        case WeaponController.WeaponType.Uzi:
                             this.weapon.FireDelayInSeconds /= 2;
                             break;
                 }

@@ -9,7 +9,15 @@ namespace Playmode.Weapon
         [SerializeField] private float fireDelayInSeconds = 1f;
         [Range(0, 360)][SerializeField] private float scatterAngle;
         [SerializeField]private int nbBullet;
+        public enum WeaponType
+        {
+            Shotgun,
+            Uzi
+        }
 
+        [SerializeField] private WeaponType type;
+        
+        public WeaponType Type => type;
         public int NbBullet
         {
             get { return nbBullet; }
