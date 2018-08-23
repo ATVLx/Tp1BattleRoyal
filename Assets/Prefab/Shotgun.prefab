@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 212572458434048068}
   - component: {fileID: 58472536363956612}
   - component: {fileID: 114423311332295532}
+  - component: {fileID: 114931976271501072}
   m_Layer: 0
   m_Name: Shotgun
-  m_TagString: Untagged
+  m_TagString: Pickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,6 +71,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 0
   damage: 1
+--- !u!114 &114931976271501072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136975532163548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c94bdc5e30d40d0b8ac80c5d43ecaea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1680898247938888, guid: 9a8e046e7d266cc448cd4925e13dc3da,
+    type: 2}
+  fireDelayInSeconds: 2
+  scatterAngle: 9
+  nbBullet: 9
 --- !u!212 &212572458434048068
 SpriteRenderer:
   m_ObjectHideFlags: 1

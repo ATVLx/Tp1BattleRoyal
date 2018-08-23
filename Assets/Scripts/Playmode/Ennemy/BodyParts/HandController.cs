@@ -27,7 +27,7 @@ namespace Playmode.Ennemy.BodyParts
                 gameObject.transform.parent = transform;
                 gameObject.transform.localPosition = Vector3.zero;
                 
-                weapon = gameObject.GetComponentInChildren<WeaponController>();
+                weapon = gameObject.GetComponent<WeaponController>();
             }
             else
             {

@@ -23,7 +23,6 @@ public class PickableWeapon : Pickable
         if (other.collider.CompareTag("Enemy"))
         {
             GetPicked(other);
-            Destroy(this);
         }
     }
 }

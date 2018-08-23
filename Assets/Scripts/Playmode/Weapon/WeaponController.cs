@@ -7,7 +7,8 @@ namespace Playmode.Weapon
     {
         [Header("Behaviour")] [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private float fireDelayInSeconds = 1f;
-
+        [Range(0, 360)][SerializeField] private float scatterAngle;
+        [SerializeField]private int nbBullet;
         private float lastTimeShotInSeconds;
 
         private bool CanShoot => Time.time - lastTimeShotInSeconds > fireDelayInSeconds;
@@ -33,7 +34,12 @@ namespace Playmode.Weapon
         {
             if (CanShoot)
             {
-                Instantiate(bulletPrefab, transform.position, transform.rotation);
+                for (int i = 0; i < nbBullet; i++)
+                {
+                    GameObject bullet =Instantiate(bulletPrefab, transform.position, transform.rotation);
+                    bullet.transform.Rotate(new Vector3(0,0,(i+1)*(scatterAngle/nbBullet-scatterAngle/2)));
+                }
+                
 
                 lastTimeShotInSeconds = Time.time;
             }
