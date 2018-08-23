@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - MainController
+  - Ennemy
   layers:
   - Default
   - TransparentFX
