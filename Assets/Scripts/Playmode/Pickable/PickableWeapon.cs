@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class PickableWeapon : Pickable
 {
-    enum WeaponType
+    public enum WeaponType
     {
         Shotgun,
         Uzi
     }
 
-    [SerializeField] private WeaponType weaponType;
+    [SerializeField] private WeaponType type;
     [SerializeField] private int damage = 1;
+
+    public WeaponType Type => type;
 
     protected override void GetPicked(Collision2D other)
     {

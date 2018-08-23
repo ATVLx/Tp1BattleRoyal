@@ -9,6 +9,19 @@ namespace Playmode.Weapon
         [SerializeField] private float fireDelayInSeconds = 1f;
         [Range(0, 360)][SerializeField] private float scatterAngle;
         [SerializeField]private int nbBullet;
+
+        public int NbBullet
+        {
+            get { return nbBullet; }
+            set { nbBullet = value; }
+        }
+
+        public float FireDelayInSeconds
+        {
+            get { return fireDelayInSeconds; }
+            set { fireDelayInSeconds = value; }
+        }
+
         private float lastTimeShotInSeconds;
 
         private bool CanShoot => Time.time - lastTimeShotInSeconds > fireDelayInSeconds;

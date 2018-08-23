@@ -6,7 +6,7 @@ using Playmode.Entity.Senses;
 using Playmode.Entity.Status;
 using Playmode.Movement;
 using UnityEngine;
-
+using Playmode.Ennemy.Strategies;
 namespace Playmode.Ennemy
 {
     public class EnnemyController : MonoBehaviour
