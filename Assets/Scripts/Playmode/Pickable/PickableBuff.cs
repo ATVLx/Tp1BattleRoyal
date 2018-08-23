@@ -1,5 +1,6 @@
 ﻿using Playmode.Ennemy.BodyParts;
 using Playmode.Entity.Status;
+using Playmode.Util.Values;
 using UnityEngine;
 
 
