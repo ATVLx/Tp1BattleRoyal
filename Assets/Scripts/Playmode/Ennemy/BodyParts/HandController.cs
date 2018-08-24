@@ -35,6 +35,7 @@ namespace Playmode.Ennemy.BodyParts
                         this.weapon.FireDelayInSeconds /= 2;
                         break;
                 }
+                Destroy(gameObject);
             }
             else if (gameObject != null)
             {
@@ -42,6 +43,7 @@ namespace Playmode.Ennemy.BodyParts
                     Destroy(weapon.gameObject);
                 gameObject.transform.parent = transform;
                 gameObject.transform.localPosition = Vector3.zero;
+                gameObject.transform.localRotation=Quaternion.identity;
                 weapon = gameObject.GetComponent<WeaponController>();
             }
             else

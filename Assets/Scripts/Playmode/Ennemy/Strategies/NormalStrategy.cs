@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Playmode.Application;
 using UnityEngine;
 using Playmode.Ennemy.BodyParts;
 using Playmode.Entity.Senses;
@@ -15,14 +16,15 @@ namespace Playmode.Ennemy.Strategies
     private readonly HandController handController;
     private readonly EnnemySensor ennemySensor;
     private Vector3 randomDestination;
-
+    float mapEdgeY = Camera.main.GetComponent<CameraEdge>().Height / 2;
+    float mapEdgeX=  Camera.main.GetComponent<CameraEdge>().Width / 2;
 
     public NormalStrategy(Mover mover, HandController handcontroller, EnnemySensor ennemySensor)
     {
       this.ennemySensor = ennemySensor;
       this.mover = mover;
       this.handController = handcontroller;
-      randomDestination = new Vector3(Random.Range(-25, 25), Random.Range(-25, 25), 0);
+      randomDestination = new Vector3(Random.Range(-mapEdgeX,mapEdgeX),Random.Range(-mapEdgeY,mapEdgeY), 0);
 
     }
 
@@ -40,9 +42,13 @@ namespace Playmode.Ennemy.Strategies
      
       if (Vector3.Distance(mover.transform.position, randomDestination) <= 0.5)
       {
-        randomDestination = new Vector3(Random.Range(-25, 25), Random.Range(-25, 25), 0);
+        
+        randomDestination = new Vector3(
+          Random.Range(-mapEdgeX,mapEdgeX),Random.Range(-mapEdgeY,mapEdgeY),
+          0);
       }
 
+        
         Vector3 direction = randomDestination - mover.transform.position;
         mover.Move(randomDestination);
         mover.Rotate(Vector2.Dot(direction, mover.transform.right));

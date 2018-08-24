@@ -7,7 +7,7 @@ namespace Playmode.Ennemy.Strategies
     {
         void Act();
     }
-
+    
     public enum EnnemyStrategy
     {
         Normal,

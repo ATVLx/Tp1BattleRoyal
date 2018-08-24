@@ -71,6 +71,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1399810628277264, guid: 5b3563603dcbbce449eb771ff30aba92,
     type: 2}
   fireDelayInSeconds: 0.3
+  scatterAngle: 0
+  nbBullet: 1
+  type: 0
 --- !u!212 &212081914005524830
 SpriteRenderer:
   m_ObjectHideFlags: 1
