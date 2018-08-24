@@ -83,7 +83,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1680898247938888, guid: 9a8e046e7d266cc448cd4925e13dc3da,
     type: 2}
   fireDelayInSeconds: 2
-  scatterAngle: 9
+  scatterAngle: 15
   nbBullet: 9
   type: 1
 --- !u!212 &212572458434048068
