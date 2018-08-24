@@ -20,7 +20,7 @@ public class PickableBuff : Pickable
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Ennemy"))
         {
             GetPicked(other);
         }
