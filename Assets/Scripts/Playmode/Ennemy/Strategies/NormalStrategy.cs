@@ -34,13 +34,15 @@ namespace Playmode.Ennemy.Strategies
      {
         Vector3 direction = ennemySensor.EnnemiesInSight.ElementAt(0).transform.position - mover.transform.position;
         mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-        mover.MoveToward(ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
+        if (Vector3.Distance(mover.transform.position, ennemySensor.EnnemiesInSight.ElementAt(0).transform.position)>=2)
+        {
+          mover.MoveToward(ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
+        }
         handController.Use();
      }
      else
      {
      
-      //TODO:random
       if (Vector3.Distance(mover.transform.position, randomDestination) <= 0.5)
       {
         
