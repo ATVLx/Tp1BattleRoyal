@@ -85,7 +85,7 @@ MonoBehaviour:
   fireDelayInSeconds: 2
   scatterAngle: 9
   nbBullet: 9
-  type: 0
+  type: 1
 --- !u!212 &212572458434048068
 SpriteRenderer:
   m_ObjectHideFlags: 1

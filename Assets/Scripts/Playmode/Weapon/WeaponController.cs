@@ -11,6 +11,7 @@ namespace Playmode.Weapon
         [SerializeField]private int nbBullet;
         public enum WeaponType
         {
+            Base,
             Shotgun,
             Uzi
         }
@@ -51,14 +52,14 @@ namespace Playmode.Weapon
             lastTimeShotInSeconds = 0;
         }
 
-        public void Shoot()
+        public virtual void Shoot()
         {
             if (CanShoot)
             {
                 for (int i = 0; i < nbBullet; i++)
                 {
                     GameObject bullet =Instantiate(bulletPrefab, transform.position, transform.rotation);
-                    bullet.transform.Rotate(new Vector3(0,0,(i+1)*(scatterAngle/nbBullet-scatterAngle/2)));
+                    bullet.transform.Rotate(new Vector3(0,0,(i+1)*(scatterAngle/nbBullet)));
                 }
                 
 
