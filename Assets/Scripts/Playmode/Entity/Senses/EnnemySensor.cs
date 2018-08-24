@@ -8,12 +8,17 @@ namespace Playmode.Entity.Senses
 
     public class EnnemySensor : MonoBehaviour
     {
-        private ICollection<EnnemyController> ennemiesInSight;
+        private HashSet<EnnemyController> ennemiesInSight;
 
         public event EnnemySensorEventHandler OnEnnemySeen;
         public event EnnemySensorEventHandler OnEnnemySightLost;
 
-        public IEnumerable<EnnemyController> EnnemiesInSight => ennemiesInSight;
+        public IEnumerable<EnnemyController> EnnemiesInSight {
+          get {
+            ennemiesInSight.RemoveWhere(it => it == null);
+            return ennemiesInSight;
+          }
+        }
 
         private void Awake()
         {
