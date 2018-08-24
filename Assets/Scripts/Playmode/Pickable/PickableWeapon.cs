@@ -3,18 +3,19 @@ using UnityEngine;
 
 public class PickableWeapon : Pickable
 {
-
-    protected override void GetPicked(Collision2D other)
+    protected override void GetPicked(Collider2D other)
     {
         //add to hand
-        other.transform.GetComponent<HandController>().Hold(this.gameObject);
+        other.transform.root.GetComponentInChildren<HandController>().Hold(this.gameObject);
+        Destroy(this);
     }
 
-    protected override void OnCollisionEnter2D(Collision2D other)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.collider.CompareTag("Enemy"))
+        if (other.CompareTag("Ennemy"))
         {
             GetPicked(other);
         }
     }
+
 }

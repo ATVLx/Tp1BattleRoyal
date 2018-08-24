@@ -6,8 +6,10 @@ using UnityEngine;
 
 public abstract class Pickable : MonoBehaviour
 {
-    protected abstract void OnCollisionEnter2D(Collision2D other);
+    protected abstract void OnTriggerEnter2D(Collider2D other);
 
-    protected abstract void GetPicked(Collision2D other);
+
+
+    protected abstract void GetPicked(Collider2D other);
 
 }

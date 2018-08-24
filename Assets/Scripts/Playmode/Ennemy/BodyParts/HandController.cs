@@ -20,33 +20,32 @@ namespace Playmode.Ennemy.BodyParts
         {
             mover = GetComponent<AnchoredMover>();
         }
-        
+
         public void Hold(GameObject gameObject)
         {
             //if new weapon is the same add a buff to the weapon in hand
-            if(weapon?.GetComponent<WeaponController>().Type==gameObject?.GetComponent<WeaponController>().Type)
+            if (weapon?.GetComponent<WeaponController>().Type == gameObject?.GetComponent<WeaponController>().Type)
             {
                 switch (weapon.GetComponent<WeaponController>().Type)
                 {
-                        case WeaponController.WeaponType.Shotgun:
-                            this.weapon.NbBullet += this.weapon.NbBullet;
-                            break;
-                        case WeaponController.WeaponType.Uzi:
-                            this.weapon.FireDelayInSeconds /= 2;
-                            break;
+                    case WeaponController.WeaponType.Shotgun:
+                        this.weapon.NbBullet += this.weapon.NbBullet;
+                        break;
+                    case WeaponController.WeaponType.Uzi:
+                        this.weapon.FireDelayInSeconds /= 2;
+                        break;
                 }
-                
             }
             else if (gameObject != null)
             {
+                if(weapon!=null)
+                    Destroy(weapon.gameObject);
                 gameObject.transform.parent = transform;
                 gameObject.transform.localPosition = Vector3.zero;
-                
                 weapon = gameObject.GetComponent<WeaponController>();
             }
             else
             {
-                
                 weapon = null;
             }
         }

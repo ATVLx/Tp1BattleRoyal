@@ -4,24 +4,26 @@ using Playmode.Util.Values;
 using UnityEngine;
 
 
-    public class PickableBuff : Pickable
+public class PickableBuff : Pickable
+{
+    enum type
     {
-        enum type
-        {
-            MedKit,
-            Star
-        }
-        protected override void GetPicked(Collision2D other)
-        {
-            //buff the other
-            other.transform.GetComponent<Health>().Hit(-50);
-        }
+        MedKit,
+        Star
+    }
 
-        protected override void OnCollisionEnter2D(Collision2D other)
+    protected override void GetPicked(Collider2D other)
+    {
+        //buff the other
+        other.transform.GetComponent<Health>().Hit(-50);
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
         {
-            if (other.collider.CompareTag("Enemy"))
-            {
-                GetPicked(other);
-            }
+            GetPicked(other);
         }
     }
+
+}

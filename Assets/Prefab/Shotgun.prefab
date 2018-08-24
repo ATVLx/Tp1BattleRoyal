@@ -69,8 +69,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26605575eb684c09aa0824fe31dabc81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 0
-  damage: 1
 --- !u!114 &114931976271501072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,6 +85,7 @@ MonoBehaviour:
   fireDelayInSeconds: 2
   scatterAngle: 9
   nbBullet: 9
+  type: 0
 --- !u!212 &212572458434048068
 SpriteRenderer:
   m_ObjectHideFlags: 1
