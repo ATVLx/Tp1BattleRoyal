@@ -29,7 +29,7 @@ namespace Playmode.Ennemy.BodyParts
                 switch (weapon.GetComponent<WeaponController>().Type)
                 {
                     case WeaponController.WeaponType.Shotgun:
-                        this.weapon.NbBullet += this.weapon.NbBullet;
+                        this.weapon.NbBullet += gameObject.GetComponent<WeaponController>().NbBullet;
                         break;
                     case WeaponController.WeaponType.Uzi:
                         this.weapon.FireDelayInSeconds /= 2;
