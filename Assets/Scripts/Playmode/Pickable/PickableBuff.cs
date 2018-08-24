@@ -15,7 +15,7 @@ public class PickableBuff : Pickable
     protected override void GetPicked(Collider2D other)
     {
         //buff the other
-        other.transform.GetComponent<Health>().Hit(-50);
+       // other.transform.GetComponent<Health>().Hit(-50);
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)

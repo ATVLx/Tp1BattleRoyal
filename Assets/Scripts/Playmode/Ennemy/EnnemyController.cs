@@ -1,4 +1,5 @@
 ﻿using System;
+using Playmode.Application;
 using Playmode.Ennemy.BodyParts;
 using Playmode.Ennemy.Strategies;
 using Playmode.Entity.Destruction;
@@ -21,6 +22,8 @@ namespace Playmode.Ennemy
         [SerializeField] private Sprite camperSprite;
         [Header("Behaviour")] [SerializeField] private GameObject startingWeaponPrefab;
 
+       
+        
         private Health health;
         private Mover mover;
         private Destroyer destroyer;
