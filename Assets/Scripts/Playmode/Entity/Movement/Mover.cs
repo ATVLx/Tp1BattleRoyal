@@ -25,7 +25,6 @@ namespace Playmode.Movement
     }
 
     public abstract void Move(Vector3 direction);
-    public abstract void MoveToward(Vector3 destination);
     public abstract void Rotate(float direction);
   }
 }
