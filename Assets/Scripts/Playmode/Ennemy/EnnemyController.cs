@@ -71,7 +71,7 @@ namespace Playmode.Ennemy
             handController = hand.GetComponent<HandController>();
 
       // strategy = new TurnAndShootStragegy(mover, handController);
-         strategy = new NormalStrategy(mover, handController);
+         strategy = new NormalStrategy(mover, handController,ennemySensor);
         }
 
         private void CreateStartingWeapon()
@@ -147,6 +147,7 @@ namespace Playmode.Ennemy
 
         private void OnEnnemySightLost(EnnemyController ennemy)
         {
+            //
             Debug.Log("I've lost sight of an ennemy...Yikes!!!");
         }
     }

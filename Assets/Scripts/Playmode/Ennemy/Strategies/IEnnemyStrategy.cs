@@ -1,5 +1,8 @@
-﻿namespace Playmode.Ennemy.Strategies
+﻿using Boo.Lang;
+
+namespace Playmode.Ennemy.Strategies
 {
+    
     public interface IEnnemyStrategy
     {
         void Act();
