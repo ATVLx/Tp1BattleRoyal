@@ -4,18 +4,12 @@ using Playmode.Util.Values;
 using UnityEngine;
 
 
-public class PickableBuff : Pickable
+public class PickableMedKit : Pickable
 {
-    enum type
-    {
-        MedKit,
-        Star
-    }
-
+    [SerializeField] private int healthPoint;
     protected override void GetPicked(Collider2D other)
     {
-        //buff the other
-       // other.transform.GetComponent<Health>().Hit(-50);
+       other.transform.GetComponent<Health>().Heal(healthPoint);
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)
