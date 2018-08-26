@@ -20,11 +20,12 @@ public class PickableGenerator : MonoBehaviour
 
         for (int i = 0; i < pickableNumber; i++)
         {
-            Instantiate(
+            GameObject pickable =Instantiate(
                 pickablePrefabs[Random.Range(0, pickablePrefabs.Length)],
                 new Vector3(Random.Range(minSpawnPosX, maxSpawnPosX), Random.Range(minSpawnPosY, maxSpawnPosY), 0),
                 Quaternion.identity,
                 transform);
+            pickable.transform.Rotate(0,0,Random.Range(0,360));
         }
     }
 }
