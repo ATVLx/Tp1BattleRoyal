@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Playmode.Ennemy.BodyParts
 {
+    public delegate void PickableEventHandler();
     public class HandController : MonoBehaviour
     {
         private Mover mover;
@@ -33,7 +34,7 @@ namespace Playmode.Ennemy.BodyParts
                         this.weapon.NbBullet += gameObject.GetComponent<WeaponController>().NbBullet;
                         break;
                     case WeaponController.WeaponType.Uzi:
-                        this.weapon.FireDelayInSeconds /= 2;
+                        this.weapon.FireDelayInSeconds = weapon.FireDelayInSeconds/ 2;
                         break;
                 }
                 Destroy(gameObject);
@@ -54,7 +55,6 @@ namespace Playmode.Ennemy.BodyParts
                 weapon = null;
             }
         }
-
         public void AimTowards(GameObject target)
         {
             //TODO : Utilisez ce que vous savez des vecteurs pour implémenter cette méthode

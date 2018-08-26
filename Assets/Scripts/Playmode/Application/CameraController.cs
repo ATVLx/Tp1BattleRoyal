@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 public class CameraController : MonoBehaviour
 {
 	[SerializeField] private float minimumCameraSize = 10;
@@ -33,4 +34,5 @@ public class CameraController : MonoBehaviour
 			Camera.main.orthographicSize -= shrinkingSpeedPerSeconds * Time.deltaTime;
 		}
 	}
+	
 }

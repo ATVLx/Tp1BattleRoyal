@@ -14,6 +14,8 @@ namespace Playmode.Ennemy
             Color.magenta, Color.red, Color.yellow, new Color(255, 125, 0, 255)
         };
 
+        private GameController gameController;
+
         private static readonly EnnemyStrategy[] DefaultStrategies =
         {
             EnnemyStrategy.Normal,
@@ -32,6 +34,7 @@ namespace Playmode.Ennemy
 
         private void Start()
         {
+            gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
             SpawnEnnemies();
         }
 
@@ -57,11 +60,12 @@ namespace Playmode.Ennemy
                     stragegyProvider.Next(),
                     colorProvider.Next()
                 );
+            
         }
 
         private void SpawnEnnemy(Vector3 position, EnnemyStrategy strategy, Color color)
         {
-            Instantiate(ennemyPrefab, position, Quaternion.identity)
+             Instantiate(ennemyPrefab, position, Quaternion.identity)
                 .GetComponentInChildren<EnnemyController>()
                 .Configure(strategy, color);
         }
