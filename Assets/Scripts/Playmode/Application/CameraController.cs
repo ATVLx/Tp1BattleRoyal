@@ -10,8 +10,13 @@ public class CameraController : MonoBehaviour
 {
 	[SerializeField] private float minimumCameraSize = 10;
 	[SerializeField] private float shrinkingSpeedPerSeconds;
-	private float currentCameraSizeGoal=10;
+	private float currentCameraSizeGoal;
 	private int numberOfEnnemyAtStart;
+
+	private void Start()
+	{
+		currentCameraSizeGoal = Camera.main.orthographicSize;
+	}
 	public void OnDeath()
 	{
 		//todo% subscribe to ondeath event in ennemies and sh7rink camera every time
