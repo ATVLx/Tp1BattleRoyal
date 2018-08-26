@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Playmode.Ennemy;
+using Playmode.Entity.Status;
 using UnityEngine;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
+    private List<EnnemyController> potentialWinners;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void AddPotentialWinner(EnnemyController ennemyController)
+    {
+        potentialWinners.Add(ennemyController);
+    }
+
 }
