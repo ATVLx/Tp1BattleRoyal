@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 58702967457730892}
   - component: {fileID: 114119180543339696}
   - component: {fileID: 114372091676691436}
+  - component: {fileID: 114006936498368162}
   m_Layer: 0
   m_Name: Uzi
   m_TagString: Pickable
@@ -58,6 +59,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.32
+--- !u!114 &114006936498368162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1547312929421006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e352e2cfc884dc44bb2f62a35064cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114119180543339696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,8 +95,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1399810628277264, guid: 5b3563603dcbbce449eb771ff30aba92,
     type: 2}
   fireDelayInSeconds: 0.1
-  scatterAngle: 0
-  nbBullet: 1
   type: 2
 --- !u!212 &212840938860578502
 SpriteRenderer:

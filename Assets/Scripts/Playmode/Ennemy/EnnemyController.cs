@@ -30,6 +30,7 @@ namespace Playmode.Ennemy
         private EnnemySensor ennemySensor;
         private HitSensor hitSensor;
         private HandController handController;
+        private PickableWeaponSensor weaponSensor;
 
         private IEnnemyStrategy strategy;
 
@@ -72,6 +73,7 @@ namespace Playmode.Ennemy
             ennemySensor = rootTransform.GetComponentInChildren<EnnemySensor>();
             hitSensor = rootTransform.GetComponentInChildren<HitSensor>();
             handController = hand.GetComponent<HandController>();
+            weaponSensor = rootTransform.GetComponentInChildren<PickableWeaponSensor>();
 
       // strategy = new TurnAndShootStragegy(mover, handController);
          strategy = new NormalStrategy(mover, handController,ennemySensor);
@@ -92,6 +94,8 @@ namespace Playmode.Ennemy
             ennemySensor.OnEnnemySightLost += OnEnnemySightLost;
             hitSensor.OnHit += OnHit;  //subscribe a l'evenement
             health.OnDeath += OnDeath;
+            weaponSensor.OnWeaponSeen += OnWeaponSeen;
+            weaponSensor.OnWeaponSightLost += OnWeaponSightLost;
         }
 
         private void Update()
@@ -105,6 +109,8 @@ namespace Playmode.Ennemy
             ennemySensor.OnEnnemySightLost -= OnEnnemySightLost;
             hitSensor.OnHit -= OnHit;
             health.OnDeath -= OnDeath;
+            weaponSensor.OnWeaponSeen -= OnWeaponSeen;
+            weaponSensor.OnWeaponSightLost -= OnWeaponSightLost;
         }
 
         public void Configure(EnnemyStrategy strategy, Color color)
@@ -152,6 +158,16 @@ namespace Playmode.Ennemy
         {
             //
             Debug.Log("I've lost sight of an ennemy...Yikes!!!");
+        }
+
+        private void OnWeaponSeen(PickableWeapon weapon)
+        {
+            Debug.Log("I've found a weapon!! Ya'll motherfuckers dead!!!");
+        }
+
+        private void OnWeaponSightLost(PickableWeapon weapon)
+        {
+            Debug.Log("I've lost sight of a weapon!! Rip me 2018-2018");
         }
     }
 }

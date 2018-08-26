@@ -13,12 +13,14 @@ namespace Playmode.Entity.Senses
         public event EnnemySensorEventHandler OnEnnemySeen;
         public event EnnemySensorEventHandler OnEnnemySightLost;
 
+
         public IEnumerable<EnnemyController> EnnemiesInSight {
           get {
             ennemiesInSight.RemoveWhere(it => it == null);
             return ennemiesInSight;
           }
         }
+
 
         private void Awake()
         {
@@ -37,6 +39,7 @@ namespace Playmode.Entity.Senses
             NotifyEnnemySeen(ennemy);
         }
 
+
         public void LooseSightOf(EnnemyController ennemy)
         {
             ennemiesInSight.Remove(ennemy);
@@ -53,5 +56,6 @@ namespace Playmode.Entity.Senses
         {
             if (OnEnnemySightLost != null) OnEnnemySightLost(ennemy);
         }
+
     }
 }
