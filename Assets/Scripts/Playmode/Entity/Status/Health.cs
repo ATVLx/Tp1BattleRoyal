@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Jobs;
 
 namespace Playmode.Entity.Status
 {
@@ -9,6 +10,7 @@ namespace Playmode.Entity.Status
     {
         [SerializeField] private int healthPoints = 100;
 
+        private bool invincible = false;
         public event HealthEventHandler OnDeath;
 
         public int HealthPoints
@@ -35,7 +37,18 @@ namespace Playmode.Entity.Status
 
         public void Hit(int hitPoints)
         {
+            if(invincible==false)
             HealthPoints -= hitPoints;
+        }
+
+        public void Heal(int healPoints)
+        {
+            HealthPoints += healPoints;
+        }
+
+        public void Invincibility(int durationInSeconds)
+        {
+            //todo:implememt coroutine that enable and disable invincible
         }
 
         private void NotifyDeath()

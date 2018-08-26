@@ -26,9 +26,6 @@ namespace Playmode.Entity.Senses
                 other.GetComponent<Entity.Senses.HitSensor>()?.Hit(hitPoints);
                 Destroy(this.gameObject);
             }
-                
-            
-
         }
     }
 }

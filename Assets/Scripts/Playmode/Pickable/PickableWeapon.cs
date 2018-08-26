@@ -12,6 +12,7 @@ public class PickableWeapon : Pickable
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
+        //todo:remplace by stimulu and sensor with notify
         if (other.CompareTag("Ennemy"))
         {
             GetPicked(other);

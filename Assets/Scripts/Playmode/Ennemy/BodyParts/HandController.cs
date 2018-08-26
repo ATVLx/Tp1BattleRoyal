@@ -23,6 +23,7 @@ namespace Playmode.Ennemy.BodyParts
 
         public void Hold(GameObject gameObject)
         {
+            //todo:drop weapon in hand
             //if new weapon is the same add a buff to the weapon in hand
             if (weapon?.GetComponent<WeaponController>().Type == gameObject?.GetComponent<WeaponController>().Type)
             {
@@ -37,9 +38,11 @@ namespace Playmode.Ennemy.BodyParts
                 }
                 Destroy(gameObject);
             }
+            //if the weapon is a new one
             else if (gameObject != null)
             {
-                if(weapon!=null)
+                //if the hand already have a weapon destroy it or drop it on the ground
+                if (weapon != null)
                     Destroy(weapon.gameObject);
                 gameObject.transform.parent = transform;
                 gameObject.transform.localPosition = Vector3.zero;

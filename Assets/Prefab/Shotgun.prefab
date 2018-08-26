@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212572458434048068}
   - component: {fileID: 58472536363956612}
   - component: {fileID: 114423311332295532}
-  - component: {fileID: 114931976271501072}
+  - component: {fileID: 114602400806677592}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Pickable
@@ -36,7 +36,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1136975532163548}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26605575eb684c09aa0824fe31dabc81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114931976271501072
+--- !u!114 &114602400806677592
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,15 +77,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1136975532163548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c94bdc5e30d40d0b8ac80c5d43ecaea, type: 3}
+  m_Script: {fileID: 11500000, guid: a932bd001db4477990aecc19d134d96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1680898247938888, guid: 9a8e046e7d266cc448cd4925e13dc3da,
     type: 2}
-  fireDelayInSeconds: 2
-  scatterAngle: 15
-  nbBullet: 9
+  fireDelayInSeconds: 1
   type: 1
+  scatterAngle: 15
+  nbBullet: 15
 --- !u!212 &212572458434048068
 SpriteRenderer:
   m_ObjectHideFlags: 1
