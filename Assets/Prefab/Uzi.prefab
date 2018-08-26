@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212840938860578502}
   - component: {fileID: 58702967457730892}
   - component: {fileID: 114119180543339696}
-  - component: {fileID: 114372091676691436}
+  - component: {fileID: 114252254666345750}
   m_Layer: 0
   m_Name: Uzi
   m_TagString: Pickable
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26605575eb684c09aa0824fe31dabc81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114372091676691436
+--- !u!114 &114252254666345750
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,15 +77,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1547312929421006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c94bdc5e30d40d0b8ac80c5d43ecaea, type: 3}
+  m_Script: {fileID: 11500000, guid: 752fabb8262b431a854d3dc0fb640694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1399810628277264, guid: 5b3563603dcbbce449eb771ff30aba92,
+  bulletPrefab: {fileID: 1962064076829962, guid: 7727faef6c2efdd4cb0af0863ec37eb2,
     type: 2}
-  fireDelayInSeconds: 0.1
-  scatterAngle: 0
-  nbBullet: 1
+  fireDelayInSeconds: 0.5
+  knockBackForce: 1.2
   type: 2
+  unaccuracyAngle: 5
 --- !u!212 &212840938860578502
 SpriteRenderer:
   m_ObjectHideFlags: 1

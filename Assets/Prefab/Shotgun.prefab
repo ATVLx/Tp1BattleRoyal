@@ -52,7 +52,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -83,6 +83,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1680898247938888, guid: 9a8e046e7d266cc448cd4925e13dc3da,
     type: 2}
   fireDelayInSeconds: 1
+  knockBackForce: 40
   type: 1
   scatterAngle: 15
   nbBullet: 15

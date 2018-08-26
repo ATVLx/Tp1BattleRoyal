@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Playmode.Weapon
 {
@@ -7,7 +8,7 @@ namespace Playmode.Weapon
     {
         [Header("Behaviour")] [SerializeField] protected GameObject bulletPrefab;
         [SerializeField] protected float fireDelayInSeconds = 1f;
-
+        [SerializeField] private float knockBackForce = 1;
         public virtual int NbBullet
         {
             get { return 1; }
@@ -59,10 +60,17 @@ namespace Playmode.Weapon
             {
 
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-              
+                KnockBackRoot();
 
                 lastTimeShotInSeconds = Time.time;
             }
+        }
+
+        public virtual void KnockBackRoot()
+        {
+            float radianAngle = (transform.rotation.eulerAngles.z+90) * (3.1416f / 180);
+            Vector2 dir=new Vector2(-Mathf.Cos(radianAngle),-Mathf.Sin(radianAngle));
+            this.transform.root.GetComponent<Rigidbody2D>().AddForce(dir*knockBackForce,ForceMode2D.Impulse);
         }
     }
 }

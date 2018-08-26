@@ -20,7 +20,7 @@ namespace Playmode.Weapon
                     GameObject bullet =Instantiate(bulletPrefab, transform.position, transform.rotation);
                     bullet.transform.Rotate(new Vector3(0,0,(i+1)*(scatterAngle/nbBullet)-(scatterAngle/2)));
                 }
-                
+                KnockBackRoot();
 
                 lastTimeShotInSeconds = Time.time;
             }

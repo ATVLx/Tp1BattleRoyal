@@ -1,10 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization.Formatters;
-using JetBrains.Annotations;
-using Playmode.Entity.Status;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
@@ -19,7 +13,7 @@ public class CameraController : MonoBehaviour
 	}
 	public void OnDeath()
 	{
-		//todo% subscribe to ondeath event in ennemies and sh7rink camera every time
+		//todo: subscribe to ondeath event in ennemies and shrink camera every time
 		Shrink(Camera.main.orthographicSize/numberOfEnnemyAtStart);
 		
 	}

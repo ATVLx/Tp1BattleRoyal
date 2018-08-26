@@ -2207,7 +2207,7 @@ Prefab:
     - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
         type: 2}
       propertyPath: pickablePrefabs.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4120918255371250, guid: ebb199d14f7264c458a8ee46d63fd15a, type: 2}
       propertyPath: m_LocalPosition.x
@@ -2245,7 +2245,7 @@ Prefab:
         type: 2}
       propertyPath: pickablePrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 1136975532163548, guid: a175f81bf44832241999d6558217990a,
+      objectReference: {fileID: 1547312929421006, guid: 40a15f9fe7968084d96737223179cc58,
         type: 2}
     - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
         type: 2}
@@ -2259,6 +2259,22 @@ Prefab:
       value: 
       objectReference: {fileID: 1136975532163548, guid: a175f81bf44832241999d6558217990a,
         type: 2}
+    - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
+        type: 2}
+      propertyPath: pickablePrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1136975532163548, guid: a175f81bf44832241999d6558217990a,
+        type: 2}
+    - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
+        type: 2}
+      propertyPath: pickableNumber
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebb199d14f7264c458a8ee46d63fd15a, type: 2}
   m_IsPrefabAsset: 0
