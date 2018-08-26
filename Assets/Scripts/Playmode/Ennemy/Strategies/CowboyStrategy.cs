@@ -33,10 +33,10 @@ namespace Playmode.Ennemy.Strategies
     {
       //Priorise la recherche d'arme. Creer un cerle autour du cowboy pour detection des armes. Ajouter les armes dans une liste a prendre.
       //Si aucune arme , chercher un ennemy.
-      if()
-      {
+      //if()
+     // {
 
-      }
+      //}
 
 
 
