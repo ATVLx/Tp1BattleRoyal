@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
 	{
 			
 		if (currentCameraSizeGoal != minimumCameraSize)
-			currentCameraSizeGoal -= (Camera.main.orthographicSize/numberEnnemyRemaining);
+			currentCameraSizeGoal -= (Camera.main.orthographicSize/numberEnnemyRemaining)-minimumCameraSize;
 		if (currentCameraSizeGoal < minimumCameraSize)
 			currentCameraSizeGoal= minimumCameraSize;
 	}

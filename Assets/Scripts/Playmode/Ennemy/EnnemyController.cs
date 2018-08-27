@@ -76,7 +76,8 @@ namespace Playmode.Ennemy
             weaponSensor = rootTransform.GetComponentInChildren<PickableWeaponSensor>();
 
       // strategy = new TurnAndShootStragegy(mover, handController);
-         strategy = new NormalStrategy(mover, handController,ennemySensor);
+            //strategy = new NormalStrategy(mover, handController,sight);
+            strategy=new CarefullStrategy(mover,handController,sight);
         }
 
         private void CreateStartingWeapon()
@@ -117,7 +118,6 @@ namespace Playmode.Ennemy
         {
             body.GetComponent<SpriteRenderer>().color = color;
             sight.GetComponent<SpriteRenderer>().color = color;
-            
             switch (strategy)
             {
                 case EnnemyStrategy.Careful:

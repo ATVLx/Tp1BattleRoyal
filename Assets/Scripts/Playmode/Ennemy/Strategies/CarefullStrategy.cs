@@ -1,59 +1,79 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using JetBrains.Annotations;
+﻿using System.Linq;
 using Playmode.Application;
-using UnityEngine;
 using Playmode.Ennemy.BodyParts;
 using Playmode.Entity.Senses;
+using Playmode.Entity.Status;
 using Playmode.Movement;
+using UnityEditor;
+using UnityEngine;
 
 namespace Playmode.Ennemy.Strategies
 {
-    public class NormalStrategy : IEnnemyStrategy
+    public class CarefullStrategy : IEnnemyStrategy
     {
         private readonly Mover mover;
         private readonly HandController handController;
         private readonly EnnemySensor ennemySensor;
+        private readonly PickableMedKitSensor medKitSensor;
         private Vector3 randomDestination;
+        readonly private Health health;
 
 
-        public NormalStrategy(Mover mover, HandController handcontroller, GameObject sight)
+        private int criticalHealth = 50;
+        [SerializeField] private int CarefullShootingRange = 6;
+
+        public CarefullStrategy(Mover mover, HandController handcontroller, GameObject sight)
         {
-            ennemySensor=sight.GetComponent<EnnemySensor>();
+            this.ennemySensor = sight.GetComponent<EnnemySensor>();
+            this.medKitSensor = sight.GetComponent<PickableMedKitSensor>();
             this.mover = mover;
+            health = mover.GetComponent<Health>();
             this.handController = handcontroller;
             FindNewRandomDestination();
         }
 
         public void Act()
         {
-            if (ennemySensor.EnnemiesInSight.Count() != 0)
+            //if strategy see a healthpack and under critical health go there
+            if (medKitSensor.MedKitInSight.Count() != 0 && health.HealthPoints <= criticalHealth)
+            {
+                Vector3 direction = medKitSensor.MedKitInSight.ElementAt(0).transform.position -
+                                    mover.transform.position;
+                mover.Rotate(Vector2.Dot(direction, mover.transform.right));
+
+                mover.MoveToward(medKitSensor.MedKitInSight.ElementAt(0).transform.position);
+            }
+            //if not under criticalhealth shoot ennemy in sight
+            else if (ennemySensor.EnnemiesInSight.Count() != 0)
             {
                 Vector3 direction = ennemySensor.EnnemiesInSight.ElementAt(0).transform.position -
                                     mover.transform.position;
                 mover.Rotate(Vector2.Dot(direction, mover.transform.right));
                 if (Vector3.Distance(mover.transform.position,
-                        ennemySensor.EnnemiesInSight.ElementAt(0).transform.position) >= 2)
+                        ennemySensor.EnnemiesInSight.ElementAt(0).transform.position) >= CarefullShootingRange)
                 {
                     mover.MoveToward(ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
+                }
+                else
+                {
+                    mover.MoveToward(-ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
                 }
 
                 handController.Use();
             }
+            //if nothing in sight move randomly
             else
             {
                 if (Vector3.Distance(mover.transform.position, randomDestination) <= 0.5)
                 {
-                    FindNewRandomDestination();
+                   FindNewRandomDestination();
                 }
-
-
                 Vector3 direction = randomDestination - mover.transform.position;
                 mover.Rotate(Vector2.Dot(direction, mover.transform.right));
                 mover.MoveToward(randomDestination);
             }
         }
+
         private void FindNewRandomDestination()
         {
             randomDestination = new Vector3(

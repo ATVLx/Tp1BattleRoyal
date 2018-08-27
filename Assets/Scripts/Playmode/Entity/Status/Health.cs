@@ -8,10 +8,13 @@ namespace Playmode.Entity.Status
 
     public class Health : MonoBehaviour
     {
-        [SerializeField] private int healthPoints = 100;
+        [SerializeField] private int maxHealth = 100;
+         private int healthPoints;
 
         private bool invincible = false;
         public event HealthEventHandler OnDeath;
+
+        public int MaxHealth => maxHealth;
 
         public int HealthPoints
         {
@@ -27,6 +30,7 @@ namespace Playmode.Entity.Status
         private void Awake()
         {
             ValidateSerialisedFields();
+            healthPoints = maxHealth;
         }
 
         private void ValidateSerialisedFields()
