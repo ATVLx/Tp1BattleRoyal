@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212612430345753038}
   - component: {fileID: 58039711209998582}
   - component: {fileID: 114731797984805402}
+  - component: {fileID: 114871610756018918}
   m_Layer: 0
   m_Name: MedKit
   m_TagString: Pickable
@@ -69,6 +70,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoint: 50
+--- !u!114 &114871610756018918
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1912378722493844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1290d46bd2493ebc2ff2557a818e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212612430345753038
 SpriteRenderer:
   m_ObjectHideFlags: 1
