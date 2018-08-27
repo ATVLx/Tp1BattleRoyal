@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using Playmode.Util.Values;
 using UnityEngine;
 
-public abstract class Pickable : MonoBehaviour
+namespace Playmode.Pickable
 {
-    protected abstract void OnTriggerEnter2D(Collider2D other);
 
+    public abstract class Pickable : MonoBehaviour
+    {
+        protected abstract void OnTriggerEnter2D(Collider2D other);
 
+        protected abstract void GetPicked(Collider2D other);
 
-    protected abstract void GetPicked(Collider2D other);
-
+    }
 }

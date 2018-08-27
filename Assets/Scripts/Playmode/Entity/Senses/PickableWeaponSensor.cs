@@ -1,29 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Playmode.Pickable;
 
 namespace Playmode.Entity.Senses
 {
+    public delegate void PickableWeaponSensorEventHandler(PickableWeapon weapon);
 
-    public delegate void PickableWeaponSensorEventHandler (PickableWeapon weapon);
-    
     public class PickableWeaponSensor : MonoBehaviour
     {
+        private LinkedList<PickableWeapon> weaponsInSight;
 
-        private HashSet<PickableWeapon> weaponsInSight;
+        // private HashSet<PickableWeapon> weaponsInSight;
         public event PickableWeaponSensorEventHandler OnWeaponSeen;
         public event PickableWeaponSensorEventHandler OnWeaponSightLost;
 
-        public IEnumerable<PickableWeapon> WeaponsInSight
+
+        public LinkedList<PickableWeapon> WeaponsInSight
         {
             get
             {
-                weaponsInSight.RemoveWhere(it => it == null);
+                for(int i = weaponsInSight.Count-1 ; i> weaponsInSight.Count ;i--)
+                {
+                    if (weaponsInSight.ElementAt(i) == null)
+                    {
+                        weaponsInSight.Remove(weaponsInSight.ElementAt(i));
+                    }
+                }
                 return weaponsInSight;
             }
         }
-        
+
         private void Awake()
         {
             InitializeComponent();
@@ -31,21 +39,21 @@ namespace Playmode.Entity.Senses
 
         private void InitializeComponent()
         {
-            weaponsInSight = new HashSet<PickableWeapon>();
+            weaponsInSight = new LinkedList<PickableWeapon>();
         }
 
         public void See(PickableWeapon weapon)
         {
-            weaponsInSight.Add(weapon);
-
-            NotifyWeaponSeen(weapon);
+            if (!weaponsInSight.Contains(weapon))
+            {
+                weaponsInSight.AddLast(weapon);
+                NotifyWeaponSeen(weapon);
+            }
         }
-
 
         public void LooseSightOf(PickableWeapon weapon)
         {
             weaponsInSight.Remove(weapon);
-
             NotifyWeaponSightLost(weapon);
         }
 
@@ -58,7 +66,5 @@ namespace Playmode.Entity.Senses
         {
             if (OnWeaponSightLost != null) OnWeaponSightLost(weapon);
         }
-
-
     }
 }

@@ -1,43 +1,40 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Playmode.Movement
 {
-  public class RootMover : Mover
-  {
-    private Transform rootTransform;
-
-    private new void Awake()
+    public class RootMover : Mover
     {
-      base.Awake();
+        private Transform rootTransform;
 
-      InitializeComponent();
+        private new void Awake()
+        {
+            base.Awake();
+
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            rootTransform = transform.root;
+        }
+
+        public override void Move(Vector3 direction)
+        {
+            rootTransform.Translate(direction.normalized * speed * Time.deltaTime);
+        }
+
+        public override void MoveToward(Vector3 destination)
+        {
+            rootTransform.position = Vector3.MoveTowards(rootTransform.position, destination, speed * Time.deltaTime);
+        }
+
+        public override void Rotate(float direction)
+        {   
+                rootTransform.Rotate(
+                    Vector3.forward,
+                    (direction < 0 ? rotateSpeed : -rotateSpeed) * Time.deltaTime);
+            
+        }
     }
-
-    private void InitializeComponent()
-    {
-      rootTransform = transform.root;
-    }
-
-    public override void Move(Vector3 direction)
-    {
-      rootTransform.Translate(direction.normalized * speed * Time.deltaTime);
-      
-    }
-
-    public override void MoveToward(Vector3 destination)
-    {
-      rootTransform.position = Vector3.MoveTowards(rootTransform.position, destination, speed*Time.deltaTime);
-    }
-
-    public override void Rotate(float direction)
-    {
-      
-     rootTransform.Rotate(
-      Vector3.forward,
-      (direction < 0 ? rotateSpeed : -rotateSpeed) * Time.deltaTime);
- 
-    }
-
-    
-  }
 }

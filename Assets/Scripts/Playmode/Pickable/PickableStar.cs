@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Playmode.Pickable
 {
-    public class PickableStar : global::Pickable
+    public class PickableStar :Pickable
     {
         [SerializeField] private int durationInSeconds;
         protected override void OnTriggerEnter2D(Collider2D other)
