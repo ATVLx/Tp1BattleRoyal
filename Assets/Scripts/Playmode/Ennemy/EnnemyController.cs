@@ -142,7 +142,7 @@ namespace Playmode.Ennemy
             health.Hit(hitPoints);
         }
 
-        private void OnDeath()
+        private void OnDeath(EnnemyController controller)
         {
             Debug.Log("Yaaaaarggg....!! I died....GG.");
 

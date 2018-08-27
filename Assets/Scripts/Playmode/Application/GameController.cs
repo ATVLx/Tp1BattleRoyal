@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Playmode.Ennemy;
 using Playmode.Entity.Status;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private HashSet<EnnemyController> potentialWinners;
+    private List<EnnemyController> potentialWinners;
 
     private void Awake()
     {
-        potentialWinners=new HashSet<EnnemyController>();
+        potentialWinners=new List<EnnemyController>();
     }
 
     public void AddPotentialWinner(EnnemyController ennemyController)
@@ -19,13 +20,13 @@ public class GameController : MonoBehaviour
         ennemyController.GetComponent<Health>().OnDeath += OnPotentialWinnerDeath;
     }
 
-    private void OnPotentialWinnerDeath()
+    private void OnPotentialWinnerDeath(EnnemyController ennemyController)
     {
-       potentialWinners.RemoveWhere(it => it == null);
+        potentialWinners.Remove(ennemyController);
         Camera.main.GetComponent<CameraController>().Shrink(potentialWinners.Count);	
         if (potentialWinners.Count == 1)
         {
-            //win
+            Camera.main.GetComponent<CameraController>().StartFollowing(potentialWinners.ElementAt(0).transform);
         }
     }
 

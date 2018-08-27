@@ -1,10 +1,11 @@
 ﻿using System;
+using Playmode.Ennemy;
 using UnityEngine;
 using UnityEngine.Jobs;
 
 namespace Playmode.Entity.Status
 {
-    public delegate void HealthEventHandler();
+    public delegate void HealthEventHandler(EnnemyController controller);
 
     public class Health : MonoBehaviour
     {
@@ -57,7 +58,7 @@ namespace Playmode.Entity.Status
 
         private void NotifyDeath()
         {
-            if (OnDeath != null) OnDeath();
+            if (OnDeath != null) OnDeath(GetComponent<EnnemyController>());
         }
     }
 }
