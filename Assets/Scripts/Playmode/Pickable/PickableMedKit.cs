@@ -1,4 +1,5 @@
 ﻿using Playmode.Ennemy.BodyParts;
+using Playmode.Entity.Senses;
 using Playmode.Entity.Status;
 using Playmode.Pickable;
 using Playmode.Util.Values;
