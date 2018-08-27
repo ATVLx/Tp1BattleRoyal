@@ -1,4 +1,5 @@
 ﻿using Playmode.Ennemy.BodyParts;
+using Playmode.Entity.Senses;
 using UnityEngine;
 
 public class PickableWeapon : Pickable
@@ -12,7 +13,6 @@ public class PickableWeapon : Pickable
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        //todo:remplace by stimulu and sensor with notify
         if (other.CompareTag("Ennemy"))
         {
             GetPicked(other);
