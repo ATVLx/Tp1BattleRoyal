@@ -17,8 +17,6 @@ namespace Playmode.Ennemy.Strategies
     private readonly HandController handController;
     private readonly EnnemySensor ennemySensor;
     private Vector3 randomDestination;
-    float mapEdgeY = Camera.main.GetComponent<CameraEdge>().Height / 2;
-    float mapEdgeX = Camera.main.GetComponent<CameraEdge>().Width / 2;
 
 
     public CowboyStrategy(Mover mover, HandController handcontroller, EnnemySensor ennemySensor)
@@ -26,7 +24,10 @@ namespace Playmode.Ennemy.Strategies
       this.ennemySensor = ennemySensor;
       this.mover = mover;
       this.handController = handcontroller;
-      randomDestination = new Vector3(Random.Range(-mapEdgeX, mapEdgeX), Random.Range(-mapEdgeY, mapEdgeY), 0);
+      randomDestination = new Vector3(
+        Random.Range(-Camera.main.GetComponent<CameraEdge>().Width / 2, Camera.main.GetComponent<CameraEdge>().Width / 2),
+        Random.Range(-Camera.main.GetComponent<CameraEdge>().Height / 2,Camera.main.GetComponent<CameraEdge>().Height / 2),
+        0);
     }
 
     public void Act()

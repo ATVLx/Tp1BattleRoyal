@@ -65,9 +65,9 @@ namespace Playmode.Ennemy
 
         private void SpawnEnnemy(Vector3 position, EnnemyStrategy strategy, Color color)
         {
-             Instantiate(ennemyPrefab, position, Quaternion.identity)
-                .GetComponentInChildren<EnnemyController>()
-                .Configure(strategy, color);
+             GameObject ennemy =Instantiate(ennemyPrefab, position, Quaternion.identity);
+                ennemy.GetComponentInChildren<EnnemyController>().Configure(strategy, color);
+            gameController.AddPotentialWinner(ennemy.GetComponentInChildren<EnnemyController>());
         }
     }
 }

@@ -8,21 +8,17 @@ public class CameraController : MonoBehaviour
 	private float currentCameraSizeGoal;
 	private int numberOfEnnemyAtStart;
 
+
 	private void Start()
 	{
 		currentCameraSizeGoal = Camera.main.orthographicSize;
 	}
-	public void OnDeath()
-	{
-		//todo: subscribe to ondeath event in ennemies and shrink camera every time
-		Shrink(Camera.main.orthographicSize/numberOfEnnemyAtStart);
-		
-	}
 
-	private void Shrink(float sizeToSubstract)
+	public void Shrink(int numberEnnemyRemaining)
 	{
+			
 		if (currentCameraSizeGoal != minimumCameraSize)
-			currentCameraSizeGoal -= sizeToSubstract;
+			currentCameraSizeGoal -= (Camera.main.orthographicSize/numberEnnemyRemaining);
 		if (currentCameraSizeGoal < minimumCameraSize)
 			currentCameraSizeGoal= minimumCameraSize;
 	}
