@@ -19,7 +19,7 @@ namespace Playmode.Ennemy.Strategies
         readonly private Health health;
 
 
-        private int criticalHealth = 50;
+        private int criticalHealth = 100;
         [SerializeField] private int CarefullShootingRange = 6;
 
         public CarefullStrategy(Mover mover, HandController handcontroller, GameObject sight)
