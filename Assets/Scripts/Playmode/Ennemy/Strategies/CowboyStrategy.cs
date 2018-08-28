@@ -39,8 +39,6 @@ namespace Playmode.Ennemy.Strategies
             Debug.Log(weaponSensor.WeaponsInSight.Count());
             //Priorise la recherche d'arme.
             //Si aucune arme , chercher un ennemy.
-            try
-            {
                 if (weaponSensor.WeaponsInSight.Any())
                 {
                     Vector3 direction = weaponSensor.WeaponsInSight.First().transform.position -
@@ -74,11 +72,9 @@ namespace Playmode.Ennemy.Strategies
                     mover.Rotate(Vector2.Dot(direction, mover.transform.right));
                 }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+
+
+            
         }
     }
 }

@@ -21,14 +21,6 @@ namespace Playmode.Entity.Senses
         { 
             get
             {
-               // for(int i = weaponsInSight.Count-1 ; i> weaponsInSight.Count ;i--)
-               // {
-               //     if (weaponsInSight.ElementAt(i) == null)
-               //     {
-               //         weaponsInSight.Remove(weaponsInSight.ElementAt(i));
-               //     }
-               // }
-//
                 weaponsInSight.RemoveAll(it => it == null);
                 return weaponsInSight;
             }
