@@ -139,37 +139,37 @@ namespace Playmode.Ennemy
 
         private void OnHit(int hitPoints) //la fonction de levenement
         {
-            Debug.Log("OW, I'm hurt! I'm really much hurt!!!");
+           // Debug.Log("OW, I'm hurt! I'm really much hurt!!!");
 
             health.Hit(hitPoints);
         }
 
         private void OnDeath(EnnemyController controller)
         {
-            Debug.Log("Yaaaaarggg....!! I died....GG.");
+            //Debug.Log("Yaaaaarggg....!! I died....GG.");
 
             destroyer.Destroy();
         }
 
         private void OnEnnemySeen(EnnemyController ennemy)
         {
-            Debug.Log("I've seen an ennemy!! Ya so dead noob!!!");
+           // Debug.Log("I've seen an ennemy!! Ya so dead noob!!!");
         }
 
         private void OnEnnemySightLost(EnnemyController ennemy)
         {
             //
-            Debug.Log("I've lost sight of an ennemy...Yikes!!!");
+           // Debug.Log("I've lost sight of an ennemy...Yikes!!!");
         }
 
         private void OnWeaponSeen(PickableWeapon weapon)
         {
-            Debug.Log("I've found a weapon!! Ya'll motherfuckers dead!!!");
+            //Debug.Log("I've found a weapon!! Ya'll motherfuckers dead!!!");
         }
 
         private void OnWeaponSightLost(PickableWeapon weapon)
         {
-            Debug.Log("I've lost sight of a weapon!! Rip me 2018-2018");
+           // Debug.Log("I've lost sight of a weapon!! Rip me 2018-2018");
         }
     }
 }

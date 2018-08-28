@@ -39,11 +39,11 @@ namespace Playmode.Entity.Senses
 
         public void See(PickableWeapon weapon)
         {
-            if (!weaponsInSight.Contains(weapon))
-            {
+         //   if (!weaponsInSight.Contains(weapon))
+         //   {
                 weaponsInSight.Add(weapon);
                 NotifyWeaponSeen(weapon);
-            }
+           // }
         }
 
         public void LooseSightOf(PickableWeapon weapon)

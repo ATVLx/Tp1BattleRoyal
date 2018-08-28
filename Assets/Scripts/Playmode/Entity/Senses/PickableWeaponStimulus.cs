@@ -16,7 +16,7 @@ namespace Playmode.Entity.Senses
 
 		private void InitializeComponent()
 		{
-			weapon = transform.root.GetComponentInChildren<PickableWeapon>();
+			weapon = transform.GetComponent<PickableWeapon>();
 		}
 
 		private void OnTriggerEnter2D(Collider2D other)
