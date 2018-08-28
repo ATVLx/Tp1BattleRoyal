@@ -24,7 +24,7 @@ namespace Playmode.Ennemy.BodyParts
 
         public void Hold(GameObject gameObject)
         {
-            //todo:drop weapon in hand
+          
             //if new weapon is the same add a buff to the weapon in hand
             if (weapon?.GetComponent<WeaponController>().Type == gameObject?.GetComponent<WeaponController>().Type)
             {

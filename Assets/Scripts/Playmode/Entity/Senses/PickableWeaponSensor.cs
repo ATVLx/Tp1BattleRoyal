@@ -10,43 +10,46 @@ namespace Playmode.Entity.Senses
 
     public class PickableWeaponSensor : MonoBehaviour
     {
-        private LinkedList<PickableWeapon> weaponsInSight;
+        private List<PickableWeapon> weaponsInSight;
 
         // private HashSet<PickableWeapon> weaponsInSight;
         public event PickableWeaponSensorEventHandler OnWeaponSeen;
         public event PickableWeaponSensorEventHandler OnWeaponSightLost;
 
 
-        public LinkedList<PickableWeapon> WeaponsInSight
-        {
+        public List<PickableWeapon> WeaponsInSight
+        { 
             get
             {
-                for(int i = weaponsInSight.Count-1 ; i> weaponsInSight.Count ;i--)
-                {
-                    if (weaponsInSight.ElementAt(i) == null)
-                    {
-                        weaponsInSight.Remove(weaponsInSight.ElementAt(i));
-                    }
-                }
+               // for(int i = weaponsInSight.Count-1 ; i> weaponsInSight.Count ;i--)
+               // {
+               //     if (weaponsInSight.ElementAt(i) == null)
+               //     {
+               //         weaponsInSight.Remove(weaponsInSight.ElementAt(i));
+               //     }
+               // }
+//
+                weaponsInSight.RemoveAll(it => it == null);
                 return weaponsInSight;
             }
         }
 
         private void Awake()
         {
+            
             InitializeComponent();
         }
 
         private void InitializeComponent()
         {
-            weaponsInSight = new LinkedList<PickableWeapon>();
+            weaponsInSight = new List<PickableWeapon>();
         }
 
         public void See(PickableWeapon weapon)
         {
             if (!weaponsInSight.Contains(weapon))
             {
-                weaponsInSight.AddLast(weapon);
+                weaponsInSight.Add(weapon);
                 NotifyWeaponSeen(weapon);
             }
         }

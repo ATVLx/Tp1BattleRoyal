@@ -78,7 +78,8 @@ namespace Playmode.Ennemy
       // strategy = new TurnAndShootStragegy(mover, handController);
             //strategy = new NormalStrategy(mover, handController,sight);
             //strategy=new CarefullStrategy(mover,handController,sight);
-            strategy=new CamperStrategy(mover,handController,sight);
+            //strategy=new CamperStrategy(mover,handController,sight);
+            strategy=new CowboyStrategy(mover,handController,sight);
         }
 
         private void CreateStartingWeapon()

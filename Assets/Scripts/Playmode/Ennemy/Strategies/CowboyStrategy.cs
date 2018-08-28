@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -8,6 +9,7 @@ using Playmode.Ennemy.BodyParts;
 using Playmode.Entity.Senses;
 using Playmode.Movement;
 using Playmode.Pickable;
+using Random = UnityEngine.Random;
 
 
 namespace Playmode.Ennemy.Strategies
@@ -37,40 +39,46 @@ namespace Playmode.Ennemy.Strategies
             Debug.Log(weaponSensor.WeaponsInSight.Count());
             //Priorise la recherche d'arme.
             //Si aucune arme , chercher un ennemy.
-            if (weaponSensor.WeaponsInSight.Any())
+            try
             {
-                Vector3 direction = weaponSensor.WeaponsInSight.First().transform.position -
-                                    mover.transform.position;             
-                mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-                mover.MoveToward(weaponSensor.WeaponsInSight.First().transform.position);
-                
-            }
-            else if (ennemySensor.EnnemiesInSight.Count() != 0)
-            {
-                Vector3 direction = ennemySensor.EnnemiesInSight.ElementAt(0).transform.position -
-                                    mover.transform.position;                
-                if (Vector3.Distance(mover.transform.position,
-                        ennemySensor.EnnemiesInSight.ElementAt(0).transform.position) >= 2)
+                if (weaponSensor.WeaponsInSight.Any())
                 {
-                    mover.MoveToward(ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
+                    Vector3 direction = weaponSensor.WeaponsInSight.First().transform.position -
+                                        mover.transform.position;
+                    mover.Rotate(Vector2.Dot(direction, mover.transform.right));
+                    mover.MoveToward(weaponSensor.WeaponsInSight.First().transform.position);
                 }
-                mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-                handController.Use();
+                else if (ennemySensor.EnnemiesInSight.Count() != 0)
+                {
+                    Vector3 direction = ennemySensor.EnnemiesInSight.ElementAt(0).transform.position -
+                                        mover.transform.position;
+                    if (Vector3.Distance(mover.transform.position,
+                            ennemySensor.EnnemiesInSight.ElementAt(0).transform.position) >= 2)
+                    {
+                        mover.MoveToward(ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
+                    }
+
+                    mover.Rotate(Vector2.Dot(direction, mover.transform.right));
+                    handController.Use();
+                }
+                else if (Vector3.Distance(mover.transform.position, randomDestination) <= 0.5)
+                {
+                    randomDestination = new Vector3(
+                        Random.Range(-mapEdgeX, mapEdgeX), Random.Range(-mapEdgeY, mapEdgeY),
+                        0);
+                }
+                else
+                {
+                    Vector3 direction = randomDestination - mover.transform.position;
+                    mover.MoveToward(randomDestination);
+                    mover.Rotate(Vector2.Dot(direction, mover.transform.right));
+                }
             }
-            else if (Vector3.Distance(mover.transform.position, randomDestination) <= 0.5)
+            catch (Exception e)
             {
-                randomDestination = new Vector3(
-                    Random.Range(-mapEdgeX, mapEdgeX), Random.Range(-mapEdgeY, mapEdgeY),
-                    0);
-            }
-            else
-            {
-                Vector3 direction = randomDestination - mover.transform.position;
-                mover.MoveToward(randomDestination);
-                mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-                
+                Console.WriteLine(e);
+                throw;
             }
         }
     }
-    
 }
