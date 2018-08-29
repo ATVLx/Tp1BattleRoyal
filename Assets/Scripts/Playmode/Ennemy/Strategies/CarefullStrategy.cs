@@ -19,7 +19,7 @@ namespace Playmode.Ennemy.Strategies
         readonly private Health health;
 
 
-        private int criticalHealth = 100;
+        private const int CRITICAL_HEALTH = 25;
         [SerializeField] private int CarefullShootingRange = 6;
 
         public CarefullStrategy(Mover mover, HandController handcontroller, GameObject sight)
@@ -35,7 +35,7 @@ namespace Playmode.Ennemy.Strategies
         public void Act()
         {
             //if strategy see a healthpack and under critical health go there
-            if (medKitSensor.MedKitInSight.Any() && health.HealthPoints <= criticalHealth)
+            if (medKitSensor.MedKitInSight.Any() && health.HealthPoints <= CRITICAL_HEALTH)
             {
                 Vector3 direction = medKitSensor.MedKitInSight.First().transform.position -
                                     mover.transform.position;
