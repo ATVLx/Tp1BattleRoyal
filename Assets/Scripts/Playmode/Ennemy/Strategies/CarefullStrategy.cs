@@ -9,27 +9,18 @@ using UnityEngine;
 
 namespace Playmode.Ennemy.Strategies
 {
-    public class CarefullStrategy : IEnnemyStrategy
+    public class CarefullStrategy : NormalStrategy, IEnnemyStrategy
     {
-        private readonly Mover mover;
-        private readonly HandController handController;
-        private readonly EnnemySensor ennemySensor;
         private readonly PickableMedKitSensor medKitSensor;
-        private Vector3 randomDestination;
         readonly private Health health;
-
-
         private const int CRITICAL_HEALTH = 25;
-        [SerializeField] private int CarefullShootingRange = 6;
+         private int CAREFULL_SAFE_RANGE = 6;
+        
 
-        public CarefullStrategy(Mover mover, HandController handcontroller, GameObject sight)
+        public CarefullStrategy(Mover mover, HandController handcontroller, GameObject sight) : base(mover,handcontroller,sight)
         {
-            this.ennemySensor = sight.GetComponent<EnnemySensor>();
             this.medKitSensor = sight.GetComponent<PickableMedKitSensor>();
-            this.mover = mover;
             health = mover.GetComponent<Health>();
-            this.handController = handcontroller;
-            FindNewRandomDestination();
         }
 
         public void Act()
@@ -49,7 +40,7 @@ namespace Playmode.Ennemy.Strategies
                                    mover.transform.position;
                mover.Rotate(Vector2.Dot(direction, mover.transform.right));
                if (Vector3.Distance(mover.transform.position,
-                       ennemySensor.EnnemiesInSight.ElementAt(0).transform.position) >= CarefullShootingRange)
+                       ennemySensor.EnnemiesInSight.ElementAt(0).transform.position) >= CAREFULL_SAFE_RANGE)
                {
                    mover.MoveToward(ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
                }
@@ -72,16 +63,5 @@ namespace Playmode.Ennemy.Strategies
             }
         }
 
-        private void FindNewRandomDestination()
-        {
-            randomDestination = new Vector3(
-                Random.Range(
-                    -Camera.main.GetComponent<CameraEdge>().Width / 2,
-                    Camera.main.GetComponent<CameraEdge>().Width / 2),
-                Random.Range(
-                    -Camera.main.GetComponent<CameraEdge>().Height / 2,
-                    Camera.main.GetComponent<CameraEdge>().Height / 2),
-                0);
-        }
     }
 }

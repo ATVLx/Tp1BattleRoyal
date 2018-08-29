@@ -79,7 +79,7 @@ namespace Playmode.Ennemy
             //strategy = new NormalStrategy(mover, handController,sight);
             //strategy=new CarefullStrategy(mover,handController,sight);
             //strategy=new CamperStrategy(mover,handController,sight);
-            strategy=new CowboyStrategy(mover,handController,sight);
+            //strategy=new CowboyStrategy(mover,handController,sight);
         }
 
         private void CreateStartingWeapon()
@@ -120,15 +120,16 @@ namespace Playmode.Ennemy
         {
             body.GetComponent<SpriteRenderer>().color = color;
             sight.GetComponent<SpriteRenderer>().color = color;
+
             switch (strategy)
             {
                 case EnnemyStrategy.Careful:
                     typeSign.GetComponent<SpriteRenderer>().sprite = carefulSprite;
-                    this.strategy=new CarefullStrategy(mover,handController,sight);
+                   this.strategy=new CarefullStrategy(mover,handController,sight);
                     break;
                 case EnnemyStrategy.Cowboy:
                     typeSign.GetComponent<SpriteRenderer>().sprite = cowboySprite;
-                    this.strategy=new CowboyStrategy(mover,handController,sight);
+                   this.strategy=new CowboyStrategy(mover,handController,sight);
                     break;
                 case EnnemyStrategy.Camper:
                     typeSign.GetComponent<SpriteRenderer>().sprite = camperSprite;
@@ -136,7 +137,7 @@ namespace Playmode.Ennemy
                     break;
                 default:
                     typeSign.GetComponent<SpriteRenderer>().sprite = normalSprite;
-                    this.strategy=new NormalStrategy(mover,handController,sight);
+                   this.strategy=new NormalStrategy(mover,handController,sight);
                     break;
             }
         }
@@ -144,7 +145,6 @@ namespace Playmode.Ennemy
         private void OnHit(int hitPoints) //la fonction de levenement
         {
            // Debug.Log("OW, I'm hurt! I'm really much hurt!!!");
-
             health.Hit(hitPoints);
         }
 

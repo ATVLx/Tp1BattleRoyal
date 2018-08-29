@@ -18,12 +18,13 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         currentCameraSizeGoal = Camera.main.orthographicSize;
+
     }
 
-    public void Shrink(int numberEnnemyRemaining)
+    public void Shrink()
     {
-        if (currentCameraSizeGoal != minimumCameraSize)
-            currentCameraSizeGoal -= (Camera.main.orthographicSize / numberEnnemyRemaining);
+        if (currentCameraSizeGoal != 10)
+            currentCameraSizeGoal -= 5;
         if (currentCameraSizeGoal < minimumCameraSize)
             currentCameraSizeGoal = minimumCameraSize;
         if (following)
@@ -52,7 +53,7 @@ public class CameraController : MonoBehaviour
     {
         following = true;
         followTransform = transform;
-        Shrink(1);
+        Shrink();
     }
     private void NotifyCameraEdgeChange()
     {

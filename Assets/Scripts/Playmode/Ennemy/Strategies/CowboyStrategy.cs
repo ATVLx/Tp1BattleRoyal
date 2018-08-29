@@ -14,22 +14,14 @@ using Random = UnityEngine.Random;
 
 namespace Playmode.Ennemy.Strategies
 {
-    public class CowboyStrategy : IEnnemyStrategy
+    public class CowboyStrategy :NormalStrategy, IEnnemyStrategy
     {
-        private readonly Mover mover;
-        private readonly HandController handController;
-        private readonly EnnemySensor ennemySensor;
-        private Vector3 randomDestination;
         private Vector3 target;
         private PickableWeaponSensor weaponSensor;
 
-        public CowboyStrategy(Mover mover, HandController handcontroller, GameObject sightTransform)
+        public CowboyStrategy(Mover mover, HandController handcontroller, GameObject sight) : base(mover,handcontroller,sight)
         {
-            this.ennemySensor = sightTransform.GetComponent<EnnemySensor>();
-            this.mover = mover;
-            this.weaponSensor = sightTransform.GetComponent<PickableWeaponSensor>();
-            this.handController = handcontroller;
-            FindNewRandomDestination();
+            weaponSensor = sight.GetComponent<PickableWeaponSensor>();
         }
 
         public void Act()
@@ -68,16 +60,6 @@ namespace Playmode.Ennemy.Strategies
                mover.Rotate(Vector2.Dot(direction, mover.transform.right));
            }
         }
-        private void FindNewRandomDestination()
-        {
-            randomDestination = new Vector3(
-                Random.Range(
-                    -Camera.main.GetComponent<CameraEdge>().Width / 2,
-                    Camera.main.GetComponent<CameraEdge>().Width / 2),
-                Random.Range(
-                    -Camera.main.GetComponent<CameraEdge>().Height / 2,
-                    Camera.main.GetComponent<CameraEdge>().Height / 2),
-                0);
-        }
+
     }
 }
