@@ -113,7 +113,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1962064076829962, guid: 7727faef6c2efdd4cb0af0863ec37eb2,
     type: 2}
   fireDelayInSeconds: 0.1
-  knockBackForce: 2
+  knockBackForce: 6
   type: 2
   unaccuracyAngle: 7
 --- !u!114 &114803413090527782

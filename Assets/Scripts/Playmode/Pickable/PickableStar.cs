@@ -14,6 +14,7 @@ namespace Playmode.Pickable
         protected override void GetPicked(Collider2D other)
         {
             other.transform.root.GetComponentInChildren<Health>().Invincibility(durationInSeconds);
+            Destroy(this.gameObject);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Playmode.Ennemy;
 using UnityEngine;
 using UnityEngine.Jobs;
@@ -54,8 +55,15 @@ namespace Playmode.Entity.Status
         public void Invincibility(int durationInSeconds)
         {
             //todo:implememt coroutine that enable and disable invincible
+            StartCoroutine(InvincibilityRoutine(durationInSeconds));
         }
 
+        private IEnumerator InvincibilityRoutine(int durationInSeconds)
+        {
+            invincible = true;
+            yield return new WaitForSeconds(durationInSeconds);
+            invincible = false;
+        }
         private void NotifyDeath()
         {
             if (OnDeath != null) OnDeath(GetComponent<EnnemyController>());

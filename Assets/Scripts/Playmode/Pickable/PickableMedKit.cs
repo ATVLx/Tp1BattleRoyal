@@ -17,10 +17,7 @@ public class PickableMedKit : Pickable
         {
             otherHealth.Heal(healthPoint);
                     Destroy(this.gameObject);
-        }
-        
-        
-       
+        } 
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)

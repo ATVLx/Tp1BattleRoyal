@@ -209,6 +209,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef174b467ab465f408dc935f8a3a2d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1460070320 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1964645709642148, guid: ebb199d14f7264c458a8ee46d63fd15a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1655285080}
+--- !u!114 &1460070323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460070320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fa2adff33b7423eaec6142f486ea7ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1558764579
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +263,7 @@ Prefab:
     - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
         type: 2}
       propertyPath: pickablePrefabs.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4120918255371250, guid: ebb199d14f7264c458a8ee46d63fd15a, type: 2}
       propertyPath: m_LocalPosition.x
@@ -291,13 +307,13 @@ Prefab:
         type: 2}
       propertyPath: pickablePrefabs.Array.data[2]
       value: 
-      objectReference: {fileID: 1912378722493844, guid: 66723aab56989504096e72e45f5d9db8,
+      objectReference: {fileID: 1136975532163548, guid: a175f81bf44832241999d6558217990a,
         type: 2}
     - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
         type: 2}
       propertyPath: pickablePrefabs.Array.data[3]
       value: 
-      objectReference: {fileID: 1136975532163548, guid: a175f81bf44832241999d6558217990a,
+      objectReference: {fileID: 1912378722493844, guid: 063c67b9d54a41b4988c5735ace641fe,
         type: 2}
     - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
         type: 2}
@@ -318,6 +334,10 @@ Prefab:
     - target: {fileID: 1964645709642148, guid: ebb199d14f7264c458a8ee46d63fd15a, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964645709642148, guid: ebb199d14f7264c458a8ee46d63fd15a, type: 2}
+      propertyPath: m_Name
+      value: Pickable Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebb199d14f7264c458a8ee46d63fd15a, type: 2}

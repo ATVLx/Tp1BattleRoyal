@@ -124,7 +124,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1680898247938888, guid: 9a8e046e7d266cc448cd4925e13dc3da,
     type: 2}
   fireDelayInSeconds: 1
-  knockBackForce: 40
+  knockBackForce: 100
   type: 1
   scatterAngle: 15
   nbBullet: 15
