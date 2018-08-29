@@ -7,7 +7,9 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private List<EnnemyController> potentialWinners;
+    public List<EnnemyController> potentialWinners;
+
+    public List<EnnemyController> PotentialWinners => potentialWinners;
 
     private void Awake()
     {

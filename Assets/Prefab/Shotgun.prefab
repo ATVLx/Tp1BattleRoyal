@@ -127,6 +127,7 @@ MonoBehaviour:
   knockBackForce: 100
   type: 1
   scatterAngle: 15
+  randomizeBulletAngle: 1
   nbBullet: 15
 --- !u!212 &212827559394334652
 SpriteRenderer:

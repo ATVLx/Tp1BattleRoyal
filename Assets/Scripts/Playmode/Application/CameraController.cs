@@ -12,19 +12,21 @@ public class CameraController : MonoBehaviour
     private int numberOfEnnemyAtStart;
     private bool following = false;
     private Transform followTransform;
+    private float shrinkAmmount;
     public event CameraEventHandler OnCameraEdgeChange;
    
     
     private void Start()
     {
         currentCameraSizeGoal = Camera.main.orthographicSize;
-
+        int nbEnnemy= GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().PotentialWinners.Count;
+        shrinkAmmount = (Camera.main.orthographicSize - minimumCameraSize) / nbEnnemy;
     }
 
     public void Shrink()
     {
         if (currentCameraSizeGoal != 10)
-            currentCameraSizeGoal -= 5;
+            currentCameraSizeGoal -= shrinkAmmount;
         if (currentCameraSizeGoal < minimumCameraSize)
             currentCameraSizeGoal = minimumCameraSize;
         if (following)

@@ -1,13 +1,17 @@
 ﻿using System;
+using Playmode.Application;
 using Playmode.Ennemy.Strategies;
 using Playmode.Util;
 using Playmode.Util.Collections;
 using UnityEngine;
+using Random = System.Random;
 
 namespace Playmode.Ennemy
 {
     public class EnnemySpawner : MonoBehaviour
     {
+        [SerializeField] private int NumberOfEnnemies = 10;
+
         private static readonly Color[] DefaultColors =
         {
             Color.white, Color.black, Color.blue, Color.cyan, Color.green,
@@ -44,9 +48,7 @@ namespace Playmode.Ennemy
                 throw new ArgumentException("Can't spawn null ennemy prefab.");
             if (colors == null || colors.Length == 0)
                 throw new ArgumentException("Ennemies needs colors to be spawned.");
-            if (transform.childCount <= 0)
-                throw new ArgumentException("Can't spawn ennemis whitout spawn points. " +
-                                            "Create chilldrens for this GameObject as spawn points.");
+           
         }
 
         private void SpawnEnnemies()
@@ -54,20 +56,28 @@ namespace Playmode.Ennemy
             var stragegyProvider = new LoopingEnumerator<EnnemyStrategy>(DefaultStrategies);
             var colorProvider = new LoopingEnumerator<Color>(colors);
 
-            for (var i = 0; i < transform.childCount; i++)
+            for (var i = 0; i < NumberOfEnnemies; i++)
                 SpawnEnnemy(
-                    transform.GetChild(i).position,
+                    CreateRandomSpawnPosition(),
                     stragegyProvider.Next(),
                     colorProvider.Next()
                 );
-            
         }
 
         private void SpawnEnnemy(Vector3 position, EnnemyStrategy strategy, Color color)
         {
-             GameObject ennemy =Instantiate(ennemyPrefab, position, Quaternion.identity);
-                ennemy.GetComponentInChildren<EnnemyController>().Configure(strategy, color);
+            GameObject ennemy = Instantiate(ennemyPrefab, position, Quaternion.identity);
+            ennemy.GetComponentInChildren<EnnemyController>().Configure(strategy, color);
             gameController.AddPotentialWinner(ennemy.GetComponentInChildren<EnnemyController>());
+        }
+
+        private Vector2 CreateRandomSpawnPosition()
+        {
+            return new Vector2(
+                UnityEngine.Random.Range(-Camera.main.GetComponent<CameraEdge>().Width / 2,
+                    Camera.main.GetComponent<CameraEdge>().Width / 2),
+                UnityEngine.Random.Range(-Camera.main.GetComponent<CameraEdge>().Height / 2,
+                    Camera.main.GetComponent<CameraEdge>().Height / 2));
         }
     }
 }
