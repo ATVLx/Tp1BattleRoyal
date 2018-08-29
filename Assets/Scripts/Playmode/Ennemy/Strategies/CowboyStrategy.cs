@@ -24,7 +24,7 @@ namespace Playmode.Ennemy.Strategies
             weaponSensor = sight.GetComponent<PickableWeaponSensor>();
         }
 
-        public void Act()
+        public void FindSomethingToDo()
         {
             //Priorise la recherche d'arme.
             //Si aucune arme , chercher un ennemy.
