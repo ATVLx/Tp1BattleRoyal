@@ -36,7 +36,6 @@ namespace Playmode.Ennemy.Strategies
 
         public void Act()
         {
-            Debug.Log(weaponSensor.WeaponsInSight.Count());
             //Priorise la recherche d'arme.
             //Si aucune arme , chercher un ennemy.
             if (weaponSensor.WeaponsInSight.Any())
