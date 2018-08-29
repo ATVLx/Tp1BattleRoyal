@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using Playmode.Application;
+using Playmode.Pickable;
 using UnityEngine;
 
 public class PickableGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject[] pickablePrefabs;
     [SerializeField] private int pickableNumber;
-
 
     // Use this for initialization
     void Start()
@@ -25,7 +25,10 @@ public class PickableGenerator : MonoBehaviour
                 new Vector3(Random.Range(minSpawnPosX, maxSpawnPosX), Random.Range(minSpawnPosY, maxSpawnPosY), 0),
                 Quaternion.identity,
                 transform);
+            this.GetComponent<PickableDestroyer>().pickables.Add(pickable.GetComponent<Pickable>());
             pickable.transform.Rotate(0,0,Random.Range(0,360));
         }
     }
+
+    
 }

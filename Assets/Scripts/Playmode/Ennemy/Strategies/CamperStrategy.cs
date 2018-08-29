@@ -8,26 +8,18 @@ using UnityEngine;
 
 namespace Playmode.Ennemy.Strategies
 {
-    public class CamperStrategy : IEnnemyStrategy
+    public class CamperStrategy :NormalStrategy, IEnnemyStrategy
     {
-        private readonly Mover mover;
-        private readonly HandController handController;
-        private readonly EnnemySensor ennemySensor;
+
         private readonly PickableMedKitSensor medKitSensor;
-        private Vector3 randomDestination;
         readonly private Health health;
         private PickableMedKit targetMedKit;
 
 
-        public CamperStrategy(Mover mover, HandController handcontroller, GameObject sight)
+        public CamperStrategy(Mover mover, HandController handcontroller, GameObject sight): base(mover,handcontroller,sight)
         {
-            this.ennemySensor = sight.GetComponent<EnnemySensor>();
             this.medKitSensor = sight.GetComponent<PickableMedKitSensor>();
-            this.mover = mover;
-
             health = mover.GetComponent<Health>();
-            this.handController = handcontroller;
-            FindNewRandomDestination();
         }
 
         public void Act()
@@ -88,18 +80,6 @@ namespace Playmode.Ennemy.Strategies
                     mover.Rotate(1);
                 }
             }
-        }
-
-        private void FindNewRandomDestination()
-        {
-            randomDestination = new Vector3(
-                Random.Range(
-                    -Camera.main.GetComponent<CameraEdge>().Width / 2,
-                    Camera.main.GetComponent<CameraEdge>().Width / 2),
-                Random.Range(
-                    -Camera.main.GetComponent<CameraEdge>().Height / 2,
-                    Camera.main.GetComponent<CameraEdge>().Height / 2),
-                0);
         }
     }
 }

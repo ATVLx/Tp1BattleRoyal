@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
     private void OnPotentialWinnerDeath(EnnemyController ennemyController)
     {
         potentialWinners.Remove(ennemyController);
-        Camera.main.GetComponent<CameraController>().Shrink(potentialWinners.Count);	
+        Camera.main.GetComponent<CameraController>().Shrink();	
         if (potentialWinners.Count == 1)
         {
             Camera.main.GetComponent<CameraController>().StartFollowing(potentialWinners.ElementAt(0).transform);

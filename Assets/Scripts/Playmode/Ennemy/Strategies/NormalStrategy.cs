@@ -12,21 +12,21 @@ namespace Playmode.Ennemy.Strategies
 {
     public class NormalStrategy : IEnnemyStrategy
     {
-        private readonly Mover mover;
-        private readonly HandController handController;
-        private readonly EnnemySensor ennemySensor;
-        private Vector3 randomDestination;
+        protected readonly Mover mover;
+        protected readonly HandController handController;
+        protected readonly EnnemySensor ennemySensor;
+        protected Vector3 randomDestination;
 
 
         public NormalStrategy(Mover mover, HandController handcontroller, GameObject sight)
         {
-            ennemySensor=sight.GetComponent<EnnemySensor>();
+            ennemySensor = sight.GetComponent<EnnemySensor>();
             this.mover = mover;
             this.handController = handcontroller;
             FindNewRandomDestination();
         }
 
-        public void Act()
+        public virtual void Act()
         {
             if (ennemySensor.EnnemiesInSight.Count() != 0)
             {
@@ -54,7 +54,7 @@ namespace Playmode.Ennemy.Strategies
                 mover.MoveToward(randomDestination);
             }
         }
-        private void FindNewRandomDestination()
+        protected void FindNewRandomDestination()
         {
             randomDestination = new Vector3(
                 Random.Range(

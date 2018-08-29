@@ -14,24 +14,14 @@ using Random = UnityEngine.Random;
 
 namespace Playmode.Ennemy.Strategies
 {
-    public class CowboyStrategy : IEnnemyStrategy
+    public class CowboyStrategy :NormalStrategy, IEnnemyStrategy
     {
-        private readonly Mover mover;
-        private readonly HandController handController;
-        private readonly EnnemySensor ennemySensor;
-        private Vector3 randomDestination;
         private Vector3 target;
         private PickableWeaponSensor weaponSensor;
-        float mapEdgeY = Camera.main.GetComponent<CameraEdge>().Height / 2;
-        float mapEdgeX = Camera.main.GetComponent<CameraEdge>().Width / 2;
 
-        public CowboyStrategy(Mover mover, HandController handcontroller, GameObject sightTransform)
+        public CowboyStrategy(Mover mover, HandController handcontroller, GameObject sight) : base(mover,handcontroller,sight)
         {
-            this.ennemySensor = sightTransform.GetComponent<EnnemySensor>();
-            this.mover = mover;
-            this.weaponSensor = sightTransform.GetComponent<PickableWeaponSensor>();
-            this.handController = handcontroller;
-            randomDestination = new Vector3(Random.Range(-mapEdgeX, mapEdgeX), Random.Range(-mapEdgeY, mapEdgeY), 0);
+            weaponSensor = sight.GetComponent<PickableWeaponSensor>();
         }
 
         public void Act()
@@ -61,9 +51,7 @@ namespace Playmode.Ennemy.Strategies
            }
            else if (Vector3.Distance(mover.transform.position, randomDestination) <= 0.5)
            {
-               randomDestination = new Vector3(
-                   Random.Range(-mapEdgeX, mapEdgeX), Random.Range(-mapEdgeY, mapEdgeY),
-                   0);
+               FindNewRandomDestination();
            }
            else
            {
@@ -72,5 +60,6 @@ namespace Playmode.Ennemy.Strategies
                mover.Rotate(Vector2.Dot(direction, mover.transform.right));
            }
         }
+
     }
 }

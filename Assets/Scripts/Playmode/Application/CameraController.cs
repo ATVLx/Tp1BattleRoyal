@@ -1,27 +1,30 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
-
+public delegate void CameraEventHandler();
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private float minimumCameraSize = 10;
     [SerializeField] private float shrinkingSpeedPerSeconds;
-    [SerializeField] private float followingCameraSize;
+    [SerializeField] private float followingCameraSize; 
+    [SerializeField] private int followSpeed = 20;
     private float currentCameraSizeGoal;
     private int numberOfEnnemyAtStart;
     private bool following = false;
     private Transform followTransform;
-
-    [SerializeField] private int followSpeed = 20;
-
+    public event CameraEventHandler OnCameraEdgeChange;
+   
+    
     private void Start()
     {
         currentCameraSizeGoal = Camera.main.orthographicSize;
+
     }
 
-    public void Shrink(int numberEnnemyRemaining)
+    public void Shrink()
     {
-        if (currentCameraSizeGoal != minimumCameraSize)
-            currentCameraSizeGoal -= (Camera.main.orthographicSize / numberEnnemyRemaining);
+        if (currentCameraSizeGoal != 10)
+            currentCameraSizeGoal -= 5;
         if (currentCameraSizeGoal < minimumCameraSize)
             currentCameraSizeGoal = minimumCameraSize;
         if (following)
@@ -30,9 +33,13 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (currentCameraSizeGoal <= Camera.main.orthographicSize)
+        if (currentCameraSizeGoal < Camera.main.orthographicSize)
         {
             Camera.main.orthographicSize -= shrinkingSpeedPerSeconds * Time.deltaTime;
+           if(currentCameraSizeGoal>=Camera.main.orthographicSize)
+            {
+                NotifyCameraEdgeChange();
+            }
         }
 
         if (followTransform != null&&following)
@@ -46,6 +53,10 @@ public class CameraController : MonoBehaviour
     {
         following = true;
         followTransform = transform;
-        Shrink(1);
+        Shrink();
+    }
+    private void NotifyCameraEdgeChange()
+    {
+       if (OnCameraEdgeChange != null) OnCameraEdgeChange();
     }
 }

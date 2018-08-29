@@ -3,9 +3,10 @@ using UnityEngine;
 
 namespace Playmode.Pickable
 {
-    public class PickableStar :Pickable
+    public class PickableStar : Pickable
     {
         [SerializeField] private int durationInSeconds;
+
         protected override void OnTriggerEnter2D(Collider2D other)
         {
             GetPicked(other);
@@ -13,7 +14,11 @@ namespace Playmode.Pickable
 
         protected override void GetPicked(Collider2D other)
         {
-            other.transform.root.GetComponentInChildren<Health>().Invincibility(durationInSeconds);
+            if (other.tag == "Ennemy")
+            {
+                other.transform.root.GetComponentInChildren<Health>().Invincibility(durationInSeconds);
+                Destroy(this.gameObject);
+            }
         }
     }
 }
