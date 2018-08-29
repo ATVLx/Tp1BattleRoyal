@@ -1,11 +1,12 @@
 ﻿using Boo.Lang;
+using Playmode.Application;
 using UnityEngine;
 
-namespace Playmode.Application
+namespace Playmode.Pickable
 {
     public class PickableDestroyer : MonoBehaviour
     {
-        public List<Pickable.Pickable> pickables = new List<Pickable.Pickable>();
+        public List<Pickable> pickables = new List<Pickable>();
 
         private void Start()
         {
@@ -16,7 +17,7 @@ namespace Playmode.Application
         {
             pickables.RemoveAll(it => it == null);
             List<GameObject> pickablesToDestroy=new List<GameObject>();
-            foreach (Pickable.Pickable p in pickables)
+            foreach (Pickable p in pickables)
             {
                 if (IsPickableOutOfMap(p.transform.position))
                 {
