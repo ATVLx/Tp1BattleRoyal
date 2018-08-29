@@ -24,6 +24,7 @@ namespace Playmode.Ennemy.Strategies
             this.ennemySensor = sight.GetComponent<EnnemySensor>();
             this.medKitSensor = sight.GetComponent<PickableMedKitSensor>();
             this.mover = mover;
+
             health = mover.GetComponent<Health>();
             this.handController = handcontroller;
             FindNewRandomDestination();
@@ -37,7 +38,7 @@ namespace Playmode.Ennemy.Strategies
                 //if i see a medkit make it my target
                 if (medKitSensor.MedKitInSight.Count() != 0)
                 {
-                    targetMedKit = medKitSensor.MedKitInSight.ElementAt(0);
+                    targetMedKit = medKitSensor.MedKitInSight.First();
                     Vector3 direction = targetMedKit.transform.position -
                                         mover.transform.position;
                     mover.Rotate(Vector2.Dot(direction, mover.transform.right));
@@ -59,8 +60,15 @@ namespace Playmode.Ennemy.Strategies
             //if i have a target medkit
             if (targetMedKit != null)
             {
-                //if im not over medKit move toward it
-                if (Vector2.Distance(mover.transform.position, targetMedKit.transform.position) > 0.1)
+                //if haelth is under 50% go to medkit
+                if (health.HealthPoints < health.MaxHealth * .5)
+                {
+                    Vector3 direction = targetMedKit.transform.position - mover.transform.position;
+                    mover.Rotate(Vector2.Dot(direction, mover.transform.right));
+                    mover.MoveToward(targetMedKit.transform.position);
+                }
+                //else stay close to medkit
+                else if (Vector2.Distance(mover.transform.position, targetMedKit.transform.position) > 2)
                 {
                     Vector3 direction = targetMedKit.transform.position - mover.transform.position;
                     mover.Rotate(Vector2.Dot(direction, mover.transform.right));

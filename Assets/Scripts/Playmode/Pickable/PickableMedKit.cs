@@ -13,11 +13,13 @@ public class PickableMedKit : Pickable
     {
         Health otherHealth=other.transform.root.GetComponentInChildren<Health>();
         //if health missing is under or equal heal medkit can give
-        if (otherHealth.HealthPoints <= otherHealth.MaxHealth - healthPoint)
+        if (otherHealth.HealthPoints < otherHealth.MaxHealth)
         {
             otherHealth.Heal(healthPoint);
-            Destroy(this.gameObject);
+                    Destroy(this.gameObject);
         }
+        
+        
        
     }
 

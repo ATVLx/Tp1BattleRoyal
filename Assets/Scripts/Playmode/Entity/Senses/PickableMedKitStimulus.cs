@@ -13,7 +13,7 @@ namespace Playmode.Entity.Senses
         
         		private void InitializeComponent()
         		{
-        			medKit= transform.root.GetComponentInChildren<PickableMedKit>();
+        			medKit= transform.GetComponent<PickableMedKit>();
         		}
         
         		private void OnTriggerEnter2D(Collider2D other)
