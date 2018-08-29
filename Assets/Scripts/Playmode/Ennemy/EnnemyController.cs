@@ -142,7 +142,7 @@ namespace Playmode.Ennemy
             }
         }
 
-        private void OnHit(int hitPoints) //la fonction de levenement
+        private void OnHit(int hitPoints , EnnemyController source) //la fonction de levenement
         {
            // Debug.Log("OW, I'm hurt! I'm really much hurt!!!");
             health.Hit(hitPoints);
