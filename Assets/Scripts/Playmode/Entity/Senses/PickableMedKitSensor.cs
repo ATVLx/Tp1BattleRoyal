@@ -6,15 +6,15 @@ namespace Playmode.Entity.Senses
     public delegate void PickableMedKitSensorEventHandler (PickableMedKit medKit);
     public class PickableMedKitSensor : MonoBehaviour
     {
-                private HashSet<PickableMedKit> medKitsInSight;
+                private List<PickableMedKit> medKitsInSight;
                 public event PickableMedKitSensorEventHandler OnMedKitSeen;
                 public event PickableMedKitSensorEventHandler OnMedKitSightLost;
         
-                public IEnumerable<PickableMedKit> MedKitInSight
+                public List<PickableMedKit> MedKitInSight
                 {
                     get
                     {
-                        medKitsInSight.RemoveWhere(it => it == null);
+                        medKitsInSight.RemoveAll(it => it == null);
                         return medKitsInSight;
                     }
                 }
@@ -26,7 +26,7 @@ namespace Playmode.Entity.Senses
         
                 private void InitializeComponent()
                 {
-                    medKitsInSight = new HashSet<PickableMedKit>();
+                    medKitsInSight = new List<PickableMedKit>();
                 }
         
                 public void See(PickableMedKit medKit)

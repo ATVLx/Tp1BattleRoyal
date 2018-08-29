@@ -13,7 +13,7 @@ namespace Playmode.Pickable
 
         protected override void GetPicked(Collider2D other)
         {
-            other.GetComponent<Health>().Invincibility(durationInSeconds);
+            other.transform.root.GetComponentInChildren<Health>().Invincibility(durationInSeconds);
         }
     }
 }

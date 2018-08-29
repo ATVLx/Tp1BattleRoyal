@@ -35,33 +35,31 @@ namespace Playmode.Ennemy.Strategies
         public void Act()
         {
             //if strategy see a healthpack and under critical health go there
-            if (medKitSensor.MedKitInSight.Count() != 0 && health.HealthPoints <= criticalHealth)
+            if (medKitSensor.MedKitInSight.Any() && health.HealthPoints <= criticalHealth)
             {
-                Vector3 direction = medKitSensor.MedKitInSight.ElementAt(0).transform.position -
+                Vector3 direction = medKitSensor.MedKitInSight.First().transform.position -
                                     mover.transform.position;
                 mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-
-                mover.MoveToward(medKitSensor.MedKitInSight.ElementAt(0).transform.position);
+                mover.MoveToward(medKitSensor.MedKitInSight.First().transform.position);
             }
-            //if not under criticalhealth shoot ennemy in sight
-            else if (ennemySensor.EnnemiesInSight.Count() != 0)
-            {
-                Vector3 direction = ennemySensor.EnnemiesInSight.ElementAt(0).transform.position -
-                                    mover.transform.position;
-                mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-                if (Vector3.Distance(mover.transform.position,
-                        ennemySensor.EnnemiesInSight.ElementAt(0).transform.position) >= CarefullShootingRange)
-                {
-                    mover.MoveToward(ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
-                }
-                else
-                {
-                    mover.MoveToward(-ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
-                }
-
-                handController.Use();
-            }
-            //if nothing in sight move randomly
+           //if not under criticalhealth shoot ennemy in sight
+           else if (ennemySensor.EnnemiesInSight.Count() != 0)
+           {
+               Vector3 direction = ennemySensor.EnnemiesInSight.ElementAt(0).transform.position -
+                                   mover.transform.position;
+               mover.Rotate(Vector2.Dot(direction, mover.transform.right));
+               if (Vector3.Distance(mover.transform.position,
+                       ennemySensor.EnnemiesInSight.ElementAt(0).transform.position) >= CarefullShootingRange)
+               {
+                   mover.MoveToward(ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
+               }
+               else
+               {
+                   mover.MoveToward(-ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
+               }
+               handController.Use();
+           }
+           //if nothing in sight move randomly
             else
             {
                 if (Vector3.Distance(mover.transform.position, randomDestination) <= 0.5)
