@@ -1,4 +1,5 @@
 ﻿using System;
+using Playmode.Bullet;
 using Playmode.Ennemy;
 using UnityEngine;
 using UnityEngine.UI;
@@ -61,6 +62,7 @@ namespace Playmode.Weapon
             {
 
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                bullet.GetComponentInChildren<BulletController>().source=transform.root.GetComponentInChildren<EnnemyController>();
                 KnockBackRoot();
 
                 lastTimeShotInSeconds = Time.time;

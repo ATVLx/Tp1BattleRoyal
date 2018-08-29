@@ -24,7 +24,7 @@ namespace Playmode.Entity.Senses
         {
             if (other.GetComponent<Entity.Senses.HitSensor>())
             {
-                other.GetComponent<Entity.Senses.HitSensor>()?.Hit(hitPoints,other.GetComponent<BulletController>().source);
+                other.GetComponent<Entity.Senses.HitSensor>()?.Hit(hitPoints,this.transform.root.GetComponentInChildren<BulletController>().source);
                 Destroy(this.gameObject);
             }
         }

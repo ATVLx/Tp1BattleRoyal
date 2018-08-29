@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Playmode.Bullet;
+using Playmode.Ennemy;
+using UnityEngine;
 
 namespace Playmode.Weapon
 {
@@ -12,6 +14,7 @@ namespace Playmode.Weapon
             {
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
                 bullet.transform.Rotate(new Vector3(0, 0, (Random.Range(0, 5) - (unaccuracyAngle / 2))));
+                bullet.GetComponentInChildren<BulletController>().source=transform.root.GetComponentInChildren<EnnemyController>();
                 KnockBackRoot();
                 lastTimeShotInSeconds = Time.time;
             }
