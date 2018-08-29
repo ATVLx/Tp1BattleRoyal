@@ -1,4 +1,5 @@
 ﻿using System;
+using Playmode.Ennemy;
 using UnityEngine;
 using UnityEngine.UI;
 

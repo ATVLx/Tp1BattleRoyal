@@ -1,5 +1,6 @@
 ﻿using System;
 using Playmode.Bullet;
+using Playmode.Ennemy;
 using UnityEngine;
 
 namespace Playmode.Entity.Senses
@@ -23,7 +24,7 @@ namespace Playmode.Entity.Senses
         {
             if (other.GetComponent<Entity.Senses.HitSensor>())
             {
-                other.GetComponent<Entity.Senses.HitSensor>()?.Hit(hitPoints);
+                other.GetComponent<Entity.Senses.HitSensor>()?.Hit(hitPoints,other.GetComponent<BulletController>().source);
                 Destroy(this.gameObject);
             }
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Playmode.Ennemy;
 using Playmode.Entity.Destruction;
 using Playmode.Movement;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace Playmode.Bullet
         private Mover mover;
         private Destroyer destroyer;
         private float timeSinceSpawnedInSeconds;
+
+        public EnnemyController source { get; private set; }
 
         private bool IsAlive => timeSinceSpawnedInSeconds < lifeSpanInSeconds;
 
@@ -31,6 +34,7 @@ namespace Playmode.Bullet
         {
             mover = GetComponent<RootMover>();
             destroyer = GetComponent<RootDestroyer>();
+            source = transform.root.GetComponentInChildren<EnnemyController>();
 
             timeSinceSpawnedInSeconds = 0;
         }
@@ -54,5 +58,6 @@ namespace Playmode.Bullet
             else
                 destroyer.Destroy();
         }
+        
     }
 }
