@@ -22,7 +22,7 @@ namespace Playmode.Ennemy.Strategies
             health = mover.GetComponent<Health>();
         }
 
-        public void Act()
+        public void FindSomethingToDo()
         {
             //if i dont know where any medkit are 
             if (targetMedKit == null)
