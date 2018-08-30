@@ -113,6 +113,22 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &403629843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1964645709642148, guid: ebb199d14f7264c458a8ee46d63fd15a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1417448585}
+--- !u!114 &403629846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 403629843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fa2adff33b7423eaec6142f486ea7ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &407428362
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,6 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef174b467ab465f408dc935f8a3a2d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  potentialWinners: []
 --- !u!1001 &1417448585
 Prefab:
   m_ObjectHideFlags: 0
@@ -244,6 +261,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
+        type: 2}
+      propertyPath: pickablePrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4120918255371250, guid: ebb199d14f7264c458a8ee46d63fd15a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 2.1216726
@@ -279,8 +301,20 @@ Prefab:
     - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
         type: 2}
       propertyPath: pickableNumber
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
+        type: 2}
+      propertyPath: pickablePrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1547312929421006, guid: 40a15f9fe7968084d96737223179cc58,
+        type: 2}
+    - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
+        type: 2}
+      propertyPath: pickablePrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1912378722493844, guid: 063c67b9d54a41b4988c5735ace641fe,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebb199d14f7264c458a8ee46d63fd15a, type: 2}
   m_IsPrefabAsset: 0
@@ -339,6 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b913f8b7fd07f4e882ba239f1b7648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NumberOfEnnemies: 10
   ennemyPrefab: {fileID: 1815521992430954, guid: 88e89628113b2b04eb2c08e350ffdee9,
     type: 2}
   colors:

@@ -24,6 +24,18 @@ namespace Playmode.Ennemy.Strategies
             weaponSensor = sight.GetComponent<PickableWeaponSensor>();
         }
 
+        public void Act()
+        {
+            if (ennemySensor.EnnemiesInSight.Count() == 0 && treath != null)
+            {
+                Defend();
+            }
+            else
+            {
+                FindSomethingToDo();
+            }
+        }
+
         public void FindSomethingToDo()
         {
             //Priorise la recherche d'arme.
@@ -38,16 +50,7 @@ namespace Playmode.Ennemy.Strategies
             }
            else if (ennemySensor.EnnemiesInSight.Count() != 0)
            {
-               Vector3 direction = ennemySensor.EnnemiesInSight.ElementAt(0).transform.position -
-                                   mover.transform.position;
-               if (Vector3.Distance(mover.transform.position,
-                       ennemySensor.EnnemiesInSight.ElementAt(0).transform.position) >= 2)
-               {
-                   mover.MoveToward(ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
-               }
-
-               mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-               handController.Use();
+               Attack();
            }
            else if (Vector3.Distance(mover.transform.position, randomDestination) <= 0.5)
            {
@@ -55,9 +58,7 @@ namespace Playmode.Ennemy.Strategies
            }
            else
            {
-               Vector3 direction = randomDestination - mover.transform.position;
-               mover.MoveToward(randomDestination);
-               mover.Rotate(Vector2.Dot(direction, mover.transform.right));
+               Roam();
            }
         }
 
