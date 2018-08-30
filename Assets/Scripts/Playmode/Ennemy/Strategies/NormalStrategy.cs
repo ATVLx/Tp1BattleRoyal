@@ -58,7 +58,7 @@ namespace Playmode.Ennemy.Strategies
         {
             randomDestination = new Vector3(
                 Random.Range(
-                    -Camera.main.GetComponent<CameraEdge>().Width / 2,
+                    -Camera.main.GetComponent<CameraEdge>().Width / 2, //aller chercher camera une seule fois
                     Camera.main.GetComponent<CameraEdge>().Width / 2),
                 Random.Range(
                     -Camera.main.GetComponent<CameraEdge>().Height / 2,

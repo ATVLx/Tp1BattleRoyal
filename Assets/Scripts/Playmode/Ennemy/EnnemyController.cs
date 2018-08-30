@@ -32,7 +32,7 @@ namespace Playmode.Ennemy
         private HandController handController;
         private PickableWeaponSensor weaponSensor;
 
-        private IEnnemyStrategy strategy;
+        private IEnnemyStrategy strategy; //changer pour une normal strategy 
 
         private void Awake()
         {
@@ -132,7 +132,7 @@ namespace Playmode.Ennemy
                     break;
                 default:
                     typeSign.GetComponent<SpriteRenderer>().sprite = normalSprite;
-                   this.strategy=new NormalStrategy(mover,handController,sight);
+                   this.strategy=new NormalStrategy(mover,handController,sight); //arranger les sight -> pour les component
                     break;
             }
            // this.strategy = new NormalStrategy(mover ,handController,sight);
@@ -155,6 +155,8 @@ namespace Playmode.Ennemy
             destroyer.Destroy();
         }
 
+        //enlever ceux qui servent a rien
+        
         private void OnEnnemySeen(EnnemyController ennemy)
         {
            // Debug.Log("I've seen an ennemy!! Ya so dead noob!!!");
