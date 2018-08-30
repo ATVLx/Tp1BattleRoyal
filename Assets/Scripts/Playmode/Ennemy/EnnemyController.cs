@@ -88,12 +88,8 @@ namespace Playmode.Ennemy
 
         private void OnEnable()
         {
-            ennemySensor.OnEnnemySeen += OnEnnemySeen;
-            ennemySensor.OnEnnemySightLost += OnEnnemySightLost;
             hitSensor.OnHit += OnHit;  //subscribe a l'evenement
             health.OnDeath += OnDeath;
-            weaponSensor.OnWeaponSeen += OnWeaponSeen;
-            weaponSensor.OnWeaponSightLost += OnWeaponSightLost;
         }
 
         private void Update()
@@ -103,12 +99,8 @@ namespace Playmode.Ennemy
 
         private void OnDisable()
         {
-            ennemySensor.OnEnnemySeen -= OnEnnemySeen;
-            ennemySensor.OnEnnemySightLost -= OnEnnemySightLost;
             hitSensor.OnHit -= OnHit;
             health.OnDeath -= OnDeath;
-            weaponSensor.OnWeaponSeen -= OnWeaponSeen;
-            weaponSensor.OnWeaponSightLost -= OnWeaponSightLost;
         }
 
         public void Configure(EnnemyStrategy strategy, Color color)
@@ -142,8 +134,7 @@ namespace Playmode.Ennemy
         {
            // Debug.Log("OW, I'm hurt! I'm really much hurt!!!");
             health.Hit(hitPoints);
-           strategy.DefendModeEngaged(source);
-            
+           strategy.DefendModeEngaged(source); 
         }
 
         private void OnDeath(EnnemyController controller)
@@ -153,27 +144,5 @@ namespace Playmode.Ennemy
             destroyer.Destroy();
         }
 
-        //enlever ceux qui servent a rien
-        
-        private void OnEnnemySeen(EnnemyController ennemy)
-        {
-           // Debug.Log("I've seen an ennemy!! Ya so dead noob!!!");
-        }
-
-        private void OnEnnemySightLost(EnnemyController ennemy)
-        {
-            //
-           // Debug.Log("I've lost sight of an ennemy...Yikes!!!");
-        }
-
-        private void OnWeaponSeen(PickableWeapon weapon)
-        {
-            //Debug.Log("I've found a weapon!! Ya'll motherfuckers dead!!!");
-        }
-
-        private void OnWeaponSightLost(PickableWeapon weapon)
-        {
-           // Debug.Log("I've lost sight of a weapon!! Rip me 2018-2018");
-        }
     }
 }
