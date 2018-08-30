@@ -14,26 +14,15 @@ using Random = UnityEngine.Random;
 
 namespace Playmode.Ennemy.Strategies
 {
-    public class CowboyStrategy :NormalStrategy, IEnnemyStrategy
+    public class CowboyStrategy : NormalStrategy
     {
         private Vector3 target;
         private PickableWeaponSensor weaponSensor;
 
-        public CowboyStrategy(Mover mover, HandController handcontroller, GameObject sight) : base(mover,handcontroller,sight)
+        public CowboyStrategy(Mover mover, HandController handcontroller, GameObject sight) : base(mover,
+            handcontroller, sight)
         {
             weaponSensor = sight.GetComponent<PickableWeaponSensor>();
-        }
-
-        public void Act()
-        {
-            if (ennemySensor.EnnemiesInSight.Count() == 0 && treath != null)
-            {
-                Defend();
-            }
-            else
-            {
-                FindSomethingToDo();
-            }
         }
 
         protected override void FindSomethingToDo()
@@ -44,19 +33,18 @@ namespace Playmode.Ennemy.Strategies
             {
                 MoveAndRotateTowardPosition(weaponSensor.WeaponsInSight.First().transform.position);
             }
-           else if (ennemySensor.EnnemiesInSight.Count() != 0)
-           {
-               Attack();
-           }
-           else if (Vector3.Distance(mover.transform.position, randomDestination) <= 0.5)
-           {
-               FindNewRandomDestination();
-           }
-           else
-           {
-               MoveAndRotateTowardPosition(randomDestination);
-           }
+            else if (ennemySensor.EnnemiesInSight.Count() != 0)
+            {
+                Attack();
+            }
+            else if (Vector3.Distance(mover.transform.position, randomDestination) <= 0.5)
+            {
+                FindNewRandomDestination();
+            }
+            else
+            {
+                MoveAndRotateTowardPosition(randomDestination);
+            }
         }
-
     }
 }

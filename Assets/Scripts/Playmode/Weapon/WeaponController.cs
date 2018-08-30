@@ -62,7 +62,7 @@ namespace Playmode.Weapon
             {
 
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-                bullet.GetComponentInChildren<BulletController>().source=transform.root.GetComponentInChildren<EnnemyController>();
+                bullet.GetComponentInChildren<BulletController>().Source=transform.root.GetComponentInChildren<EnnemyController>();
                 KnockBackRoot();
 
                 lastTimeShotInSeconds = Time.time;

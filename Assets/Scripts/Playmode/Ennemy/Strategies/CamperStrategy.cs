@@ -10,10 +10,11 @@ namespace Playmode.Ennemy.Strategies
 {
     public class CamperStrategy : NormalStrategy, IEnnemyStrategy
     {
-        private readonly PickableMedKitSensor medKitSensor;
-        readonly private Health health;
-        private PickableMedKit targetMedKit;
         private const float CAMPING_AROUND_MEDKIT_RANGE = 2;
+        
+        private readonly PickableMedKitSensor medKitSensor;
+        private readonly Health health;
+        private PickableMedKit targetMedKit;
 
 
         public CamperStrategy(Mover mover, HandController handcontroller, GameObject sight) : base(mover,

@@ -20,13 +20,5 @@ public class PickableMedKit : Pickable
         } 
     }
 
-    protected override void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Ennemy"))
-        {
-            GetPicked(other);
-            
-        }
-    }
 
 }

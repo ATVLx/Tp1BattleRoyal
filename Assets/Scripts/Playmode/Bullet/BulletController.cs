@@ -14,7 +14,7 @@ namespace Playmode.Bullet
         private Destroyer destroyer;
         private float timeSinceSpawnedInSeconds;
 
-        public EnnemyController source
+        public EnnemyController Source
         {
             get;
             set;
@@ -38,7 +38,7 @@ namespace Playmode.Bullet
         {
             mover = GetComponent<RootMover>();
             destroyer = GetComponent<RootDestroyer>();
-            source = transform.root.GetComponentInChildren<EnnemyController>();
+            Source = transform.root.GetComponentInChildren<EnnemyController>();
 
             timeSinceSpawnedInSeconds = 0;
         }

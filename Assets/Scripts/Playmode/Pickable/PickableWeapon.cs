@@ -15,11 +15,4 @@ public class PickableWeapon : Pickable
         Destroy(this);
     }
 
-    protected override void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Ennemy"))
-        {
-            GetPicked(other);
-        }
-    }
 }

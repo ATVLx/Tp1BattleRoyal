@@ -12,12 +12,14 @@ namespace Playmode.Ennemy.Strategies
 {
     public class NormalStrategy : IEnnemyStrategy
     {
+        private const int SPACE_BETWEEN_ENNEMIES = 4;
+        
         protected readonly Mover mover;
         protected readonly HandController handController;
         protected readonly EnnemySensor ennemySensor;
+        
         protected Vector3 randomDestination;
         protected EnnemyController treath;
-        private const int SPACE_BETWEEN_ENNEMIES = 4;
 
 
         public NormalStrategy(Mover mover, HandController handcontroller, GameObject sight)
@@ -25,12 +27,13 @@ namespace Playmode.Ennemy.Strategies
             ennemySensor = sight.GetComponent<EnnemySensor>();
             this.mover = mover;
             this.handController = handcontroller;
+            
             FindNewRandomDestination();
         }
 
         public void Act()
         {
-            if (ennemySensor.EnnemiesInSight.Count() == 0 && treath != null)
+            if (!HasTarget() && IsThreaten())
             {
                 Defend();
             }
@@ -40,6 +43,17 @@ namespace Playmode.Ennemy.Strategies
             }
             
         }
+
+        private bool IsThreaten()
+        {
+            return treath != null;
+        }
+
+        private bool HasTarget()
+        {
+            return ennemySensor.EnnemiesInSight.Count() > 0;
+        }
+
         protected void FindNewRandomDestination()
         {
             randomDestination = new Vector3(
@@ -70,19 +84,24 @@ namespace Playmode.Ennemy.Strategies
 
         protected virtual void FindSomethingToDo()
         {
-            if (ennemySensor.EnnemiesInSight.Count() != 0)
+            if (HasTarget())
             {
                Attack();
             }
             else
             {
-                if (Vector3.Distance(mover.transform.position, randomDestination) <= 0.5)
+                if (HasReachedDestination())
                 {
                     FindNewRandomDestination();
                 }
 
                 MoveAndRotateTowardPosition(randomDestination);
             }
+        }
+
+        private bool HasReachedDestination()
+        {
+            return Vector3.Distance(mover.transform.position, randomDestination) <= 0.5;
         }
 
         protected virtual void Attack()

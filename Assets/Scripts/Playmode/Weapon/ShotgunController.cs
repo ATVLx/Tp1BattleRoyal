@@ -25,7 +25,7 @@ namespace Playmode.Weapon
                     for (int i = 0; i < nbBullet; i++)
                     {
                         GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-                        bullet.GetComponentInChildren<BulletController>().source =
+                        bullet.GetComponentInChildren<BulletController>().Source =
                             transform.root.GetComponentInChildren<EnnemyController>();
                         bullet.transform.Rotate(new Vector3(0, 0,
                             Random.Range(0f,scatterAngle) - (scatterAngle / 2)));
@@ -36,7 +36,7 @@ namespace Playmode.Weapon
                     for (int i = 0; i < nbBullet; i++)
                     {
                         GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-                        bullet.GetComponentInChildren<BulletController>().source =
+                        bullet.GetComponentInChildren<BulletController>().Source =
                             transform.root.GetComponentInChildren<EnnemyController>();
                         bullet.transform.Rotate(new Vector3(0, 0,
                             (i + 1) * (scatterAngle / nbBullet) - (scatterAngle / 2)));

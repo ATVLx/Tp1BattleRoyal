@@ -11,7 +11,7 @@ public class PickableGenerator : MonoBehaviour
     [SerializeField] private int pickableNumber;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         float maxSpawnPosY = Camera.main.GetComponent<CameraEdge>().Height / 2;
         float minSpawnPosX = -Camera.main.GetComponent<CameraEdge>().Width / 2;
