@@ -12,15 +12,15 @@ public class GameController : MonoBehaviour
 
     public List<EnnemyController> PotentialWinners => potentialWinners;
 
-    private void Awake()
+    private void Start()
     {
-        potentialWinners=new List<EnnemyController>();
+        potentialWinners=new List<EnnemyController>(); 
+        this.GetComponent<EnnemyDeathEventChannel>().OnEnnemyDie+= OnPotentialWinnerDeath;
     }
 
     public void AddPotentialWinner(EnnemyController ennemyController)
     {
         potentialWinners.Add(ennemyController);
-        ennemyController.GetComponent<Health>().OnDeath += OnPotentialWinnerDeath;
     }
 
     private void OnPotentialWinnerDeath(EnnemyController ennemyController)

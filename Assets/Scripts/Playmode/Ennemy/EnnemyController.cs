@@ -89,7 +89,6 @@ namespace Playmode.Ennemy
         private void OnEnable()
         {
             hitSensor.OnHit += OnHit;  //subscribe a l'evenement
-            health.OnDeath += OnDeath;
         }
 
         private void Update()
@@ -99,8 +98,7 @@ namespace Playmode.Ennemy
 
         private void OnDisable()
         {
-            hitSensor.OnHit -= OnHit;
-            health.OnDeath -= OnDeath;
+            hitSensor.OnHit -= OnHit;;
         }
 
         public void Configure(NormalStrategy strategy, Color color)

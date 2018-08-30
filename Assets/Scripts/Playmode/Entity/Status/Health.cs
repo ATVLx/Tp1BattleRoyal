@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections;
+using Playmode.Application;
 using Playmode.Ennemy;
+using Playmode.Entity.Destruction;
 using UnityEngine;
 using UnityEngine.Jobs;
 
 namespace Playmode.Entity.Status
 {
-    public delegate void HealthEventHandler(EnnemyController controller);
-
     public class Health : MonoBehaviour
     {
         [SerializeField] private int maxHealth = 100;
          private int healthPoints;
 
         private bool invincible = false;
-        public event HealthEventHandler OnDeath;
 
         public int MaxHealth => maxHealth;
 
@@ -25,8 +24,12 @@ namespace Playmode.Entity.Status
             {
                 healthPoints = value < 0 ? 0 : value;
 
-                if (healthPoints <= 0) 
-                    NotifyDeath();
+                if (healthPoints <= 0)
+                {
+                    GameObject.FindGameObjectWithTag("GameController").GetComponent<EnnemyDeathEventChannel>().OnDeath(GetComponent<EnnemyController>());
+                    GetComponent<RootDestroyer>().Destroy();
+                }
+                    
             }
         }
 
@@ -63,10 +66,6 @@ namespace Playmode.Entity.Status
             invincible = true;
             yield return new WaitForSeconds(durationInSeconds);
             invincible = false;
-        }
-        private void NotifyDeath()
-        {
-            if (OnDeath != null) OnDeath(GetComponent<EnnemyController>());
         }
     }
 }
