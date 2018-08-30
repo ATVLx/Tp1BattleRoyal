@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Remoting.Messaging;
+using Lexic;
 using Playmode.Application;
 using Playmode.Ennemy.Strategies;
 using Playmode.Util;
@@ -14,6 +15,7 @@ namespace Playmode.Ennemy
         [SerializeField] private int NumberOfEnnemies = 10;
 
         [SerializeField] private NormalStrategy[] ennemyStrategies;
+
         private static readonly Color[] DefaultColors =
         {
             Color.white, Color.black, Color.blue, Color.cyan, Color.green,
@@ -22,24 +24,13 @@ namespace Playmode.Ennemy
 
         private GameController gameController;
 
-      // private static readonly EnnemyStrategy[] DefaultStrategies =
-      // {
-      //     EnnemyStrategy.Normal,
-      //     EnnemyStrategy.Careful,
-      //     EnnemyStrategy.Cowboy,
-      //     EnnemyStrategy.Camper
-      // };
-
         [SerializeField] private GameObject ennemyPrefab;
         [SerializeField] private Color[] colors = DefaultColors;
 
-        private void Awake()
-        {
-            ValidateSerialisedFields();
-        }
 
         private void Start()
         {
+            ValidateSerialisedFields();
             gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
             SpawnEnnemies();
         }
@@ -50,20 +41,18 @@ namespace Playmode.Ennemy
                 throw new ArgumentException("Can't spawn null ennemy prefab.");
             if (colors == null || colors.Length == 0)
                 throw new ArgumentException("Ennemies needs colors to be spawned.");
-            if(ennemyStrategies.Length==0)
+            if (ennemyStrategies.Length == 0)
                 throw new ArgumentException("Must have at least 1 strategy");
-           
         }
 
         private void SpawnEnnemies()
         {
-           // var stragegyProvider = new LoopingEnumerator<EnnemyStrategy>(DefaultStrategies);
             var colorProvider = new LoopingEnumerator<Color>(colors);
 
             for (var i = 0; i < NumberOfEnnemies; i++)
                 SpawnEnnemy(
                     CreateRandomSpawnPosition(),
-                    ennemyStrategies[i%ennemyStrategies.Length],
+                    ennemyStrategies[i % ennemyStrategies.Length],
                     colorProvider.Next()
                 );
         }
@@ -71,6 +60,7 @@ namespace Playmode.Ennemy
         private void SpawnEnnemy(Vector3 position, NormalStrategy strategy, Color color)
         {
             GameObject ennemy = Instantiate(ennemyPrefab, position, Quaternion.identity);
+            ennemy.transform.root.name = this.GetComponent<NameGenerator>().GetNextRandomName();
             ennemy.GetComponentInChildren<EnnemyController>().Configure(Instantiate(strategy), color);
             gameController.AddPotentialWinner(ennemy.GetComponentInChildren<EnnemyController>());
         }
