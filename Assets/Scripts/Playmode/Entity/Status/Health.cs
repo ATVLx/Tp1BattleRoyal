@@ -54,7 +54,6 @@ namespace Playmode.Entity.Status
 
         public void Invincibility(int durationInSeconds)
         {
-            //todo:implememt coroutine that enable and disable invincible
             StartCoroutine(InvincibilityRoutine(durationInSeconds));
         }
 

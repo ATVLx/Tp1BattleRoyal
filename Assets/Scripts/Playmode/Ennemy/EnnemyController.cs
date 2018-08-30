@@ -32,7 +32,7 @@ namespace Playmode.Ennemy
         private HandController handController;
         private PickableWeaponSensor weaponSensor;
 
-        private IEnnemyStrategy strategy;
+        private NormalStrategy strategy;
 
         private void Awake()
         {
@@ -135,17 +135,15 @@ namespace Playmode.Ennemy
                    this.strategy=new NormalStrategy(mover,handController,sight);
                     break;
             }
-           // this.strategy = new NormalStrategy(mover ,handController,sight);
+         
         }
 
         private void OnHit(int hitPoints , EnnemyController source) //la fonction de levenement
         {
            // Debug.Log("OW, I'm hurt! I'm really much hurt!!!");
             health.Hit(hitPoints);
-            if (strategy is NormalStrategy)
-            {
-                (strategy as NormalStrategy).DefendModeEngaged(source);
-            }
+           strategy.DefendModeEngaged(source);
+            
         }
 
         private void OnDeath(EnnemyController controller)
