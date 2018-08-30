@@ -127,7 +127,6 @@ namespace Playmode.Ennemy
                    this.strategy=new NormalStrategy(mover,handController,sight); //arranger les sight -> pour les component
                     break;
             }
-           // this.strategy = new NormalStrategy(mover ,handController,sight);
         }
 
         private void OnHit(int hitPoints , EnnemyController source) //la fonction de levenement

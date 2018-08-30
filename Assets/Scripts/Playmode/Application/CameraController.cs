@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Playmode.Application;
+using UnityEditor;
 using UnityEngine;
 
 public delegate void CameraEventHandler();
@@ -41,6 +42,7 @@ public class CameraController : MonoBehaviour
            if(currentCameraSizeGoal>=Camera.main.orthographicSize)
             {
                 NotifyCameraEdgeChange();
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraEventChannel>().AdaptGameToCamera();
             }
         }
 

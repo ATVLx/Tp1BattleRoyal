@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Playmode.Application;
 using Playmode.Ennemy;
 using Playmode.Entity.Status;
 using UnityEngine;
@@ -31,5 +32,7 @@ public class GameController : MonoBehaviour
             Camera.main.GetComponent<CameraController>().StartFollowing(potentialWinners.ElementAt(0).transform);
         }
     }
+
+    
 
 }

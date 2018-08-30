@@ -25,7 +25,7 @@ public class PickableGenerator : MonoBehaviour
                 new Vector3(Random.Range(minSpawnPosX, maxSpawnPosX), Random.Range(minSpawnPosY, maxSpawnPosY), 0),
                 Quaternion.identity,
                 transform);
-            this.GetComponent<PickableDestroyer>().pickables.Add(pickable.GetComponent<Pickable>());
+           
             pickable.transform.Rotate(0,0,Random.Range(0,360));
         }
     }
