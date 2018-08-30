@@ -246,7 +246,7 @@ Prefab:
     - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
         type: 2}
       propertyPath: pickableNumber
-      value: 300
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1964645709642148, guid: ebb199d14f7264c458a8ee46d63fd15a, type: 2}
       propertyPath: m_IsActive
@@ -286,7 +286,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b913f8b7fd07f4e882ba239f1b7648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumberOfEnnemies: 1000
+  NumberOfEnnemies: 10
+  ennemyStrategies:
+  - {fileID: 11400000, guid: e274ba5304abf9044ae8933bf74caedb, type: 2}
+  - {fileID: 11400000, guid: 4bf1d4282e107a347acc957bf8bb9d33, type: 2}
+  - {fileID: 11400000, guid: 1c73a44cf4e2e65479c67e75d27553ba, type: 2}
+  - {fileID: 11400000, guid: 0996db121b1b3f1469f10f8788b7d01f, type: 2}
   ennemyPrefab: {fileID: 1815521992430954, guid: 88e89628113b2b04eb2c08e350ffdee9,
     type: 2}
   colors:

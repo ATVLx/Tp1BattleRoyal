@@ -12,6 +12,7 @@ namespace Playmode.Ennemy
     {
         [SerializeField] private int NumberOfEnnemies = 10;
 
+        [SerializeField] private NormalStrategy[] ennemyStrategies;
         private static readonly Color[] DefaultColors =
         {
             Color.white, Color.black, Color.blue, Color.cyan, Color.green,
@@ -20,13 +21,13 @@ namespace Playmode.Ennemy
 
         private GameController gameController;
 
-        private static readonly EnnemyStrategy[] DefaultStrategies =
-        {
-            EnnemyStrategy.Normal,
-            EnnemyStrategy.Careful,
-            EnnemyStrategy.Cowboy,
-            EnnemyStrategy.Camper
-        };
+      // private static readonly EnnemyStrategy[] DefaultStrategies =
+      // {
+      //     EnnemyStrategy.Normal,
+      //     EnnemyStrategy.Careful,
+      //     EnnemyStrategy.Cowboy,
+      //     EnnemyStrategy.Camper
+      // };
 
         [SerializeField] private GameObject ennemyPrefab;
         [SerializeField] private Color[] colors = DefaultColors;
@@ -53,21 +54,21 @@ namespace Playmode.Ennemy
 
         private void SpawnEnnemies()
         {
-            var stragegyProvider = new LoopingEnumerator<EnnemyStrategy>(DefaultStrategies);
+           // var stragegyProvider = new LoopingEnumerator<EnnemyStrategy>(DefaultStrategies);
             var colorProvider = new LoopingEnumerator<Color>(colors);
 
             for (var i = 0; i < NumberOfEnnemies; i++)
                 SpawnEnnemy(
                     CreateRandomSpawnPosition(),
-                    stragegyProvider.Next(),
+                    ennemyStrategies[i%ennemyStrategies.Length],
                     colorProvider.Next()
                 );
         }
 
-        private void SpawnEnnemy(Vector3 position, EnnemyStrategy strategy, Color color)
+        private void SpawnEnnemy(Vector3 position, NormalStrategy strategy, Color color)
         {
             GameObject ennemy = Instantiate(ennemyPrefab, position, Quaternion.identity);
-            ennemy.GetComponentInChildren<EnnemyController>().Configure(strategy, color);
+            ennemy.GetComponentInChildren<EnnemyController>().Configure(Instantiate(strategy), color);
             gameController.AddPotentialWinner(ennemy.GetComponentInChildren<EnnemyController>());
         }
 

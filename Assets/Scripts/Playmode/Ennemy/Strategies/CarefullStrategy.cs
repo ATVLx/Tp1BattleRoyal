@@ -9,18 +9,19 @@ using UnityEngine;
 
 namespace Playmode.Ennemy.Strategies
 {
-    public class CarefullStrategy : NormalStrategy, IEnnemyStrategy
+    [CreateAssetMenu(fileName = "CarefullStrategy", menuName = "Strategies/Carefull")]
+    public class CarefullStrategy : NormalStrategy
     {
-        private readonly PickableMedKitSensor medKitSensor;
-        readonly private Health health;
-        private const int CRITICAL_HEALTH = 25;
-        private int CAREFULL_SAFE_RANGE = 6;
+        [SerializeField] private const int CRITICAL_HEALTH = 25;
+        [SerializeField] private int CAREFULL_SAFE_RANGE = 6;
+        private PickableMedKitSensor medKitSensor;
+        private Health health;
 
 
-        public CarefullStrategy(Mover mover, HandController handcontroller, GameObject sight) : base(mover,
-            handcontroller, sight)
+        public override void Init(Mover mover, HandController handcontroller, GameObject sight)
         {
-            this.medKitSensor = sight.GetComponent<PickableMedKitSensor>();
+            base.Init(mover, handcontroller, sight);
+            medKitSensor = sight.GetComponent<PickableMedKitSensor>();
             health = mover.GetComponent<Health>();
         }
 
@@ -39,10 +40,11 @@ namespace Playmode.Ennemy.Strategies
             //if nothing in sight move randomly
             else
             {
-                if (Vector3.Distance(mover.transform.position, randomDestination) <= 0.5)
+                if (HasReachedDestination())
                 {
                     FindNewRandomDestination();
                 }
+
                 MoveAndRotateTowardPosition(randomDestination);
             }
         }
@@ -50,9 +52,9 @@ namespace Playmode.Ennemy.Strategies
         protected override void Attack()
         {
             Vector3 targetPos = ennemySensor.EnnemiesInSight.First().transform.position;
-            
+
             RotateTowardPosition(targetPos);
-            
+
             if (Vector3.Distance(mover.transform.position, targetPos) >= CAREFULL_SAFE_RANGE)
             {
                 mover.MoveToward(targetPos);

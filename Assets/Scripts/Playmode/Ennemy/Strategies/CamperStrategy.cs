@@ -8,18 +8,18 @@ using UnityEngine;
 
 namespace Playmode.Ennemy.Strategies
 {
-    public class CamperStrategy : NormalStrategy, IEnnemyStrategy
+    [CreateAssetMenu(fileName = "CamperStrategy", menuName = "Strategies/Camper")]
+    public class CamperStrategy : NormalStrategy
     {
-        private const float CAMPING_AROUND_MEDKIT_RANGE = 2;
-        
-        private readonly PickableMedKitSensor medKitSensor;
-        private readonly Health health;
+        [SerializeField] private const float CAMPING_AROUND_MEDKIT_RANGE = 2;
+        private PickableMedKitSensor medKitSensor;
+        private Health health;
         private PickableMedKit targetMedKit;
 
 
-        public CamperStrategy(Mover mover, HandController handcontroller, GameObject sight) : base(mover,
-            handcontroller, sight)
+        public override void Init(Mover mover, HandController handcontroller, GameObject sight)
         {
+            base.Init(mover, handcontroller, sight);
             this.medKitSensor = sight.GetComponent<PickableMedKitSensor>();
             health = mover.GetComponent<Health>();
         }
@@ -30,7 +30,7 @@ namespace Playmode.Ennemy.Strategies
             if (targetMedKit == null)
             {
                 //if i see a medkit make it my target
-                if (medKitSensor.MedKitInSight.Count() != 0)
+                if (medKitSensor.MedKitInSight.Any())
                 {
                     targetMedKit = medKitSensor.MedKitInSight.First();
                     MoveAndRotateTowardPosition(targetMedKit.transform.position);
@@ -38,7 +38,7 @@ namespace Playmode.Ennemy.Strategies
                 //if not move randomly until i find a medkit
                 else
                 {
-                    if (Vector3.Distance(mover.transform.position, randomDestination) <= 0.5)
+                    if (HasReachedDestination())
                     {
                         FindNewRandomDestination();
                     }
@@ -56,7 +56,8 @@ namespace Playmode.Ennemy.Strategies
                     MoveAndRotateTowardPosition(targetMedKit.transform.position);
                 }
                 //else stay close to medkit
-                else if (Vector2.Distance(mover.transform.position, targetMedKit.transform.position) > CAMPING_AROUND_MEDKIT_RANGE)
+                else if (Vector2.Distance(mover.transform.position, targetMedKit.transform.position) >
+                         CAMPING_AROUND_MEDKIT_RANGE)
                 {
                     MoveAndRotateTowardPosition(targetMedKit.transform.position);
                 }

@@ -14,14 +14,15 @@ using Random = UnityEngine.Random;
 
 namespace Playmode.Ennemy.Strategies
 {
+    [CreateAssetMenu(fileName = "CowboyStrategy", menuName = "Strategies/Cowboy")]
     public class CowboyStrategy : NormalStrategy
     {
         private Vector3 target;
         private PickableWeaponSensor weaponSensor;
 
-        public CowboyStrategy(Mover mover, HandController handcontroller, GameObject sight) : base(mover,
-            handcontroller, sight)
+        public override void Init(Mover mover, HandController handcontroller, GameObject sight)
         {
+            base.Init(mover, handcontroller, sight);
             weaponSensor = sight.GetComponent<PickableWeaponSensor>();
         }
 
@@ -37,7 +38,7 @@ namespace Playmode.Ennemy.Strategies
             {
                 Attack();
             }
-            else if (Vector3.Distance(mover.transform.position, randomDestination) <= 0.5)
+            else if (HasReachedDestination())
             {
                 FindNewRandomDestination();
             }
