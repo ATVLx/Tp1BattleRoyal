@@ -15,6 +15,7 @@ namespace Playmode.Ennemy.Strategies
         [SerializeField] private int CRITICAL_HEALTH = 25;
         [SerializeField] private int CAREFULL_SAFE_RANGE = 6;
         private PickableMedKitSensor medKitSensor;
+        private PickableWeaponSensor weaponSensor;
         private Health health;
 
 
@@ -22,6 +23,7 @@ namespace Playmode.Ennemy.Strategies
         {
             base.Init(mover, handcontroller, sight);
             medKitSensor = sight.GetComponent<PickableMedKitSensor>();
+            weaponSensor = sight.GetComponent<PickableWeaponSensor>();
             health = mover.GetComponent<Health>();
         }
 
@@ -31,6 +33,10 @@ namespace Playmode.Ennemy.Strategies
             if (medKitSensor.MedKitInSight.Any() && health.HealthPoints <= CRITICAL_HEALTH)
             {
                 MoveAndRotateTowardPosition(medKitSensor.MedKitInSight.First().transform.position);
+            }
+            else if (weaponSensor.WeaponsInSight.Any())
+            {
+                MoveAndRotateTowardPosition(weaponSensor.WeaponsInSight.First().transform.position);
             }
             //if not under criticalhealth shoot ennemy in sight
             else if (ennemySensor.EnnemiesInSight.Count() != 0)
@@ -55,15 +61,11 @@ namespace Playmode.Ennemy.Strategies
 
             RotateTowardPosition(targetPos);
 
-            if (Vector3.Distance(mover.transform.position, targetPos) >= CAREFULL_SAFE_RANGE)
-            {
-                mover.MoveToward(targetPos);
-            }
-            else
+            if (Vector3.Distance(mover.transform.position, targetPos) <= CAREFULL_SAFE_RANGE)
             {
                 mover.MoveToward(-targetPos);
             }
-
+            
             handController.Use();
         }
     }
