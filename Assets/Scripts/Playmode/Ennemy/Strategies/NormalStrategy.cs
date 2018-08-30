@@ -80,7 +80,9 @@ namespace Playmode.Ennemy.Strategies
                 {
                     FindNewRandomDestination();
                 }
+
                 MoveAndRotateTowardPosition(randomDestination);
+            }
         }
 
         protected virtual void Attack()
