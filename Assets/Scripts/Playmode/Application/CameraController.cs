@@ -15,13 +15,13 @@ public class CameraController : MonoBehaviour
     private Transform followTransform;
     private float shrinkAmmount;
     public event CameraEventHandler OnCameraEdgeChange;
-   
-    
+
     private void Start()
     {
+        Debug.Log("camera Start");
         currentCameraSizeGoal = Camera.main.orthographicSize;
         int nbEnnemy= GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().PotentialWinners.Count;
-        shrinkAmmount = (Camera.main.orthographicSize - minimumCameraSize) / nbEnnemy;
+        shrinkAmmount = (Camera.main.orthographicSize - minimumCameraSize) / nbEnnemy-1;
     }
 
     public void Shrink()

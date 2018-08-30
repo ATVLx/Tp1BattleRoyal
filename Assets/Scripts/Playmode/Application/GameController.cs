@@ -5,6 +5,7 @@ using Playmode.Application;
 using Playmode.Ennemy;
 using Playmode.Entity.Status;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -12,8 +13,11 @@ public class GameController : MonoBehaviour
 
     public List<EnnemyController> PotentialWinners => potentialWinners;
 
-    private void Start()
+    [SerializeField] private RectTransform winnerText;
+
+    private void Awake()
     {
+        Debug.Log("GC awake");
         potentialWinners=new List<EnnemyController>(); 
         this.GetComponent<EnnemyDeathEventChannel>().OnEnnemyDie+= OnPotentialWinnerDeath;
     }
@@ -27,9 +31,11 @@ public class GameController : MonoBehaviour
     {
         potentialWinners.Remove(ennemyController);
         Camera.main.GetComponent<CameraController>().Shrink();	
+        
         if (potentialWinners.Count == 1)
         {
             Camera.main.GetComponent<CameraController>().StartFollowing(potentialWinners.ElementAt(0).transform);
+            winnerText.GetComponent<Text>().text= potentialWinners.First().transform.root.name + " Won!";
         }
     }
 
