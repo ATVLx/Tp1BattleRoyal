@@ -22,7 +22,7 @@ namespace Playmode.Ennemy.Strategies
         public abstract void Init(Mover mover, HandController handController, GameObject sight);
         public void Act()
         {
-            if (IsThreaten()&&!HasTarget())
+            if (IsThreaten()&&!HasTarget() && ThreathIsInRange())
             {
                Defend();
             }
@@ -37,6 +37,12 @@ namespace Playmode.Ennemy.Strategies
             return treath != null;
         }
 
+        protected bool ThreathIsInRange()
+        {
+            return Vector3.Distance(mover.transform.position, treath.transform.position) <=
+                   ennemySensor.GetComponentInChildren<PolygonCollider2D>().bounds.size.y;
+        }
+        
         protected bool HasTarget()
         {
             return ennemySensor.EnnemiesInSight.Count() > 0;
