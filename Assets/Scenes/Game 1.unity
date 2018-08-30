@@ -113,22 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &403629843 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1964645709642148, guid: ebb199d14f7264c458a8ee46d63fd15a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1417448585}
---- !u!114 &403629846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 403629843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fa2adff33b7423eaec6142f486ea7ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &407428362
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +206,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1414215694}
   - component: {fileID: 1414215695}
+  - component: {fileID: 1414215696}
+  - component: {fileID: 1414215697}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -254,6 +240,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potentialWinners: []
+--- !u!114 &1414215696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1414215693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62aa3ea3843016a409cf909650759e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1414215697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1414215693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b05c074552cc4ddc831c6d775d51d8ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1417448585
 Prefab:
   m_ObjectHideFlags: 0
@@ -315,6 +323,12 @@ Prefab:
       value: 
       objectReference: {fileID: 1912378722493844, guid: 063c67b9d54a41b4988c5735ace641fe,
         type: 2}
+    - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
+        type: 2}
+      propertyPath: pickablePrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1912378722493844, guid: 66723aab56989504096e72e45f5d9db8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebb199d14f7264c458a8ee46d63fd15a, type: 2}
   m_IsPrefabAsset: 0
@@ -374,6 +388,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumberOfEnnemies: 10
+  ennemyStrategies:
+  - {fileID: 11400000, guid: e274ba5304abf9044ae8933bf74caedb, type: 2}
+  - {fileID: 11400000, guid: 4bf1d4282e107a347acc957bf8bb9d33, type: 2}
+  - {fileID: 11400000, guid: 1c73a44cf4e2e65479c67e75d27553ba, type: 2}
+  - {fileID: 11400000, guid: 0996db121b1b3f1469f10f8788b7d01f, type: 2}
   ennemyPrefab: {fileID: 1815521992430954, guid: 88e89628113b2b04eb2c08e350ffdee9,
     type: 2}
   colors:
