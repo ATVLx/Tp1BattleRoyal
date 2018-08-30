@@ -10,79 +10,26 @@ using Playmode.Movement;
 
 namespace Playmode.Ennemy.Strategies
 {
-    public class NormalStrategy : IEnnemyStrategy
+    [CreateAssetMenu(fileName = "NormalStrategy", menuName = "Strategies/Normal")]
+    public class NormalStrategy : EnnemyStrategy
     {
-        private const int SPACE_BETWEEN_ENNEMIES = 4;
-        
-        protected readonly Mover mover;
-        protected readonly HandController handController;
-        protected readonly EnnemySensor ennemySensor;
-        
-        protected Vector3 randomDestination;
-        protected EnnemyController treath;
 
-
-        public NormalStrategy(Mover mover, HandController handcontroller, GameObject sight)
+        public override void Init(Mover mover, HandController handController, GameObject sight)
         {
             ennemySensor = sight.GetComponent<EnnemySensor>();
             this.mover = mover;
-            this.handController = handcontroller;
+            this.handController = handController;
             
             FindNewRandomDestination();
         }
 
-        public void Act()
-        {
-            if (!HasTarget() && IsThreaten())
-            {
-                Defend();
-            }
-            else
-            {
-                FindSomethingToDo();
-            }
-            
-        }
-
-        private bool IsThreaten()
-        {
-            return treath != null;
-        }
-
-        private bool HasTarget()
-        {
-            return ennemySensor.EnnemiesInSight.Count() > 0;
-        }
-
-        protected void FindNewRandomDestination()
-        {
-            randomDestination = new Vector3(
-                Random.Range(
-                    -Camera.main.GetComponent<CameraEdge>().Width / 2, //aller chercher camera une seule fois
-                    Camera.main.GetComponent<CameraEdge>().Width / 2),
-                Random.Range(
-                    -Camera.main.GetComponent<CameraEdge>().Height / 2,
-                    Camera.main.GetComponent<CameraEdge>().Height / 2),
-                0);
-        }
-        protected void MoveAndRotateTowardPosition(Vector3 position)
-        {
-            RotateTowardPosition(position);
-            mover.MoveToward(position);
-        }
-
-        protected void RotateTowardPosition(Vector3 position)
-        {
-            Vector3 direction = position -mover.transform.position;
-            mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-        }
 
         public void DefendModeEngaged(EnnemyController treath)
         {
             this.treath = treath;
         }
 
-        protected virtual void FindSomethingToDo()
+        protected override void FindSomethingToDo()
         {
             if (HasTarget())
             {
@@ -97,30 +44,6 @@ namespace Playmode.Ennemy.Strategies
 
                 MoveAndRotateTowardPosition(randomDestination);
             }
-        }
-
-        private bool HasReachedDestination()
-        {
-            return Vector3.Distance(mover.transform.position, randomDestination) <= 0.5;
-        }
-
-        protected virtual void Attack()
-        {
-            RotateTowardPosition(ennemySensor.EnnemiesInSight.First().transform.position);  
-            if (Vector3.Distance(mover.transform.position,
-                    ennemySensor.EnnemiesInSight.ElementAt(0).transform.position) >= SPACE_BETWEEN_ENNEMIES)
-            {
-                mover.MoveToward(ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
-            }
-            handController.Use();
-        }
-
-        protected void Defend()
-        {
-            Vector3 direction = treath.transform.position - mover.transform.position;
-            mover.Rotate(Vector2.Dot(direction,mover.transform.right));
-        }
-    
-        
+        }   
     }
 }

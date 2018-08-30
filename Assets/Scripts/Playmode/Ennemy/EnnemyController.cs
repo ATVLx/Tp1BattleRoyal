@@ -103,31 +103,13 @@ namespace Playmode.Ennemy
             health.OnDeath -= OnDeath;
         }
 
-        public void Configure(EnnemyStrategy strategy, Color color)
+        public void Configure(NormalStrategy strategy, Color color)
         {
             body.GetComponent<SpriteRenderer>().color = color;
             sight.GetComponent<SpriteRenderer>().color = color;
-
-            switch (strategy)
-            {
-                case EnnemyStrategy.Careful:
-                    typeSign.GetComponent<SpriteRenderer>().sprite = carefulSprite;
-                   this.strategy=new CarefullStrategy(mover,handController,sight);
-                    break;
-                case EnnemyStrategy.Cowboy:
-                    typeSign.GetComponent<SpriteRenderer>().sprite = cowboySprite;
-                   this.strategy=new CowboyStrategy(mover,handController,sight);
-                    break;
-                case EnnemyStrategy.Camper:
-                    typeSign.GetComponent<SpriteRenderer>().sprite = camperSprite;
-                    this.strategy=new CamperStrategy(mover,handController,sight);
-                    break;
-                default:
-                    typeSign.GetComponent<SpriteRenderer>().sprite = normalSprite;
-                   this.strategy=new NormalStrategy(mover,handController,sight); //arranger les sight -> pour les component
-                    break;
-            }
-           // this.strategy = new NormalStrategy(mover ,handController,sight);
+            this.strategy = strategy;
+            strategy.Init(mover,handController,sight);
+            typeSign.GetComponent<SpriteRenderer>().sprite = strategy.sprite;
         }
 
         private void OnHit(int hitPoints , EnnemyController source) //la fonction de levenement
