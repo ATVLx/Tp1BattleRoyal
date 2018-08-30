@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting.Messaging;
 using Playmode.Application;
 using Playmode.Ennemy.Strategies;
 using Playmode.Util;
@@ -49,6 +50,8 @@ namespace Playmode.Ennemy
                 throw new ArgumentException("Can't spawn null ennemy prefab.");
             if (colors == null || colors.Length == 0)
                 throw new ArgumentException("Ennemies needs colors to be spawned.");
+            if(ennemyStrategies.Length==0)
+                throw new ArgumentException("Must have at least 1 strategy");
            
         }
 
