@@ -25,7 +25,8 @@ namespace Playmode.Entity.Status
             {
                 healthPoints = value < 0 ? 0 : value;
 
-                if (healthPoints <= 0) NotifyDeath();
+                if (healthPoints <= 0) 
+                    NotifyDeath();
             }
         }
 

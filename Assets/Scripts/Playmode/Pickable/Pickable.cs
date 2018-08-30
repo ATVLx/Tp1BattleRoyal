@@ -9,41 +9,45 @@ using UnityEngine;
 
 namespace Playmode.Pickable
 {
-
     public abstract class Pickable : MonoBehaviour
     {
         private void OnEnable()
         {
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraEventChannel>().OnCameraChange += CheckIfOutOfBounds;
-        }
-
-        private void OnDisable()
-        {
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraEventChannel>().OnCameraChange -= CheckIfOutOfBounds;
-
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraEventChannel>().OnCameraChange +=
+                OnCameraChange;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Ennemy"))
-                GetPicked(other.transform.root.GetComponentInChildren<EnnemyController>());
+            {
+                if (GetPicked(other.transform.root.GetComponentInChildren<EnnemyController>()))
+                {
+                    GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraEventChannel>().OnCameraChange -=OnCameraChange;
+                }
+            }
         }
 
-        protected abstract void GetPicked(EnnemyController other);
-        
-        /*
-        protected abstract void OnTriggerEnter2D(Collider2D other);
+        protected abstract bool GetPicked(EnnemyController other);
 
-        protected abstract void GetPicked(Collider2D other);
-        */
-
-        private void CheckIfOutOfBounds()
+        private void OnCameraChange()
         {
-            if (!(Mathf.Abs(transform.position.y) <= Camera.main.GetComponent<CameraEdge>().Height / 2 )&&
-                !(Mathf.Abs(transform.position.x) <= Camera.main.GetComponent<CameraEdge>().Width / 2))
+            if (CheckIfOutOfBounds())
             {
-                GetComponent<RootDestroyer>().Destroy();
-            }   
-        } 
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraEventChannel>().OnCameraChange -=OnCameraChange;
+                Destroy(this.gameObject);
+            }
+        }
+
+        private bool CheckIfOutOfBounds()
+        {
+            if (Mathf.Abs(transform.position.y) <= Camera.main.GetComponent<CameraEdge>().Height / 2 &&
+                Mathf.Abs(transform.position.x) <= Camera.main.GetComponent<CameraEdge>().Width / 2)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

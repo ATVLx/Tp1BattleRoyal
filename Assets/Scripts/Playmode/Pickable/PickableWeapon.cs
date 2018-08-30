@@ -6,14 +6,13 @@ using UnityEngine;
 
 public class PickableWeapon : Pickable
 {
-    protected override void GetPicked(EnnemyController other)
+    protected override bool GetPicked(EnnemyController other)
     {
         Destroy(GetComponent<PickableWeaponStimulus>());
         Destroy(GetComponent<CircleCollider2D>());
         //add to hand
         other.transform.root.GetComponentInChildren<HandController>().Hold(this.gameObject);
-
         Destroy(this);
+        return true;
     }
-
 }

@@ -10,14 +10,18 @@ using UnityEngine;
 public class PickableMedKit : Pickable
 {
     [SerializeField] private int healthPoint;
-    protected override void GetPicked(EnnemyController other)
+
+    protected override bool GetPicked(EnnemyController other)
     {
-        Health otherHealth=other.transform.root.GetComponentInChildren<Health>();
+        Health otherHealth = other.transform.root.GetComponentInChildren<Health>();
         //if health missing is under or equal heal medkit can give
         if (otherHealth.HealthPoints < otherHealth.MaxHealth)
         {
             otherHealth.Heal(healthPoint);
-                    Destroy(this.gameObject);
-        } 
+            Destroy(this.gameObject);
+            return true;
+        }
+
+        return false;
     }
 }
