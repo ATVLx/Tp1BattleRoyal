@@ -39,7 +39,7 @@ namespace Playmode.Ennemy.Strategies
                 MoveAndRotateTowardPosition(weaponSensor.WeaponsInSight.First().transform.position);
             }
             //if not under criticalhealth shoot ennemy in sight
-            else if (ennemySensor.EnnemiesInSight.Count() != 0)
+            else if (ennemySensor.EnnemiesInSight.Any())
             {
                 Attack();
             }

@@ -20,7 +20,7 @@ namespace Playmode.Ennemy.Strategies
         protected Vector3 randomDestination;
         protected EnnemyController treath;
         public abstract void Init(Mover mover, HandController handController, GameObject sight);
-        public void Act()
+        public virtual void Act()
         {
             if (IsThreaten()&&!HasTarget() && ThreathIsInRange())
             {

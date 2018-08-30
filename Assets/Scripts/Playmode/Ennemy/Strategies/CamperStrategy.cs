@@ -24,6 +24,11 @@ namespace Playmode.Ennemy.Strategies
             health = mover.GetComponent<Health>();
         }
 
+        public override void Act()
+        {
+            FindSomethingToDo();
+        }
+
         protected override void FindSomethingToDo()
         {
             //if i dont know where any medkit are 
