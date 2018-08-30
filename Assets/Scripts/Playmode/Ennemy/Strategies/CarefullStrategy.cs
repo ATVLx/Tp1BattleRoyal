@@ -12,7 +12,7 @@ namespace Playmode.Ennemy.Strategies
     [CreateAssetMenu(fileName = "CarefullStrategy", menuName = "Strategies/Carefull")]
     public class CarefullStrategy : NormalStrategy
     {
-        [SerializeField] private const int CRITICAL_HEALTH = 25;
+        [SerializeField] private int CRITICAL_HEALTH = 25;
         [SerializeField] private int CAREFULL_SAFE_RANGE = 6;
         private PickableMedKitSensor medKitSensor;
         private Health health;
