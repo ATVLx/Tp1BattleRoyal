@@ -80,8 +80,7 @@ namespace Playmode.Ennemy.Strategies
                 {
                     FindNewRandomDestination();
                 }
-                Roam();  
-            }
+                MoveAndRotateTowardPosition(randomDestination);
         }
 
         protected virtual void Attack()
@@ -100,15 +99,7 @@ namespace Playmode.Ennemy.Strategies
             Vector3 direction = treath.transform.position - mover.transform.position;
             mover.Rotate(Vector2.Dot(direction,mover.transform.right));
         }
-
-        protected void Roam()
-        {
-            Vector3 direction = randomDestination - mover.transform.position;
-            mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-            mover.MoveToward(randomDestination);
-        }
-        
-        
+    
         
     }
 }

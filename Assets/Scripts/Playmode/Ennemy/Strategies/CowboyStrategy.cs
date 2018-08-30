@@ -42,11 +42,7 @@ namespace Playmode.Ennemy.Strategies
             //Si aucune arme , chercher un ennemy.
             if (weaponSensor.WeaponsInSight.Any())
             {
-                Debug.Log("I've found a weapon!! Ya'll motherfuckers dead!!!");
-                Vector3 direction = weaponSensor.WeaponsInSight.First().transform.position -
-                                    mover.transform.position;
-                mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-                mover.MoveToward(weaponSensor.WeaponsInSight.First().transform.position);
+                MoveAndRotateTowardPosition(weaponSensor.WeaponsInSight.First().transform.position);
             }
            else if (ennemySensor.EnnemiesInSight.Count() != 0)
            {
@@ -58,7 +54,7 @@ namespace Playmode.Ennemy.Strategies
            }
            else
            {
-               Roam();
+               MoveAndRotateTowardPosition(randomDestination);
            }
         }
 
