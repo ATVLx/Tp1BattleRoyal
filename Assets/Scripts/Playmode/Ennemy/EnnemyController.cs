@@ -10,7 +10,7 @@ using UnityEngine;
 using Playmode.Ennemy.Strategies;
 namespace Playmode.Ennemy
 {
-    public class EnnemyController : MonoBehaviour
+    public class EnnemyController :MonoBehaviour
     {
         [Header("Body Parts")] [SerializeField] private GameObject body;
         [SerializeField] private GameObject hand;
@@ -22,8 +22,6 @@ namespace Playmode.Ennemy
         [SerializeField] private Sprite camperSprite;
         [Header("Behaviour")] [SerializeField] private GameObject startingWeaponPrefab;
 
-       
-        
         private Health health;
         private Mover mover;
         private Destroyer destroyer;
@@ -98,7 +96,7 @@ namespace Playmode.Ennemy
 
         private void OnDisable()
         {
-            hitSensor.OnHit -= OnHit;;
+            hitSensor.OnHit -= OnHit;
         }
 
         public void Configure(NormalStrategy strategy, Color color)
@@ -110,7 +108,7 @@ namespace Playmode.Ennemy
             typeSign.GetComponent<SpriteRenderer>().sprite = strategy.sprite;
         }
 
-        private void OnHit(int hitPoints , EnnemyController source) //la fonction de levenement
+        private void OnHit(float hitPoints , Transform source) //la fonction de levenement
         {
            // Debug.Log("OW, I'm hurt! I'm really much hurt!!!");
             health.Hit(hitPoints);

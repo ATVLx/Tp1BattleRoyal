@@ -62,7 +62,7 @@ namespace Playmode.Ennemy
             GameObject ennemy = Instantiate(ennemyPrefab, position, Quaternion.identity);
             ennemy.transform.root.name = this.GetComponent<NameGenerator>().GetNextRandomName();
             ennemy.GetComponentInChildren<EnnemyController>().Configure(Instantiate(strategy), color);
-            gameController.AddPotentialWinner(ennemy.GetComponentInChildren<EnnemyController>());
+            gameController.AddPotentialWinner(ennemy.transform);
         }
 
         private Vector2 CreateRandomSpawnPosition()

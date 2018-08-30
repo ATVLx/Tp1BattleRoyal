@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace Playmode.Entity.Senses
 {
-    public delegate void EnnemySensorEventHandler(EnnemyController ennemy);
+    public delegate void EnnemySensorEventHandler(EnnemyStimulus ennemy);
 
     public class EnnemySensor : MonoBehaviour
     {
-        private HashSet<EnnemyController> ennemiesInSight;
+        private HashSet<EnnemyStimulus> ennemiesInSight;
 
         public event EnnemySensorEventHandler OnEnnemySeen;
         public event EnnemySensorEventHandler OnEnnemySightLost;
 
 
-        public IEnumerable<EnnemyController> EnnemiesInSight {
+        public IEnumerable<EnnemyStimulus> EnnemiesInSight {
           get {
             ennemiesInSight.RemoveWhere(it => it == null);
             return ennemiesInSight;
@@ -29,10 +29,10 @@ namespace Playmode.Entity.Senses
 
         private void InitializeComponent()
         {
-            ennemiesInSight = new HashSet<EnnemyController>();
+            ennemiesInSight = new HashSet<EnnemyStimulus>();
         }
 
-        public void See(EnnemyController ennemy)
+        public void See(EnnemyStimulus ennemy)
         {
             ennemiesInSight.Add(ennemy);
 
@@ -40,19 +40,19 @@ namespace Playmode.Entity.Senses
         }
 
 
-        public void LooseSightOf(EnnemyController ennemy)
+        public void LooseSightOf(EnnemyStimulus ennemy)
         {
             ennemiesInSight.Remove(ennemy);
 
             NotifyEnnemySightLost(ennemy);
         }
 
-        private void NotifyEnnemySeen(EnnemyController ennemy)
+        private void NotifyEnnemySeen(EnnemyStimulus ennemy)
         {
             if (OnEnnemySeen != null) OnEnnemySeen(ennemy);
         }
 
-        private void NotifyEnnemySightLost(EnnemyController ennemy)
+        private void NotifyEnnemySightLost(EnnemyStimulus ennemy)
         {
             if (OnEnnemySightLost != null) OnEnnemySightLost(ennemy);
         }

@@ -11,7 +11,7 @@ public class PickableMedKit : Pickable
 {
     [SerializeField] private int healthPoint;
 
-    protected override bool GetPicked(EnnemyController other)
+    protected override bool GetPicked(Transform other)
     {
         Health otherHealth = other.transform.root.GetComponentInChildren<Health>();
         //if health missing is under or equal heal medkit can give

@@ -21,14 +21,14 @@ namespace Playmode.Pickable
         {
             if (other.CompareTag("Ennemy"))
             {
-                if (GetPicked(other.transform.root.GetComponentInChildren<EnnemyController>()))
+                if (GetPicked(other.transform))
                 {
                     GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraEventChannel>().OnCameraChange -=OnCameraChange;
                 }
             }
         }
 
-        protected abstract bool GetPicked(EnnemyController other);
+        protected abstract bool GetPicked(Transform other);
 
         private void OnCameraChange()
         {

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PickableWeapon : Pickable
 {
-    protected override bool GetPicked(EnnemyController other)
+    protected override bool GetPicked(Transform other)
     {
         Destroy(GetComponent<PickableWeaponStimulus>());
         Destroy(GetComponent<CircleCollider2D>());

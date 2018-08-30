@@ -10,14 +10,14 @@ namespace Playmode.Entity.Status
 {
     public class Health : MonoBehaviour
     {
-        [SerializeField] private int maxHealth = 100;
-         private int healthPoints;
+        [SerializeField] private float maxHealth = 100;
+         private float healthPoints;
 
         private bool invincible = false;
 
-        public int MaxHealth => maxHealth;
+        public float MaxHealth => maxHealth;
 
-        public int HealthPoints
+        public float HealthPoints
         {
             get { return healthPoints; }
             private set
@@ -26,7 +26,7 @@ namespace Playmode.Entity.Status
 
                 if (healthPoints <= 0)
                 {
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<EnnemyDeathEventChannel>().OnDeath(GetComponent<EnnemyController>());
+                    GameObject.FindGameObjectWithTag("GameController").GetComponent<EnnemyDeathEventChannel>().OnDeath(transform.root);
                     GetComponent<RootDestroyer>().Destroy();
                 }
                     
@@ -45,13 +45,13 @@ namespace Playmode.Entity.Status
                 throw new ArgumentException("HealthPoints can't be lower than 0.");
         }
 
-        public void Hit(int hitPoints)
+        public void Hit(float hitPoints)
         {
             if(invincible==false)
             HealthPoints -= hitPoints;
         }
 
-        public void Heal(int healPoints)
+        public void Heal(float healPoints)
         {
             HealthPoints += healPoints;
         }

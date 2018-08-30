@@ -7,7 +7,13 @@ namespace Playmode.Entity.Senses
 {
     public class HitStimulus : MonoBehaviour
     {
-        [Header("Behaviour")] [SerializeField] private int hitPoints = 10;
+        [Header("Behaviour")] [SerializeField] private float hitPoints = 10;
+
+        public float HitPoints
+        {
+            get { return hitPoints; }
+            set { hitPoints = value; }
+        }
 
         private void Awake()
         {
@@ -24,7 +30,7 @@ namespace Playmode.Entity.Senses
         {
             if (other.GetComponent<Entity.Senses.HitSensor>())
             {
-                other.GetComponent<Entity.Senses.HitSensor>()?.Hit(hitPoints,this.transform.root.GetComponentInChildren<BulletController>().Source);
+                other.GetComponent<Entity.Senses.HitSensor>()?.Hit(hitPoints,transform.root.GetComponentInChildren<BulletController>().Source);
                 Destroy(this.gameObject);
             }
         }

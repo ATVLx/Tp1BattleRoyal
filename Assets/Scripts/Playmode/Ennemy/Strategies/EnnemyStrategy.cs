@@ -18,7 +18,7 @@ namespace Playmode.Ennemy.Strategies
         protected EnnemySensor ennemySensor;
         protected CameraEdge cameraEdge;
         protected Vector3 randomDestination;
-        protected EnnemyController treath;
+        protected Transform treath;
         public abstract void Init(Mover mover, HandController handController, GameObject sight);
         public virtual void Act()
         {
@@ -39,7 +39,7 @@ namespace Playmode.Ennemy.Strategies
 
         protected bool ThreathIsInRange()
         {
-            return Vector3.Distance(mover.transform.position, treath.transform.position) <=
+            return Vector3.Distance(mover.transform.position, treath.position) <=
                    ennemySensor.GetComponentInChildren<PolygonCollider2D>().bounds.size.y;
         }
         
@@ -64,7 +64,7 @@ namespace Playmode.Ennemy.Strategies
 
         protected  void Defend()
         {
-            Vector3 direction = treath.transform.position - mover.transform.position;
+            Vector3 direction = treath.position - mover.transform.position;
             mover.Rotate(Vector2.Dot(direction, mover.transform.right));
             
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Playmode.Ennemy;
 using Playmode.Entity.Destruction;
+using Playmode.Entity.Senses;
 using Playmode.Movement;
 using UnityEngine;
 
@@ -14,7 +15,13 @@ namespace Playmode.Bullet
         private Destroyer destroyer;
         private float timeSinceSpawnedInSeconds;
 
-        public EnnemyController Source
+        public float Damage
+        {
+            get { return this.transform.root.GetComponentInChildren<HitStimulus>().HitPoints;}
+            set { this.transform.root.GetComponentInChildren<HitStimulus>().HitPoints = value; }
+        }
+
+        public Transform Source
         {
             get;
             set;
@@ -38,7 +45,7 @@ namespace Playmode.Bullet
         {
             mover = GetComponent<RootMover>();
             destroyer = GetComponent<RootDestroyer>();
-            Source = transform.root.GetComponentInChildren<EnnemyController>();
+            Source = transform.root;
 
             timeSinceSpawnedInSeconds = 0;
         }

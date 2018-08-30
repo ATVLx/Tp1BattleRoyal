@@ -9,33 +9,33 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public List<EnnemyController> potentialWinners;
+    public List<Transform> potentialWinners;
 
-    public List<EnnemyController> PotentialWinners => potentialWinners;
+    public List<Transform> PotentialWinners => potentialWinners;
 
     [SerializeField] private RectTransform winnerText;
 
     private void Awake()
     {
         Debug.Log("GC awake");
-        potentialWinners=new List<EnnemyController>(); 
+        potentialWinners=new List<Transform>(); 
         this.GetComponent<EnnemyDeathEventChannel>().OnEnnemyDie+= OnPotentialWinnerDeath;
     }
 
-    public void AddPotentialWinner(EnnemyController ennemyController)
+    public void AddPotentialWinner(Transform ennemyTransform)
     {
-        potentialWinners.Add(ennemyController);
+        potentialWinners.Add(ennemyTransform);
     }
 
-    private void OnPotentialWinnerDeath(EnnemyController ennemyController)
+    private void OnPotentialWinnerDeath(Transform ennemyController)
     {
         potentialWinners.Remove(ennemyController);
         Camera.main.GetComponent<CameraController>().Shrink();	
         
         if (potentialWinners.Count == 1)
         {
-            Camera.main.GetComponent<CameraController>().StartFollowing(potentialWinners.ElementAt(0).transform);
-            winnerText.GetComponent<Text>().text= potentialWinners.First().transform.root.name + " Won!";
+            Camera.main.GetComponent<CameraController>().StartFollowing(potentialWinners.First().transform);
+            winnerText.GetComponent<Text>().text= potentialWinners.First().root.name + " Won!";
         }
     }
 

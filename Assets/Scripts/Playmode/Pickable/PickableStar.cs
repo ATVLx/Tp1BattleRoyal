@@ -9,7 +9,7 @@ namespace Playmode.Pickable
         [SerializeField] private int durationInSeconds;
 
 
-        protected override bool GetPicked(EnnemyController other)
+        protected override bool GetPicked(Transform other)
         {
             other.transform.root.GetComponentInChildren<Health>().Invincibility(durationInSeconds);
             Destroy(this.gameObject);

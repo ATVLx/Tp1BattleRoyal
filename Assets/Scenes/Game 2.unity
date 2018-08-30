@@ -160,8 +160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -169,12 +169,12 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 20
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -190,6 +190,48 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 328952632}
   m_CullTransparentMesh: 0
+--- !u!1001 &970211029
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4869466993606262, guid: 59d6eed914a7979449d38175bbc66ccc, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.21450043
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869466993606262, guid: 59d6eed914a7979449d38175bbc66ccc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.29431105
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869466993606262, guid: 59d6eed914a7979449d38175bbc66ccc, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869466993606262, guid: 59d6eed914a7979449d38175bbc66ccc, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869466993606262, guid: 59d6eed914a7979449d38175bbc66ccc, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869466993606262, guid: 59d6eed914a7979449d38175bbc66ccc, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869466993606262, guid: 59d6eed914a7979449d38175bbc66ccc, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869466993606262, guid: 59d6eed914a7979449d38175bbc66ccc, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59d6eed914a7979449d38175bbc66ccc, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1414215693
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +261,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1414215695
 MonoBehaviour:
@@ -266,7 +308,7 @@ Prefab:
     - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
         type: 2}
       propertyPath: pickablePrefabs.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4120918255371250, guid: ebb199d14f7264c458a8ee46d63fd15a, type: 2}
       propertyPath: m_LocalPosition.x
@@ -342,6 +384,12 @@ Prefab:
       propertyPath: m_Name
       value: Pickable Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
+        type: 2}
+      propertyPath: pickablePrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 1363580777540286, guid: 26ff0937bece6ea4a9f9f488a3e94e0f,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebb199d14f7264c458a8ee46d63fd15a, type: 2}
   m_IsPrefabAsset: 0
@@ -467,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b913f8b7fd07f4e882ba239f1b7648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumberOfEnnemies: 10
+  NumberOfEnnemies: 1
   ennemyStrategies:
   - {fileID: 11400000, guid: e274ba5304abf9044ae8933bf74caedb, type: 2}
   - {fileID: 11400000, guid: 4bf1d4282e107a347acc957bf8bb9d33, type: 2}
@@ -496,7 +544,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2073673048
 MonoBehaviour:

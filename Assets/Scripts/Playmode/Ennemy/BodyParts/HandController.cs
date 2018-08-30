@@ -36,6 +36,10 @@ namespace Playmode.Ennemy.BodyParts
                     case WeaponController.WeaponType.Uzi:
                         this.weapon.FireDelayInSeconds = weapon.FireDelayInSeconds/ 2;
                         break;
+                    case WeaponController.WeaponType.Sniper:
+                        this.weapon.KnockBackForce += gameObject.GetComponent<WeaponController>().KnockBackForce;
+                        weapon.DamageModifier += 1;
+                        break;
                 }
                 Destroy(gameObject);
             }

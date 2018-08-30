@@ -11,6 +11,21 @@ namespace Playmode.Weapon
         [Header("Behaviour")] [SerializeField] protected GameObject bulletPrefab;
         [SerializeField] protected float fireDelayInSeconds = 1f;
         [SerializeField] private float knockBackForce = 1;
+        [SerializeField]private float damageModifier=1;
+        public float KnockBackForce
+        {
+            get { return knockBackForce; }
+            set { knockBackForce = value; }
+        }
+
+        
+
+        public float DamageModifier
+        {
+            get { return damageModifier; }
+            set { damageModifier = value; }
+        }
+
         public virtual int NbBullet
         {
             get { return 1; }
@@ -21,7 +36,8 @@ namespace Playmode.Weapon
         {
             Base,
             Shotgun,
-            Uzi
+            Uzi,
+            Sniper
         }
 
         [SerializeField] private WeaponType type;
@@ -62,7 +78,8 @@ namespace Playmode.Weapon
             {
 
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-                bullet.GetComponentInChildren<BulletController>().Source=transform.root.GetComponentInChildren<EnnemyController>();
+                bullet.GetComponentInChildren<BulletController>().Damage*=DamageModifier;
+                bullet.GetComponentInChildren<BulletController>().Source=transform.root;
                 KnockBackRoot();
 
                 lastTimeShotInSeconds = Time.time;

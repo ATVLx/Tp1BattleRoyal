@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace Playmode.Application
 {
-    public delegate void EnnemyDeathEventHandler(EnnemyController ennemyController);
+    public delegate void EnnemyDeathEventHandler(Transform ennemyTransformRoot);
     public class EnnemyDeathEventChannel : MonoBehaviour
     {
         public event EnnemyDeathEventHandler OnEnnemyDie;
 
-        public void OnDeath(EnnemyController ennemyController)
+        public void OnDeath(Transform ennemyTransformRoot)
         {
-            NotifyEnnemyDied(ennemyController);
+            NotifyEnnemyDied(ennemyTransformRoot);
         }
 
-        private void NotifyEnnemyDied(EnnemyController ennemyController)
+        private void NotifyEnnemyDied(Transform ennemyTransformRoot)
         {
-            if (OnEnnemyDie!= null) OnEnnemyDie(ennemyController);
+            if (OnEnnemyDie!= null) OnEnnemyDie(ennemyTransformRoot);
         }
     }
 }
