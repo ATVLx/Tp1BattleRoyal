@@ -8,6 +8,8 @@ public class PickableWeapon : Pickable
 {
     protected override void GetPicked(EnnemyController other)
     {
+        Destroy(GetComponent<PickableWeaponStimulus>());
+        Destroy(GetComponent<CircleCollider2D>());
         //add to hand
         other.transform.root.GetComponentInChildren<HandController>().Hold(this.gameObject);
 

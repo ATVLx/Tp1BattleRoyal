@@ -19,7 +19,7 @@ namespace Playmode.Ennemy.Strategies
             ennemySensor = sight.GetComponent<EnnemySensor>();
             this.mover = mover;
             this.handController = handController;
-            
+            cameraEdge = Camera.main.GetComponent<CameraEdge>();
             FindNewRandomDestination();
         }
 

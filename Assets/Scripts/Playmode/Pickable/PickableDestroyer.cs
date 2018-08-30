@@ -37,7 +37,6 @@ namespace Playmode.Pickable
             if (Mathf.Abs(position.y) <= Camera.main.GetComponent<CameraEdge>().Height / 2 &&
                 Mathf.Abs(position.x) <= Camera.main.GetComponent<CameraEdge>().Width / 2)
             {
-            
                 return false;
             }
             return true;

@@ -16,7 +16,7 @@ namespace Playmode.Ennemy.Strategies
         protected Mover mover;
         protected HandController handController;
         protected EnnemySensor ennemySensor;
-
+        protected CameraEdge cameraEdge;
         protected Vector3 randomDestination;
         protected EnnemyController treath;
         public abstract void Init(Mover mover, HandController handController, GameObject sight);
@@ -73,11 +73,11 @@ namespace Playmode.Ennemy.Strategies
         {
             randomDestination = new Vector3(
                 Random.Range(
-                    -Camera.main.GetComponent<CameraEdge>().Width / 2, //aller chercher camera une seule fois
-                    Camera.main.GetComponent<CameraEdge>().Width / 2),
+                    -cameraEdge.Width / 2, //aller chercher camera une seule fois
+                    cameraEdge.Width / 2),
                 Random.Range(
-                    -Camera.main.GetComponent<CameraEdge>().Height / 2,
-                    Camera.main.GetComponent<CameraEdge>().Height / 2),
+                    -cameraEdge.Height / 2,
+                    cameraEdge.Height / 2),
                 0);
             
         }
