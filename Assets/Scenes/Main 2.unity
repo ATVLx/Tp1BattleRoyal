@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afabb9a70a972324b82d21bed9ee1837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumCameraSize: 0
+  minimumCameraSize: 30
   shrinkingSpeedPerSeconds: 5
   followingCameraSize: 5
   followSpeed: 20
