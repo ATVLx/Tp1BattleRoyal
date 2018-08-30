@@ -1,4 +1,5 @@
-﻿using Playmode.Ennemy.BodyParts;
+﻿using Playmode.Ennemy;
+using Playmode.Ennemy.BodyParts;
 using Playmode.Entity.Senses;
 using Playmode.Entity.Status;
 using Playmode.Pickable;
@@ -9,7 +10,7 @@ using UnityEngine;
 public class PickableMedKit : Pickable
 {
     [SerializeField] private int healthPoint;
-    protected override void GetPicked(Collider2D other)
+    protected override void GetPicked(EnnemyController other)
     {
         Health otherHealth=other.transform.root.GetComponentInChildren<Health>();
         //if health missing is under or equal heal medkit can give
@@ -19,6 +20,4 @@ public class PickableMedKit : Pickable
                     Destroy(this.gameObject);
         } 
     }
-
-
 }

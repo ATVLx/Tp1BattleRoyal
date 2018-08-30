@@ -32,7 +32,7 @@ namespace Playmode.Ennemy
         private HandController handController;
         private PickableWeaponSensor weaponSensor;
 
-        private IEnnemyStrategy strategy; //changer pour une normal strategy 
+        private NormalStrategy strategy;
 
         private void Awake()
         {
@@ -142,10 +142,8 @@ namespace Playmode.Ennemy
         {
            // Debug.Log("OW, I'm hurt! I'm really much hurt!!!");
             health.Hit(hitPoints);
-            if (strategy is NormalStrategy)
-            {
-                (strategy as NormalStrategy).DefendModeEngaged(source);
-            }
+           strategy.DefendModeEngaged(source);
+            
         }
 
         private void OnDeath(EnnemyController controller)
