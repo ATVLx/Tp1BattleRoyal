@@ -51,6 +51,17 @@ namespace Playmode.Ennemy.Strategies
                     Camera.main.GetComponent<CameraEdge>().Height / 2),
                 0);
         }
+        protected void MoveAndRotateTowardPosition(Vector3 position)
+        {
+            RotateTowardPosition(position);
+            mover.MoveToward(position);
+        }
+
+        protected void RotateTowardPosition(Vector3 position)
+        {
+            Vector3 direction = position -mover.transform.position;
+            mover.Rotate(Vector2.Dot(direction, mover.transform.right));
+        }
 
         public void DefendModeEngaged(EnnemyController treath)
         {
@@ -73,17 +84,14 @@ namespace Playmode.Ennemy.Strategies
             }
         }
 
-        protected void Attack()
+        protected virtual void Attack()
         {
-            Vector3 direction = ennemySensor.EnnemiesInSight.ElementAt(0).transform.position -
-                                mover.transform.position;
-            mover.Rotate(Vector2.Dot(direction, mover.transform.right));
+            RotateTowardPosition(ennemySensor.EnnemiesInSight.First().transform.position);  
             if (Vector3.Distance(mover.transform.position,
                     ennemySensor.EnnemiesInSight.ElementAt(0).transform.position) >= spaceBetweenEnemies)
             {
                 mover.MoveToward(ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
             }
-
             handController.Use();
         }
 
