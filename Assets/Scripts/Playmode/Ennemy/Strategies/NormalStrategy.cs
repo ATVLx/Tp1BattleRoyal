@@ -20,6 +20,8 @@ namespace Playmode.Ennemy.Strategies
             this.mover = mover;
             this.handController = handController;
             cameraEdge = Camera.main.GetComponent<CameraEdge>();
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraEventChannel>().OnCameraChange +=
+                FindNewRandomDestination;
             FindNewRandomDestination();
         }
 
