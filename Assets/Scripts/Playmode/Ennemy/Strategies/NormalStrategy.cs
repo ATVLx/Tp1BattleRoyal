@@ -17,7 +17,7 @@ namespace Playmode.Ennemy.Strategies
         protected readonly EnnemySensor ennemySensor;
         protected Vector3 randomDestination;
         protected EnnemyController treath;
-        private const int spaceBetweenEnemies = 4;
+        private const int SPACE_BETWEEN_ENNEMIES = 4;
 
 
         public NormalStrategy(Mover mover, HandController handcontroller, GameObject sight)
@@ -88,7 +88,7 @@ namespace Playmode.Ennemy.Strategies
         {
             RotateTowardPosition(ennemySensor.EnnemiesInSight.First().transform.position);  
             if (Vector3.Distance(mover.transform.position,
-                    ennemySensor.EnnemiesInSight.ElementAt(0).transform.position) >= spaceBetweenEnemies)
+                    ennemySensor.EnnemiesInSight.ElementAt(0).transform.position) >= SPACE_BETWEEN_ENNEMIES)
             {
                 mover.MoveToward(ennemySensor.EnnemiesInSight.ElementAt(0).transform.position);
             }

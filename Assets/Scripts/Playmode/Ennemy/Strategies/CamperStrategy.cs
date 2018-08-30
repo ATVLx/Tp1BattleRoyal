@@ -8,21 +8,22 @@ using UnityEngine;
 
 namespace Playmode.Ennemy.Strategies
 {
-    public class CamperStrategy :NormalStrategy, IEnnemyStrategy
+    public class CamperStrategy : NormalStrategy, IEnnemyStrategy
     {
-
         private readonly PickableMedKitSensor medKitSensor;
         readonly private Health health;
         private PickableMedKit targetMedKit;
+        private const float CAMPING_AROUND_MEDKIT_RANGE = 2;
 
 
-        public CamperStrategy(Mover mover, HandController handcontroller, GameObject sight): base(mover,handcontroller,sight)
+        public CamperStrategy(Mover mover, HandController handcontroller, GameObject sight) : base(mover,
+            handcontroller, sight)
         {
             this.medKitSensor = sight.GetComponent<PickableMedKitSensor>();
             health = mover.GetComponent<Health>();
         }
 
-        public void FindSomethingToDo()
+        protected override void FindSomethingToDo()
         {
             //if i dont know where any medkit are 
             if (targetMedKit == null)
@@ -31,10 +32,7 @@ namespace Playmode.Ennemy.Strategies
                 if (medKitSensor.MedKitInSight.Count() != 0)
                 {
                     targetMedKit = medKitSensor.MedKitInSight.First();
-                    Vector3 direction = targetMedKit.transform.position -
-                                        mover.transform.position;
-                    mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-                    mover.MoveToward(targetMedKit.transform.position);
+                    MoveAndRotateTowardPosition(targetMedKit.transform.position);
                 }
                 //if not move randomly until i find a medkit
                 else
@@ -44,35 +42,27 @@ namespace Playmode.Ennemy.Strategies
                         FindNewRandomDestination();
                     }
 
-                    Vector3 direction = randomDestination - mover.transform.position;
-                    mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-                    mover.MoveToward(randomDestination);
+                    MoveAndRotateTowardPosition(randomDestination);
                 }
             }
+
             //if i have a target medkit
             if (targetMedKit != null)
             {
                 //if haelth is under 50% go to medkit
                 if (health.HealthPoints < health.MaxHealth * .5)
                 {
-                    Vector3 direction = targetMedKit.transform.position - mover.transform.position;
-                    mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-                    mover.MoveToward(targetMedKit.transform.position);
+                    MoveAndRotateTowardPosition(targetMedKit.transform.position);
                 }
                 //else stay close to medkit
-                else if (Vector2.Distance(mover.transform.position, targetMedKit.transform.position) > 2)
+                else if (Vector2.Distance(mover.transform.position, targetMedKit.transform.position) > CAMPING_AROUND_MEDKIT_RANGE)
                 {
-                    Vector3 direction = targetMedKit.transform.position - mover.transform.position;
-                    mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-                    mover.MoveToward(targetMedKit.transform.position);
+                    MoveAndRotateTowardPosition(targetMedKit.transform.position);
                 }
                 //im im over medkit and see ennnemy i defend it
                 else if (ennemySensor.EnnemiesInSight.Count() != 0)
                 {
-                    Vector3 direction = ennemySensor.EnnemiesInSight.ElementAt(0).transform.position -
-                                        mover.transform.position;
-                    mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-                    handController.Use();
+                    Attack();
                 }
                 //else i try to find other ennemy around medkit
                 else
@@ -80,6 +70,14 @@ namespace Playmode.Ennemy.Strategies
                     mover.Rotate(1);
                 }
             }
+        }
+
+        protected override void Attack()
+        {
+            Vector3 direction = ennemySensor.EnnemiesInSight.First().transform.position -
+                                mover.transform.position;
+            mover.Rotate(Vector2.Dot(direction, mover.transform.right));
+            handController.Use();
         }
     }
 }

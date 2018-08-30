@@ -36,7 +36,7 @@ namespace Playmode.Ennemy.Strategies
             }
         }
 
-        public void FindSomethingToDo()
+        protected override void FindSomethingToDo()
         {
             //Priorise la recherche d'arme.
             //Si aucune arme , chercher un ennemy.

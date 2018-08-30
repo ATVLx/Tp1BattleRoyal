@@ -24,7 +24,7 @@ namespace Playmode.Ennemy.Strategies
             health = mover.GetComponent<Health>();
         }
 
-        public void FindSomethingToDo()
+        protected override void FindSomethingToDo()
         {
             //if strategy see a healthpack and under critical health go there
             if (medKitSensor.MedKitInSight.Any() && health.HealthPoints <= CRITICAL_HEALTH)
