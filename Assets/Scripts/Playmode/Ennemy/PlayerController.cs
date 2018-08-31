@@ -21,6 +21,8 @@ namespace Playmode.Ennemy
         CreateStartingWeapon();
         strategy = playerStrategyPrefab;
         this.transform.root.name = "Player";
+        typeSign.GetComponent<SpriteRenderer>().sprite = strategy.sprite;
+        
     }
 
     // Update is called once per frame

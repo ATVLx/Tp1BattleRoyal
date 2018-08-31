@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6adc3496f78c4a6ba1054966a0eca125, type: 3}
   m_Name: PlayerStrategy
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: e3d017c8e7910614eac5c3151782503f, type: 3}
   SPACE_BETWEEN_ENNEMIES: 0
   DESTINATION_REACHED_PRECISION: 0

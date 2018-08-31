@@ -12,10 +12,10 @@ namespace Playmode.Ennemy
 {
     public class EnnemyController : MonoBehaviour
     {
-        [Header("Body Parts")] [SerializeField] private GameObject body;
-        [SerializeField] private GameObject hand;
-        [SerializeField] private GameObject sight;
-        [SerializeField] private GameObject typeSign;
+        [Header("Body Parts")] [SerializeField]protected GameObject body;
+        [SerializeField]protected GameObject hand;
+        [SerializeField] protected GameObject sight;
+        [SerializeField] protected GameObject typeSign;
 
         [Header("Behaviour")] [SerializeField] private GameObject startingWeaponPrefab;
 

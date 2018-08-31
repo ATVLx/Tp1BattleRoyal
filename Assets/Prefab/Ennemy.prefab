@@ -329,10 +329,6 @@ MonoBehaviour:
   hand: {fileID: 1201874307975926}
   sight: {fileID: 1699645007186046}
   typeSign: {fileID: 1477704372853126}
-  normalSprite: {fileID: 21300000, guid: 57a9bbaf00b6f7f41826c6cfdb727a7c, type: 3}
-  carefulSprite: {fileID: 21300000, guid: 59cbaa9177c078b44b276b554d1b1b8c, type: 3}
-  cowboySprite: {fileID: 21300000, guid: da442e3b6c1ce4f4487a3c003f766013, type: 3}
-  camperSprite: {fileID: 21300000, guid: 040104bd0166bd249a913acb61cce9b3, type: 3}
   startingWeaponPrefab: {fileID: 1145522191828904, guid: 88870865f059b0541aa68eb83ffb79d2,
     type: 2}
 --- !u!114 &114447077146874120
