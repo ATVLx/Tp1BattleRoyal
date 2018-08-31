@@ -24,11 +24,6 @@ namespace Playmode.Ennemy.Strategies
             health = mover.GetComponent<Health>();
         }
 
-        public override void Act()
-        {
-            FindSomethingToDo();
-        }
-
         protected override void FindSomethingToDo()
         {
             //if i dont know where any medkit are 
@@ -39,6 +34,11 @@ namespace Playmode.Ennemy.Strategies
                 {
                     targetMedKit = medKitSensor.MedKitInSight.First();
                     MoveAndRotateTowardPosition(targetMedKit.transform.position);
+                }
+                
+                else if(ennemySensor.EnnemiesInSight.Any())
+                {
+                    Attack();
                 }
                 //if not move randomly until i find a medkit
                 else

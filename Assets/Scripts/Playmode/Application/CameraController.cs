@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
     public void OnAllEnnemySpawned()
     {
         float nbEnnemy= GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().PotentialWinners.Count;
-        shrinkAmmount = (Camera.main.orthographicSize - minimumCameraSize) / nbEnnemy-1;
+        shrinkAmmount = Camera.main.orthographicSize / nbEnnemy-1;
     }
     public void Shrink()
     {
