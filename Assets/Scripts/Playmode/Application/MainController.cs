@@ -18,6 +18,14 @@ namespace Playmode.Application
             StartCoroutine(LoadGameSceneRoutine());
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ReloadGameScene();
+            }
+        }
+
         public void ReloadGameScene()
         {
             StartCoroutine(ReloadGameSceneRoutine());
