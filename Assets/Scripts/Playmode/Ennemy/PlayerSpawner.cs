@@ -24,6 +24,7 @@ public class PlayerSpawner : MonoBehaviour
 				Random.Range(-Camera.main.GetComponent<CameraEdge>().Width/2,Camera.main.GetComponent<CameraEdge>().Width/2),
 				Random.Range(-Camera.main.GetComponent<CameraEdge>().Height/2,Camera.main.GetComponent<CameraEdge>().Height/2));
 			Instantiate(playerPrefab, spawnPos, Quaternion.identity);
+			Destroy(this.gameObject);
 		}
 	}
 }

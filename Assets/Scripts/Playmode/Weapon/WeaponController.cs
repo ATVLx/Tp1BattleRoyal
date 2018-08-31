@@ -1,6 +1,7 @@
 ﻿using System;
 using Playmode.Bullet;
 using Playmode.Ennemy;
+using Playmode.Entity.Senses;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,14 @@ namespace Playmode.Weapon
         [Header("Behaviour")] [SerializeField] protected GameObject bulletPrefab;
         [SerializeField] protected float fireDelayInSeconds = 1f;
         [SerializeField] private float knockBackForce = 1;
+        private EnnemyController bulletSource;
+
+        public EnnemyController BulletSource
+        {
+            get { return bulletSource; }
+            set { bulletSource = value; }
+        }
+
         public virtual int NbBullet
         {
             get { return 1; }
@@ -63,7 +72,7 @@ namespace Playmode.Weapon
             {
 
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-                bullet.GetComponentInChildren<BulletController>().Source=transform.root.GetComponentInChildren<EnnemyController>();
+                bullet.GetComponentInChildren<BulletController>().Source = BulletSource;
                 KnockBackRoot();
 
                 lastTimeShotInSeconds = Time.time;

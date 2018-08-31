@@ -26,7 +26,7 @@ namespace Playmode.Weapon
                     
                     bullet.GetComponentInChildren<BulletController>().Source =
                         transform.root.GetComponentInChildren<EnnemyController>();
-                    
+                    bullet.GetComponentInChildren<BulletController>().Source = BulletSource;
                     float angle =randomizeBulletAngle
                             ? Random.Range(0f, scatterAngle) - (scatterAngle / 2)
                             : (i + 1) * (scatterAngle / nbBullet) - (scatterAngle / 2);

@@ -53,6 +53,10 @@ namespace Playmode.Ennemy.BodyParts
                 gameObject.transform.localPosition = Vector3.zero;
                 gameObject.transform.localRotation=Quaternion.identity;
                 weapon = gameObject.GetComponent<WeaponController>();
+                if (this.transform.root.GetComponentInChildren<EnnemyController>())
+                {
+                    weapon.BulletSource = this.transform.root.GetComponentInChildren<EnnemyController>();
+                }
             }
             else
             {

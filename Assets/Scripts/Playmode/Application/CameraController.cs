@@ -18,13 +18,13 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        currentCameraSizeGoal = Camera.main.orthographicSize;
         GameObject.FindGameObjectWithTag("GameController").GetComponent<EnnemiesSpawnedEventChannel>()
             .OnAllEnnemiesSpawned += OnAllEnnemySpawned;
     }
 
     public void OnAllEnnemySpawned()
     {
+        currentCameraSizeGoal = Camera.main.orthographicSize;
         float nbEnnemy= GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().PotentialWinners.Count;
         shrinkAmmount = Camera.main.orthographicSize / nbEnnemy-1;
     }
