@@ -22,7 +22,7 @@ namespace Playmode.Ennemy.Strategies
         protected PickableMedKitSensor medKitSensor;
         protected PickableWeaponSensor weaponSensor;
         public abstract void Init(Mover mover, HandController handController, GameObject sight);
-        public  void Act()
+        public virtual void Act()
         {
             if (IsThreaten()&&!HasTarget()&&ThreathIsInRange()&&!HasMedKitInSight()&&!HasWeaponInSight())
             {
