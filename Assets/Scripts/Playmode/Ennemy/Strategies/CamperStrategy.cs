@@ -12,7 +12,6 @@ namespace Playmode.Ennemy.Strategies
     public class CamperStrategy : NormalStrategy
     {
         [SerializeField] private const float CAMPING_AROUND_MEDKIT_RANGE = 2;
-        private PickableMedKitSensor medKitSensor;
         private Health health;
         private PickableMedKit targetMedKit;
 
@@ -30,13 +29,13 @@ namespace Playmode.Ennemy.Strategies
             if (targetMedKit == null)
             {
                 //if i see a medkit make it my target
-                if (medKitSensor.MedKitInSight.Any())
+                if (HasMedKitInSight())
                 {
                     targetMedKit = medKitSensor.MedKitInSight.First();
                     MoveAndRotateTowardPosition(targetMedKit.transform.position);
                 }
                 
-                else if(ennemySensor.EnnemiesInSight.Any())
+                else if(HasTarget())
                 {
                     Attack();
                 }
@@ -67,7 +66,7 @@ namespace Playmode.Ennemy.Strategies
                     MoveAndRotateTowardPosition(targetMedKit.transform.position);
                 }
                 //im im over medkit and see ennnemy i defend it
-                else if (ennemySensor.EnnemiesInSight.Count() != 0)
+                else if (HasTarget())
                 {
                     Attack();
                 }
@@ -86,5 +85,6 @@ namespace Playmode.Ennemy.Strategies
             mover.Rotate(Vector2.Dot(direction, mover.transform.right));
             handController.Use();
         }
+
     }
 }

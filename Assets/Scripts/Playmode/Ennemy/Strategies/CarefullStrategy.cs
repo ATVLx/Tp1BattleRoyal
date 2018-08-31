@@ -14,8 +14,6 @@ namespace Playmode.Ennemy.Strategies
     {
         [SerializeField] private int CRITICAL_HEALTH = 25;
         [SerializeField] private int CAREFULL_SAFE_RANGE = 6;
-        private PickableMedKitSensor medKitSensor;
-        private PickableWeaponSensor weaponSensor;
         private Health health;
 
 
@@ -30,16 +28,16 @@ namespace Playmode.Ennemy.Strategies
         protected override void FindSomethingToDo()
         {
             //if strategy see a healthpack and under critical health go there
-            if (medKitSensor.MedKitInSight.Any() && health.HealthPoints <= CRITICAL_HEALTH)
+            if (HasMedKitInSight() && health.HealthPoints <= CRITICAL_HEALTH)
             {
                 MoveAndRotateTowardPosition(medKitSensor.MedKitInSight.First().transform.position);
             }
-            else if (weaponSensor.WeaponsInSight.Any())
+            else if (HasWeaponInSight())
             {
                 MoveAndRotateTowardPosition(weaponSensor.WeaponsInSight.First().transform.position);
             }
             //if not under criticalhealth shoot ennemy in sight
-            else if (ennemySensor.EnnemiesInSight.Any())
+            else if (HasTarget())
             {
                 Attack();
             }
