@@ -13,7 +13,6 @@ namespace Playmode.Ennemy.Strategies
     [CreateAssetMenu(fileName = "NormalStrategy", menuName = "Strategies/Normal")]
     public class NormalStrategy : EnnemyStrategy
     {
-
         public override void Init(Mover mover, HandController handController, GameObject sight)
         {
             ennemySensor = sight.GetComponent<EnnemySensor>();
@@ -35,7 +34,7 @@ namespace Playmode.Ennemy.Strategies
         {
             if (HasTarget())
             {
-               Attack();
+                Attack();
             }
             else
             {
@@ -46,6 +45,6 @@ namespace Playmode.Ennemy.Strategies
 
                 MoveAndRotateTowardPosition(randomDestination);
             }
-        }   
+        }
     }
 }

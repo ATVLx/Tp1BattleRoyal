@@ -34,8 +34,8 @@ namespace Playmode.Ennemy.Strategies
                     targetMedKit = medKitSensor.MedKitInSight.First();
                     MoveAndRotateTowardPosition(targetMedKit.transform.position);
                 }
-                
-                else if(HasTarget())
+
+                else if (HasTarget())
                 {
                     Attack();
                 }
@@ -85,6 +85,5 @@ namespace Playmode.Ennemy.Strategies
             mover.Rotate(Vector2.Dot(direction, mover.transform.right));
             handController.Use();
         }
-
     }
 }

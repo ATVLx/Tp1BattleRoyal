@@ -63,8 +63,8 @@ namespace Playmode.Ennemy.Strategies
             {
                 mover.MoveToward(-targetPos);
             }
-            
-            
+
+
             handController.Use();
         }
     }

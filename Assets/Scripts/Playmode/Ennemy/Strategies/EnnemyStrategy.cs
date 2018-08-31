@@ -10,9 +10,9 @@ namespace Playmode.Ennemy.Strategies
 {
     public abstract class EnnemyStrategy : ScriptableObject
     {
-        [SerializeField]public Sprite sprite;
-        [SerializeField]protected int SPACE_BETWEEN_ENNEMIES = 4;
-        [SerializeField]protected float DESTINATION_REACHED_PRECISION = 0.5f;
+        [SerializeField] public Sprite sprite;
+        [SerializeField] protected int SPACE_BETWEEN_ENNEMIES = 4;
+        [SerializeField] protected float DESTINATION_REACHED_PRECISION = 0.5f;
         protected Mover mover;
         protected HandController handController;
         protected EnnemySensor ennemySensor;
@@ -22,11 +22,12 @@ namespace Playmode.Ennemy.Strategies
         protected PickableMedKitSensor medKitSensor;
         protected PickableWeaponSensor weaponSensor;
         public abstract void Init(Mover mover, HandController handController, GameObject sight);
+
         public virtual void Act()
         {
-            if (IsThreaten()&&!HasTarget()&&ThreathIsInRange()&&!HasMedKitInSight()&&!HasWeaponInSight())
+            if (IsThreaten() && !HasTarget() && ThreathIsInRange() && !HasMedKitInSight() && !HasWeaponInSight())
             {
-               Defend();
+                Defend();
             }
             else
             {
@@ -44,7 +45,7 @@ namespace Playmode.Ennemy.Strategies
             return Vector3.Distance(mover.transform.position, treath.transform.position) <=
                    ennemySensor.GetComponentInChildren<PolygonCollider2D>().bounds.size.y;
         }
-        
+
         protected bool HasTarget()
         {
             return ennemySensor.EnnemiesInSight.Any();
@@ -56,6 +57,7 @@ namespace Playmode.Ennemy.Strategies
             {
                 return medKitSensor.MedKitInSight.Any();
             }
+
             return false;
         }
 
@@ -65,9 +67,10 @@ namespace Playmode.Ennemy.Strategies
             {
                 return weaponSensor.WeaponsInSight.Any();
             }
+
             return false;
         }
-        
+
         protected abstract void FindSomethingToDo();
 
         protected virtual void Attack()
@@ -82,31 +85,29 @@ namespace Playmode.Ennemy.Strategies
             handController.Use();
         }
 
-        protected  void Defend()
+        protected void Defend()
         {
             Vector3 direction = treath.transform.position - mover.transform.position;
             mover.Rotate(Vector2.Dot(direction, mover.transform.right));
         }
-        
+
         protected bool HasReachedDestination()
         {
             return Vector3.Distance(mover.transform.position, randomDestination) <= DESTINATION_REACHED_PRECISION;
-            
         }
-        
+
         protected void FindNewRandomDestination()
         {
             randomDestination = new Vector3(
                 Random.Range(
-                    -cameraEdge.Width / 2, //aller chercher camera une seule fois
+                    -cameraEdge.Width / 2,
                     cameraEdge.Width / 2),
                 Random.Range(
                     -cameraEdge.Height / 2,
                     cameraEdge.Height / 2),
                 0);
-            
         }
-        
+
         protected void MoveAndRotateTowardPosition(Vector3 position)
         {
             RotateTowardPosition(position);
@@ -115,9 +116,8 @@ namespace Playmode.Ennemy.Strategies
 
         protected void RotateTowardPosition(Vector3 position)
         {
-            Vector3 direction = position -mover.transform.position;
+            Vector3 direction = position - mover.transform.position;
             mover.Rotate(Vector2.Dot(direction, mover.transform.right));
         }
-
     }
 }
