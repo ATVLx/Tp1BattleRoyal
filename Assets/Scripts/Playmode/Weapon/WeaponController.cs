@@ -21,7 +21,8 @@ namespace Playmode.Weapon
         {
             Base,
             Shotgun,
-            Uzi
+            Uzi,
+            Sniper
         }
 
         [SerializeField] private WeaponType type;

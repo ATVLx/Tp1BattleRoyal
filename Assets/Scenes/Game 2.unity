@@ -266,7 +266,7 @@ Prefab:
     - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
         type: 2}
       propertyPath: pickablePrefabs.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4120918255371250, guid: ebb199d14f7264c458a8ee46d63fd15a, type: 2}
       propertyPath: m_LocalPosition.x
@@ -342,6 +342,12 @@ Prefab:
       propertyPath: m_Name
       value: Pickable Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 114548328073142366, guid: ebb199d14f7264c458a8ee46d63fd15a,
+        type: 2}
+      propertyPath: pickablePrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 1363580777540286, guid: 26ff0937bece6ea4a9f9f488a3e94e0f,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebb199d14f7264c458a8ee46d63fd15a, type: 2}
   m_IsPrefabAsset: 0
