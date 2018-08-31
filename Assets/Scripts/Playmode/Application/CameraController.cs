@@ -20,10 +20,15 @@ public class CameraController : MonoBehaviour
     {
         Debug.Log("camera Start");
         currentCameraSizeGoal = Camera.main.orthographicSize;
-        int nbEnnemy= GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().PotentialWinners.Count;
-        shrinkAmmount = (Camera.main.orthographicSize - minimumCameraSize) / nbEnnemy-1;
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<EnnemiesSpawnedEventChannel>()
+            .OnAllEnnemiesSpawned += OnAllEnnemySpawned;
     }
 
+    public void OnAllEnnemySpawned()
+    {
+        float nbEnnemy= GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().PotentialWinners.Count;
+        shrinkAmmount = (Camera.main.orthographicSize - minimumCameraSize) / nbEnnemy-1;
+    }
     public void Shrink()
     {
         if (currentCameraSizeGoal != 10)

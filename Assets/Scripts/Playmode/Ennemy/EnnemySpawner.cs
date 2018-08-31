@@ -55,6 +55,7 @@ namespace Playmode.Ennemy
                     ennemyStrategies[i % ennemyStrategies.Length],
                     colorProvider.Next()
                 );
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<EnnemiesSpawnedEventChannel>().OnSpawnFinish();
         }
 
         private void SpawnEnnemy(Vector3 position, NormalStrategy strategy, Color color)

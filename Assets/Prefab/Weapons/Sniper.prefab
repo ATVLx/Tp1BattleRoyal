@@ -135,7 +135,7 @@ MonoBehaviour:
     type: 2}
   fireDelayInSeconds: 6
   knockBackForce: 30
-  type: 0
+  type: 3
 --- !u!212 &212646064241331666
 SpriteRenderer:
   m_ObjectHideFlags: 1
