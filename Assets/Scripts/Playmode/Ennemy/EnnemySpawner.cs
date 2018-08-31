@@ -15,6 +15,8 @@ namespace Playmode.Ennemy
         [SerializeField] private int NumberOfEnnemies = 10;
 
         [SerializeField] private NormalStrategy[] ennemyStrategies;
+        
+        CameraEdge cameraEdge;
 
         private static readonly Color[] DefaultColors =
         {
@@ -32,6 +34,7 @@ namespace Playmode.Ennemy
         {
             ValidateSerialisedFields();
             gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+            cameraEdge=Camera.main.GetComponent<CameraEdge>()
             SpawnEnnemies();
         }
 
@@ -55,7 +58,8 @@ namespace Playmode.Ennemy
                     ennemyStrategies[i % ennemyStrategies.Length],
                     colorProvider.Next()
                 );
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<EnnemiesSpawnedEventChannel>().OnSpawnFinish();
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<EnnemiesSpawnedEventChannel>()
+                .OnSpawnFinish();
         }
 
         private void SpawnEnnemy(Vector3 position, NormalStrategy strategy, Color color)
@@ -69,10 +73,10 @@ namespace Playmode.Ennemy
         private Vector2 CreateRandomSpawnPosition()
         {
             return new Vector2(
-                UnityEngine.Random.Range(-Camera.main.GetComponent<CameraEdge>().Width / 2,
-                    Camera.main.GetComponent<CameraEdge>().Width / 2),
-                UnityEngine.Random.Range(-Camera.main.GetComponent<CameraEdge>().Height / 2,
-                    Camera.main.GetComponent<CameraEdge>().Height / 2));
+                UnityEngine.Random.Range(-cameraEdge.Width / 2,
+                    cameraEdge.Width / 2),
+                UnityEngine.Random.Range(-cameraEdge.Height / 2,
+                    cameraEdge.Height / 2));
         }
     }
 }
