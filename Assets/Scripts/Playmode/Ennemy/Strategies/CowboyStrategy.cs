@@ -18,7 +18,6 @@ namespace Playmode.Ennemy.Strategies
     public class CowboyStrategy : NormalStrategy
     {
         private Vector3 target;
-        private PickableWeaponSensor weaponSensor;
 
         public override void Init(Mover mover, HandController handcontroller, GameObject sight)
         {
@@ -30,11 +29,11 @@ namespace Playmode.Ennemy.Strategies
         {
             //Priorise la recherche d'arme.
             //Si aucune arme , chercher un ennemy.
-            if (weaponSensor.WeaponsInSight.Any())
+            if (HasWeaponInSight())
             {
                 MoveAndRotateTowardPosition(weaponSensor.WeaponsInSight.First().transform.position);
             }
-            else if (ennemySensor.EnnemiesInSight.Count() != 0)
+            else if (HasTarget())
             {
                 Attack();
             }

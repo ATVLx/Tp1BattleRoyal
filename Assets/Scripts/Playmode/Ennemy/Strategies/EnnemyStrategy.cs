@@ -19,10 +19,12 @@ namespace Playmode.Ennemy.Strategies
         protected CameraEdge cameraEdge;
         protected Vector3 randomDestination;
         protected EnnemyController treath;
+        protected PickableMedKitSensor medKitSensor;
+        protected PickableWeaponSensor weaponSensor;
         public abstract void Init(Mover mover, HandController handController, GameObject sight);
-        public virtual void Act()
+        public  void Act()
         {
-            if (IsThreaten()&&!HasTarget() && ThreathIsInRange())
+            if (IsThreaten()&&!HasTarget()&&ThreathIsInRange()&&!HasMedKitInSight()&&!HasWeaponInSight())
             {
                Defend();
             }
@@ -45,9 +47,27 @@ namespace Playmode.Ennemy.Strategies
         
         protected bool HasTarget()
         {
-            return ennemySensor.EnnemiesInSight.Count() > 0;
+            return ennemySensor.EnnemiesInSight.Any();
         }
 
+        protected bool HasMedKitInSight()
+        {
+            if (medKitSensor != null)
+            {
+                return medKitSensor.MedKitInSight.Any();
+            }
+            return false;
+        }
+
+        protected bool HasWeaponInSight()
+        {
+            if (weaponSensor != null)
+            {
+                return weaponSensor.WeaponsInSight.Any();
+            }
+            return false;
+        }
+        
         protected abstract void FindSomethingToDo();
 
         protected virtual void Attack()
@@ -66,7 +86,6 @@ namespace Playmode.Ennemy.Strategies
         {
             Vector3 direction = treath.transform.position - mover.transform.position;
             mover.Rotate(Vector2.Dot(direction, mover.transform.right));
-            
         }
         
         protected bool HasReachedDestination()
