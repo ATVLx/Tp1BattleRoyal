@@ -29,9 +29,9 @@ namespace Playmode.Weapon
                     
                     float angle =randomizeBulletAngle
                             ? Random.Range(0f, scatterAngle) - (scatterAngle / 2)
-                            : (i + 1) * (scatterAngle / nbBullet) - (scatterAngle / 2));
+                            : (i + 1) * (scatterAngle / nbBullet) - (scatterAngle / 2);
                     
-                    bullet.transform.Rotate(new Vector3(0, 0, angle);
+                    bullet.transform.Rotate(new Vector3(0, 0, angle));
                 }
 
 
