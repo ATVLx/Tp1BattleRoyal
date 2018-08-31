@@ -18,7 +18,6 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("camera Start");
         currentCameraSizeGoal = Camera.main.orthographicSize;
         GameObject.FindGameObjectWithTag("GameController").GetComponent<EnnemiesSpawnedEventChannel>()
             .OnAllEnnemiesSpawned += OnAllEnnemySpawned;

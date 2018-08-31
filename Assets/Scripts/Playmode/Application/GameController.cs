@@ -17,7 +17,6 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("GC awake");
         potentialWinners=new List<EnnemyController>(); 
         this.GetComponent<EnnemyDeathEventChannel>().OnEnnemyDie+= OnPotentialWinnerDeath;
     }
@@ -38,7 +37,4 @@ public class GameController : MonoBehaviour
             winnerText.GetComponent<Text>().text= potentialWinners.First().transform.root.name + " Won!";
         }
     }
-
-    
-
 }
