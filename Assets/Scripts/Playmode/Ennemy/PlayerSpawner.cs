@@ -19,10 +19,11 @@ public class PlayerSpawner : MonoBehaviour
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
+			CameraEdge edge = Camera.main.GetComponent<CameraEdge>();
 			Destroy(enterGameText);
 			Vector2 spawnPos = new Vector2(
-				Random.Range(-Camera.main.GetComponent<CameraEdge>().Width/2,Camera.main.GetComponent<CameraEdge>().Width/2),
-				Random.Range(-Camera.main.GetComponent<CameraEdge>().Height/2,Camera.main.GetComponent<CameraEdge>().Height/2));
+				Random.Range(-edge.Width/2,edge.Width/2),
+				Random.Range(-edge.Height/2,edge.Height/2));
 			Instantiate(playerPrefab, spawnPos, Quaternion.identity);
 			Destroy(this.gameObject);
 		}
