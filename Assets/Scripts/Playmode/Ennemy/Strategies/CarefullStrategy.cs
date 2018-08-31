@@ -37,7 +37,7 @@ namespace Playmode.Ennemy.Strategies
                 MoveAndRotateTowardPosition(weaponSensor.WeaponsInSight.First().transform.position);
             }
             //if not under criticalhealth shoot ennemy in sight
-            else if (HasWeaponInSight())
+            else if (HasTarget())
             {
                 Attack();
             }
