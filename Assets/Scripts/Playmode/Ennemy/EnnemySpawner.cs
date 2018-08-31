@@ -34,7 +34,7 @@ namespace Playmode.Ennemy
         {
             ValidateSerialisedFields();
             gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
-            cameraEdge=Camera.main.GetComponent<CameraEdge>()
+            cameraEdge = Camera.main.GetComponent<CameraEdge>();
             SpawnEnnemies();
         }
 
