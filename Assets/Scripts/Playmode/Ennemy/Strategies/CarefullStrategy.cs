@@ -59,10 +59,11 @@ namespace Playmode.Ennemy.Strategies
 
             RotateTowardPosition(targetPos);
 
-            if (Vector3.Distance(mover.transform.position, targetPos) <= CAREFULL_SAFE_RANGE)
+            if (Vector3.Distance(mover.transform.position, targetPos) >= CAREFULL_SAFE_RANGE)
             {
                 mover.MoveToward(-targetPos);
             }
+            
             
             handController.Use();
         }
