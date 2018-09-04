@@ -4,29 +4,28 @@ using UnityEngine;
 
 namespace Playmode.Entity.Senses
 {
-	public class PickableWeaponStimulus : MonoBehaviour
-	{
+    public class PickableWeaponStimulus : MonoBehaviour
+    {
+        private PickableWeapon weapon;
 
-		private PickableWeapon weapon;
-		
-		private void Awake()
-		{
-			InitializeComponent();
-		}
+        private void Awake()
+        {
+            InitializeComponent();
+        }
 
-		private void InitializeComponent()
-		{
-			weapon = transform.GetComponent<PickableWeapon>();
-		}
+        private void InitializeComponent()
+        {
+            weapon = transform.GetComponent<PickableWeapon>();
+        }
 
-		private void OnTriggerEnter2D(Collider2D other)
-		{
-			other.GetComponent<PickableWeaponSensor>()?.See(weapon);
-		}
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            other.GetComponent<PickableWeaponSensor>()?.See(weapon);
+        }
 
-		private void OnTriggerExit2D(Collider2D other)
-		{
-			other.GetComponent<PickableWeaponSensor>()?.LooseSightOf(weapon);
-		}
-	}
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            other.GetComponent<PickableWeaponSensor>()?.LooseSightOf(weapon);
+        }
+    }
 }

@@ -25,7 +25,7 @@ namespace Playmode.Ennemy.Strategies
         }
 
 
-        public virtual void DefendModeEngaged(EnnemyController treath)
+        public virtual void SetThreat(EnnemyController treath)
         {
             this.treath = treath;
         }

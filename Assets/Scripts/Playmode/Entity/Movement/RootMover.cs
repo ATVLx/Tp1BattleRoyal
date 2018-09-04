@@ -30,11 +30,10 @@ namespace Playmode.Movement
         }
 
         public override void Rotate(float direction)
-        {   
-                rootTransform.Rotate(
-                    Vector3.forward,
-                    (direction < 0 ? rotateSpeed : -rotateSpeed) * Time.deltaTime);
-            
+        {
+            rootTransform.Rotate(
+                Vector3.forward,
+                (direction < 0 ? rotateSpeed : -rotateSpeed) * Time.deltaTime);
         }
     }
 }

@@ -88,7 +88,7 @@ namespace Playmode.Ennemy
 
         private void OnDisable()
         {
-            hitSensor.OnHit -= OnHit;;
+            hitSensor.OnHit -= OnHit;
         }
 
         public void Configure(NormalStrategy strategy, Color color)
@@ -105,7 +105,7 @@ namespace Playmode.Ennemy
            // Debug.Log("OW, I'm hurt! I'm really much hurt!!!");
             health.Hit(hitPoints);
             
-           strategy.DefendModeEngaged(source); 
+           strategy.SetThreat(source); 
         }
 
         private void OnDeath(EnnemyController controller)

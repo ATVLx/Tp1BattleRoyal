@@ -17,7 +17,7 @@ namespace Playmode.Ennemy.Strategies
             //nothing
         }
 
-        public override void DefendModeEngaged(EnnemyController treath)
+        public override void SetThreat(EnnemyController treath)
         {
             //nothing
         }

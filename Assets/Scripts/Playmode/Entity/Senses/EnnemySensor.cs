@@ -14,11 +14,13 @@ namespace Playmode.Entity.Senses
         public event EnnemySensorEventHandler OnEnnemySightLost;
 
 
-        public List<EnnemyController> EnnemiesInSight {
-          get {
-            ennemiesInSight.RemoveAll(it => it == null);
-            return ennemiesInSight;
-          }
+        public List<EnnemyController> EnnemiesInSight
+        {
+            get
+            {
+                ennemiesInSight.RemoveAll(it => it == null);
+                return ennemiesInSight;
+            }
         }
 
 
@@ -56,6 +58,5 @@ namespace Playmode.Entity.Senses
         {
             if (OnEnnemySightLost != null) OnEnnemySightLost(ennemy);
         }
-
     }
 }
