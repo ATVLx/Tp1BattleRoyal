@@ -8,19 +8,21 @@ using Playmode.Entity.Status;
 using Playmode.Movement;
 using UnityEngine;
 using Playmode.Ennemy.Strategies;
+
 namespace Playmode.Ennemy
 {
     public class EnnemyController : MonoBehaviour
     {
-        [Header("Body Parts")] [SerializeField]protected GameObject body;
-        [SerializeField]protected GameObject hand;
+        [Header("Body Parts")] [SerializeField]
+        protected GameObject body;
+
+        [SerializeField] protected GameObject hand;
         [SerializeField] protected GameObject sight;
         [SerializeField] protected GameObject typeSign;
 
         [Header("Behaviour")] [SerializeField] private GameObject startingWeaponPrefab;
 
-       
-        
+
         protected Health health;
         protected Mover mover;
         protected Destroyer destroyer;
@@ -64,7 +66,6 @@ namespace Playmode.Ennemy
             hitSensor = rootTransform.GetComponentInChildren<HitSensor>();
             handController = hand.GetComponent<HandController>();
             weaponSensor = rootTransform.GetComponentInChildren<PickableWeaponSensor>();
-
         }
 
         protected void CreateStartingWeapon()
@@ -76,9 +77,10 @@ namespace Playmode.Ennemy
             ));
         }
 
+        //Inscription à l'évenement.
         private void OnEnable()
         {
-            hitSensor.OnHit += OnHit;  //subscribe a l'evenement
+            hitSensor.OnHit += OnHit;
         }
 
         private void Update()
@@ -96,24 +98,19 @@ namespace Playmode.Ennemy
             body.GetComponent<SpriteRenderer>().color = color;
             sight.GetComponent<SpriteRenderer>().color = color;
             this.strategy = strategy;
-            strategy.Init(mover,handController,sight);
+            strategy.Init(mover, handController, sight);
             typeSign.GetComponent<SpriteRenderer>().sprite = strategy.sprite;
         }
 
-        private void OnHit(int hitPoints , EnnemyController source) //la fonction de levenement
+        //La fonction de l'évenement.
+        private void OnHit(int hitPoints, EnnemyController source)
         {
-           // Debug.Log("OW, I'm hurt! I'm really much hurt!!!");
-            health.Hit(hitPoints);
-            
-           strategy.SetThreat(source); 
+            strategy.SetThreat(source);
         }
 
         private void OnDeath(EnnemyController controller)
         {
-            //Debug.Log("Yaaaaarggg....!! I died....GG.");
-
             destroyer.Destroy();
         }
-
     }
 }

@@ -51,26 +51,26 @@ namespace Playmode.Ennemy.Strategies
                 }
             }
 
-            //if i have a target medkit
+            //Si le camper a vu un medkit.
             if (targetMedKit != null)
             {
-                //if haelth is under 50% go to medkit
+                //Ramasse uniquement le medkit si ses points de vie sont trop bas.
                 if (health.HealthPoints < health.MaxHealth * .5)
                 {
                     MoveAndRotateTowardPosition(targetMedKit.transform.position);
                 }
-                //else stay close to medkit
+                // "Camp"
                 else if (Vector2.Distance(mover.transform.position, targetMedKit.transform.position) >
                          CAMPING_AROUND_MEDKIT_RANGE)
                 {
                     MoveAndRotateTowardPosition(targetMedKit.transform.position);
                 }
-                //im im over medkit and see ennnemy i defend it
+
                 else if (HasTarget())
                 {
                     Attack();
                 }
-                //else i try to find other ennemy around medkit
+
                 else
                 {
                     mover.Rotate(1);

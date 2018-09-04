@@ -15,7 +15,7 @@ namespace Playmode.Ennemy
         [SerializeField] private int NumberOfEnnemies = 10;
 
         [SerializeField] private NormalStrategy[] ennemyStrategies;
-        
+
         CameraEdge cameraEdge;
 
         private static readonly Color[] DefaultColors =

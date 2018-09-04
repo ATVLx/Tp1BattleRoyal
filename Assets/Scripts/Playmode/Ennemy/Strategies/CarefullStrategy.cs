@@ -27,7 +27,6 @@ namespace Playmode.Ennemy.Strategies
 
         protected override void FindSomethingToDo()
         {
-            //if strategy see a healthpack and under critical health go there
             if (HasMedKitInSight() && health.HealthPoints <= CRITICAL_HEALTH)
             {
                 MoveAndRotateTowardPosition(medKitSensor.MedKitInSight.First().transform.position);
@@ -36,12 +35,12 @@ namespace Playmode.Ennemy.Strategies
             {
                 MoveAndRotateTowardPosition(weaponSensor.WeaponsInSight.First().transform.position);
             }
-            //if not under criticalhealth shoot ennemy in sight
+            //Aucun objet en vue.
             else if (HasTarget())
             {
                 Attack();
             }
-            //if nothing in sight move randomly
+
             else
             {
                 if (HasReachedDestination())
