@@ -14,7 +14,7 @@ public class PickableMedKit : Pickable
     protected override bool GetPicked(EnnemyController other)
     {
         Health otherHealth = other.transform.root.GetComponentInChildren<Health>();
-        //if health missing is under or equal heal medkit can give
+        //N'est pas ramsser si les points de vie sont trop haut.
         if (otherHealth.HealthPoints < otherHealth.MaxHealth)
         {
             otherHealth.Heal(healthPoint);

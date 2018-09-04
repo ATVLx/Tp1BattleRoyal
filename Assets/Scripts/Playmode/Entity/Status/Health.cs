@@ -11,9 +11,9 @@ namespace Playmode.Entity.Status
     public class Health : MonoBehaviour
     {
         [SerializeField] private int maxHealth = 100;
-         private int healthPoints;
+        private int healthPoints;
 
-        private bool invincible = false;
+        private bool invincible;
 
         public int MaxHealth => maxHealth;
 
@@ -26,10 +26,10 @@ namespace Playmode.Entity.Status
 
                 if (healthPoints <= 0)
                 {
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<EnnemyDeathEventChannel>().OnDeath(GetComponent<EnnemyController>());
+                    GameObject.FindGameObjectWithTag("GameController").GetComponent<EnnemyDeathEventChannel>()
+                        .OnDeath(GetComponent<EnnemyController>());
                     GetComponent<RootDestroyer>().Destroy();
                 }
-                    
             }
         }
 
@@ -37,6 +37,7 @@ namespace Playmode.Entity.Status
         {
             ValidateSerialisedFields();
             healthPoints = maxHealth;
+            invincible = false;
         }
 
         private void ValidateSerialisedFields()
@@ -47,8 +48,8 @@ namespace Playmode.Entity.Status
 
         public void Hit(int hitPoints)
         {
-            if(invincible==false)
-            HealthPoints -= hitPoints;
+            if (invincible == false)
+                HealthPoints -= hitPoints;
         }
 
         public void Heal(int healPoints)

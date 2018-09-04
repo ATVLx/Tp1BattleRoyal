@@ -14,11 +14,7 @@ namespace Playmode.Bullet
         private Destroyer destroyer;
         private float timeSinceSpawnedInSeconds;
 
-        public EnnemyController Source
-        {
-            get;
-            set;
-        }
+        public EnnemyController Source { get; set; }
 
         private bool IsAlive => timeSinceSpawnedInSeconds < lifeSpanInSeconds;
 
@@ -62,8 +58,5 @@ namespace Playmode.Bullet
             else
                 destroyer.Destroy();
         }
-
- 
-        
     }
 }

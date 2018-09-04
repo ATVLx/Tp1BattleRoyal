@@ -10,7 +10,7 @@ public class PickableWeapon : Pickable
     {
         Destroy(GetComponent<PickableWeaponStimulus>());
         Destroy(GetComponent<CircleCollider2D>());
-        //add to hand
+        //Ajout à la main.
         other.transform.root.GetComponentInChildren<HandController>().Hold(this.gameObject);
         Destroy(this);
         return true;

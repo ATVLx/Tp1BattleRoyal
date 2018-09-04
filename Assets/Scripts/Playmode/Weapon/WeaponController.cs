@@ -12,6 +12,7 @@ namespace Playmode.Weapon
         [Header("Behaviour")] [SerializeField] protected GameObject bulletPrefab;
         [SerializeField] protected float fireDelayInSeconds = 1f;
         [SerializeField] private float knockBackForce = 1;
+        [SerializeField] private WeaponType type;
         private EnnemyController bulletSource;
 
         public EnnemyController BulletSource
@@ -34,10 +35,9 @@ namespace Playmode.Weapon
             Sniper
         }
 
-        [SerializeField] private WeaponType type;
-        
+
         public WeaponType Type => type;
-        
+
 
         public float FireDelayInSeconds
         {
@@ -70,7 +70,6 @@ namespace Playmode.Weapon
         {
             if (CanShoot)
             {
-
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
                 bullet.GetComponentInChildren<BulletController>().Source = BulletSource;
                 KnockBackRoot();
@@ -81,9 +80,9 @@ namespace Playmode.Weapon
 
         public virtual void KnockBackRoot()
         {
-            float radianAngle = (transform.rotation.eulerAngles.z+90) * (3.1416f / 180);
-            Vector2 dir=new Vector2(-Mathf.Cos(radianAngle),-Mathf.Sin(radianAngle));
-            this.transform.root.GetComponent<Rigidbody2D>().AddForce(dir*knockBackForce,ForceMode2D.Impulse);
+            float radianAngle = (transform.rotation.eulerAngles.z + 90) * (3.1416f / 180);
+            Vector2 dir = new Vector2(-Mathf.Cos(radianAngle), -Mathf.Sin(radianAngle));
+            this.transform.root.GetComponent<Rigidbody2D>().AddForce(dir * knockBackForce, ForceMode2D.Impulse);
         }
     }
 }

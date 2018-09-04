@@ -17,8 +17,8 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        potentialWinners=new List<EnnemyController>(); 
-        this.GetComponent<EnnemyDeathEventChannel>().OnEnnemyDie+= OnPotentialWinnerDeath;
+        potentialWinners = new List<EnnemyController>();
+        this.GetComponent<EnnemyDeathEventChannel>().OnEnnemyDie += OnPotentialWinnerDeath;
     }
 
     public void AddPotentialWinner(EnnemyController ennemyController)
@@ -29,12 +29,12 @@ public class GameController : MonoBehaviour
     private void OnPotentialWinnerDeath(EnnemyController ennemyController)
     {
         potentialWinners.Remove(ennemyController);
-        Camera.main.GetComponent<CameraController>().Shrink();	
-        
+        Camera.main.GetComponent<CameraController>().Shrink();
+
         if (potentialWinners.Count == 1)
         {
             Camera.main.GetComponent<CameraController>().StartFollowing(potentialWinners.ElementAt(0).transform);
-            winnerText.GetComponent<Text>().text= potentialWinners.First().transform.root.name + " Won!";
+            winnerText.GetComponent<Text>().text = potentialWinners.First().transform.root.name + " Won!";
         }
     }
 }

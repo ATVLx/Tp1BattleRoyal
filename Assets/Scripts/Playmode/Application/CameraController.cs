@@ -3,11 +3,12 @@ using UnityEditor;
 using UnityEngine;
 
 public delegate void CameraEventHandler();
+
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private float minimumCameraSize = 10;
     [SerializeField] private float shrinkingSpeedPerSeconds;
-    [SerializeField] private float followingCameraSize; 
+    [SerializeField] private float followingCameraSize;
     [SerializeField] private int followSpeed = 20;
     private float currentCameraSizeGoal;
     private int numberOfEnnemyAtStart;
@@ -25,9 +26,11 @@ public class CameraController : MonoBehaviour
     public void OnAllEnnemySpawned()
     {
         currentCameraSizeGoal = Camera.main.orthographicSize;
-        float nbEnnemy= GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().PotentialWinners.Count;
-        shrinkAmmount = Camera.main.orthographicSize / nbEnnemy-1;
+        float nbEnnemy = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>()
+            .PotentialWinners.Count;
+        shrinkAmmount = Camera.main.orthographicSize / nbEnnemy - 1;
     }
+
     public void Shrink()
     {
         if (currentCameraSizeGoal != 10)
@@ -43,14 +46,15 @@ public class CameraController : MonoBehaviour
         if (currentCameraSizeGoal < Camera.main.orthographicSize)
         {
             Camera.main.orthographicSize -= shrinkingSpeedPerSeconds * Time.deltaTime;
-           if(currentCameraSizeGoal>=Camera.main.orthographicSize)
+            if (currentCameraSizeGoal >= Camera.main.orthographicSize)
             {
                 NotifyCameraEdgeChange();
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraEventChannel>().AdaptGameToCamera();
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraEventChannel>()
+                    .AdaptGameToCamera();
             }
         }
 
-        if (followTransform != null&&following)
+        if (followTransform != null && following)
         {
             this.transform.position = Vector3.MoveTowards(this.transform.position,
                 new Vector3(followTransform.position.x, followTransform.position.y, -10), followSpeed * Time.deltaTime);
@@ -63,8 +67,9 @@ public class CameraController : MonoBehaviour
         followTransform = transform;
         Shrink();
     }
+
     private void NotifyCameraEdgeChange()
     {
-       if (OnCameraEdgeChange != null) OnCameraEdgeChange();
+        if (OnCameraEdgeChange != null) OnCameraEdgeChange();
     }
 }

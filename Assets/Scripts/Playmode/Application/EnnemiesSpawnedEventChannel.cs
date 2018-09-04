@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemiesSpawnedEventChannel : MonoBehaviour {
+public class EnnemiesSpawnedEventChannel : MonoBehaviour
+{
+    public delegate void EnnemiesSpawnedEventHandler();
 
-	public delegate void EnnemiesSpawnedEventHandler();
-		public event EnnemiesSpawnedEventHandler OnAllEnnemiesSpawned;
+    public event EnnemiesSpawnedEventHandler OnAllEnnemiesSpawned;
 
-		public void OnSpawnFinish()
-		{
-			NotifyAllEnnemiesSpawned();
-		}
+    public void OnSpawnFinish()
+    {
+        NotifyAllEnnemiesSpawned();
+    }
 
-		private void NotifyAllEnnemiesSpawned()
-		{
-			if (OnAllEnnemiesSpawned!= null) OnAllEnnemiesSpawned();
-		}
+    private void NotifyAllEnnemiesSpawned()
+    {
+        if (OnAllEnnemiesSpawned != null) OnAllEnnemiesSpawned();
+    }
 }

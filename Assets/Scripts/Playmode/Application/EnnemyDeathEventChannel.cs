@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Playmode.Application
 {
     public delegate void EnnemyDeathEventHandler(EnnemyController ennemyController);
+
     public class EnnemyDeathEventChannel : MonoBehaviour
     {
         public event EnnemyDeathEventHandler OnEnnemyDie;
@@ -15,7 +16,7 @@ namespace Playmode.Application
 
         private void NotifyEnnemyDied(EnnemyController ennemyController)
         {
-            if (OnEnnemyDie!= null) OnEnnemyDie(ennemyController);
+            if (OnEnnemyDie != null) OnEnnemyDie(ennemyController);
         }
     }
 }
