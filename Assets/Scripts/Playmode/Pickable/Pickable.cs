@@ -23,7 +23,8 @@ namespace Playmode.Pickable
             {
                 if (GetPicked(other.transform.root.GetComponentInChildren<EnnemyController>()))
                 {
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraEventChannel>().OnCameraChange -=OnCameraChange;
+                    GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraEventChannel>()
+                        .OnCameraChange -= OnCameraChange;
                 }
             }
         }
@@ -34,7 +35,8 @@ namespace Playmode.Pickable
         {
             if (CheckIfOutOfBounds())
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraEventChannel>().OnCameraChange -=OnCameraChange;
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<CameraEventChannel>().OnCameraChange -=
+                    OnCameraChange;
                 Destroy(this.gameObject);
             }
         }

@@ -14,7 +14,8 @@ namespace Playmode.Weapon
             {
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
                 bullet.transform.Rotate(new Vector3(0, 0, (Random.Range(0, 5) - (unaccuracyAngle / 2))));
-                bullet.GetComponentInChildren<BulletController>().Source=transform.root.GetComponentInChildren<EnnemyController>();
+                bullet.GetComponentInChildren<BulletController>().Source =
+                    transform.root.GetComponentInChildren<EnnemyController>();
                 bullet.GetComponentInChildren<BulletController>().Source = BulletSource;
                 KnockBackRoot();
                 lastTimeShotInSeconds = Time.time;
