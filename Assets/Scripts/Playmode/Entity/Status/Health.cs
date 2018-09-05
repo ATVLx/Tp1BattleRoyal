@@ -3,6 +3,7 @@ using System.Collections;
 using Playmode.Application;
 using Playmode.Ennemy;
 using Playmode.Entity.Destruction;
+using Playmode.Entity.Senses;
 using UnityEngine;
 using UnityEngine.Jobs;
 
@@ -37,6 +38,8 @@ namespace Playmode.Entity.Status
         {
             ValidateSerialisedFields();
             healthPoints = maxHealth;
+
+            this.transform.root.GetComponentInChildren<HitSensor>().OnHit+=Hit;
             invincible = false;
         }
 
@@ -46,7 +49,7 @@ namespace Playmode.Entity.Status
                 throw new ArgumentException("HealthPoints can't be lower than 0.");
         }
 
-        public void Hit(int hitPoints)
+        public void Hit(int hitPoints,EnnemyController ec)
         {
             if (invincible == false)
                 HealthPoints -= hitPoints;
