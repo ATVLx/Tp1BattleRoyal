@@ -20,7 +20,7 @@ public class PlayerSpawner : MonoBehaviour
                 Random.Range(-edge.Width / 2, edge.Width / 2),
                 Random.Range(-edge.Height / 2, edge.Height / 2));
             Instantiate(playerPrefab, spawnPos, Quaternion.identity);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

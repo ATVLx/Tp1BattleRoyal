@@ -9,11 +9,11 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private RectTransform winnerText;
     public List<EnnemyController> potentialWinners;
 
     public List<EnnemyController> PotentialWinners => potentialWinners;
 
-    [SerializeField] private RectTransform winnerText;
 
     private void Awake()
     {

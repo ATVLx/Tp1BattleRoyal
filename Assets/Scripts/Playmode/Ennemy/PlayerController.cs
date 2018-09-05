@@ -19,7 +19,7 @@ namespace Playmode.Ennemy
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().AddPotentialWinner(this);
             CreateStartingWeapon();
             strategy = playerStrategyPrefab;
-            this.transform.root.name = "Player";
+            transform.root.name = "Player";
             typeSign.GetComponent<SpriteRenderer>().sprite = strategy.sprite;
         }
 

@@ -22,7 +22,6 @@ namespace Playmode.Ennemy
 
         [Header("Behaviour")] [SerializeField] private GameObject startingWeaponPrefab;
 
-
         protected Health health;
         protected Mover mover;
         protected Destroyer destroyer;

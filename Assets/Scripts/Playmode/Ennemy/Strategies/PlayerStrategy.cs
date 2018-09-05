@@ -9,22 +9,22 @@ namespace Playmode.Ennemy.Strategies
     {
         public override void Init(Mover mover, HandController handController, GameObject sight)
         {
-            //dont need this
+            
         }
 
         public override void Act()
         {
-            //nothing
+            
         }
 
         public override void SetThreat(EnnemyController treath)
         {
-            //nothing
+            
         }
 
         protected override void FindSomethingToDo()
         {
-            //let the player do his things
+            
         }
     }
 }
