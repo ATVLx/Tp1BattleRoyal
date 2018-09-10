@@ -2,6 +2,8 @@
 using UnityEditor;
 using UnityEngine;
 
+//BEN_CORRECTION : Mauvais dossier + aucune namespace.
+
 public delegate void CameraEventHandler();
 
 public class CameraController : MonoBehaviour

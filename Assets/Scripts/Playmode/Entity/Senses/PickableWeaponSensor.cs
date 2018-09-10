@@ -12,6 +12,7 @@ namespace Playmode.Entity.Senses
     {
         private List<PickableWeapon> weaponsInSight;
 
+        //BEN_CORRECTION : Code en commentaires.
         // private HashSet<PickableWeapon> weaponsInSight;
         public event PickableWeaponSensorEventHandler OnWeaponSeen;
         public event PickableWeaponSensorEventHandler OnWeaponSightLost;

@@ -25,11 +25,15 @@ namespace Playmode.Ennemy.Strategies
 
         protected override void FindSomethingToDo()
         {
+            //BEN_CORRECTION : Remplacez les commentaires par du code lorsque possible.
+            //
+            //                 Ex : if (HasFoundMedkit)
+            
             //if i dont know where any medkit are 
             if (targetMedKit == null)
             {
                 //if i see a medkit make it my target
-                if (HasMedKitInSight())
+                if (HasMedKitInSight()) //BEN_REVIEW : Ce que vous avez pourtant fait ici.
                 {
                     targetMedKit = medKitSensor.MedKitInSight.First();
                     MoveAndRotateTowardPosition(targetMedKit.transform.position);

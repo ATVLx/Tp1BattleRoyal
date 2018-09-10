@@ -25,6 +25,7 @@ namespace Playmode.Entity.Senses
             if (other.GetComponent<Entity.Senses.HitSensor>())
             {
                 other.GetComponent<Entity.Senses.HitSensor>()?.Hit(hitPoints,
+                    //BEN_CORRECTION : Comme dans "EnnemyStimulus", "BulletController" devrait être obtenu au "Awake".
                     this.transform.root.GetComponentInChildren<BulletController>().Source);
                 Destroy(this.gameObject);
             }

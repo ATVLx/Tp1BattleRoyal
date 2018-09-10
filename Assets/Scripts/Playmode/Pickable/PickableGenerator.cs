@@ -12,6 +12,7 @@ public class PickableGenerator : MonoBehaviour
 
     private void Start()
     {
+        //BEN_CORRECTION : 4 x GetComponent du même component. Pas performant du tout.
         float maxSpawnPosY = Camera.main.GetComponent<CameraEdge>().Height / 2;
         float minSpawnPosX = -Camera.main.GetComponent<CameraEdge>().Width / 2;
         float minSpawnPosY = -Camera.main.GetComponent<CameraEdge>().Height / 2;

@@ -21,6 +21,13 @@ namespace Playmode.Weapon
             set { bulletSource = value; }
         }
 
+        //BEN_CORRECTION : Je pensais initialement que c'était le nombre de balles restantes au joueur, mais c'est plutôt
+        //                 le nombre de balles tirées à chaque tir.
+        //
+        //                 Par contre, même à ça, on dirait que ce n'est pas utilisé (en dehors de ShotgunController, où
+        //                 cette propriété est remplacée.
+        //
+        //                 Je me demande sincèrement si retirer cette propriété ne serait pas une bonne idée.
         public virtual int NbBullet
         {
             get { return 1; }

@@ -9,6 +9,8 @@ namespace Playmode.Application
     {
         public event EnnemyDeathEventHandler OnEnnemyDie;
 
+        //BEN_REVIEW : La convention de nommage pour les EventChannel, c'est "PublishSomething".
+        //             Dans votre cas, ça donnerait "PublishEnemyDeath".
         public void OnDeath(EnnemyController ennemyController)
         {
             NotifyEnnemyDied(ennemyController);

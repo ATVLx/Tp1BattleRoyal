@@ -4,6 +4,8 @@ using Playmode.Entity.Senses;
 using Playmode.Pickable;
 using UnityEngine;
 
+//BEN_CORRECTION : Namespace.
+
 public class PickableWeapon : Pickable
 {
     protected override bool GetPicked(EnnemyController other)

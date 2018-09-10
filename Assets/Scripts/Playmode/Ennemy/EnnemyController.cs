@@ -104,6 +104,7 @@ namespace Playmode.Ennemy
         //La fonction de l'évenement.
         private void OnHit(int hitPoints, EnnemyController source)
         {
+            //BEN_CORRECTION : C'est quelque chose que la stratégie peut très bien faire elle même.
             strategy.SetThreat(source);
         }
 
